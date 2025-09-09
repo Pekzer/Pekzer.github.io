@@ -6,12 +6,16 @@
     <meta name="title" content="Portfolio Herrera Gonzalo">
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <?php include 'connection.php'; ?>
 </head>
 <body>
+    <?php include 'vista_proyectos.php'; ?>
     <?php include 'enviar_correo.php'; ?>
-    Pagina :3
+    <?php include 'tecnologias.php'; ?>
+    <?php include 'proyectos.php'; ?>
+    <?php include 'txp.php'; ?>
 
     
+
+    <footer>Pagina :3</footer>
 </body>
 </html>

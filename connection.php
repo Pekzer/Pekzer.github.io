@@ -17,8 +17,9 @@ $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "Conexión exitosa!";
+    //echo "Conexión exitosa!";
 } catch (\PDOException $e) {
+    echo "Conexión fallida!";
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 

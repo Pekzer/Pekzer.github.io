@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="Portfolio Herrera Gonzalo">
     <title>Correos</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <h2>Contacto</h2>
     <body>
     <?php
     use PHPMailer\PHPMailer\PHPMailer;
