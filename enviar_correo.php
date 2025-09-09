@@ -1,4 +1,27 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Portfolio Herrera Gonzalo">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    Pagina :3
+
+    <div class="Formulario Correo">
+        <table>
+            <form action="enviar_correo.php", method="post">
+            <tr><td><label for="Correo">Correo electronico</label>
+            <input type="text" id="correo" name="correo" required></td></tr>
+
+            <tr><td>Comentario: <textarea id="comentario" name="comentario"></textarea></td></tr>
+            
+            <tr><td><input type="submit" value="Enviar"></td></tr>
+        </table>
+    </div>
+    <?php
         use PHPMailer\PHPMailer\PHPMailer;
         use PHPMailer\PHPMailer\Exception;
         use PHPMailer\PHPMailer\SMTP;
@@ -50,3 +73,7 @@
             }
         }
         ?>
+    <footer>UNSA - 2025</footer>
+</body>
+</html>
+
