@@ -64,40 +64,16 @@
     }
     ?>
 
-    <div class="floating-form">
-        <div class="form-container" id="formContainer">
-            <div class="form-header">
-                <h2>Contacto</h2>
-                <p>Envíame un mensaje</p>
-                <button class="close-btn" id="closeBtn">×</button>
-            </div>
+    <div class="Formulario Correo">
+        <table>
+            <form action="enviar_correo.php", method="post">
+            <tr><td><label for="Correo">Correo electronico</label>
+            <input type="text" id="correo" name="correo" required></td></tr>
+
+            <tr><td>Comentario: <textarea id="comentario" name="comentario"></textarea></td></tr>
             
-            <div class="form-body">
-                <?php if ($mensaje): ?>
-                    <div class="message <?php echo $claseMensaje; ?>">
-                        <?php echo $mensaje; ?>
-                    </div>
-                <?php endif; ?>
-                
-                <form method="post">
-                    <div class="form-group">
-                        <label for="correo">Correo electrónico</label>
-                        <input type="email" id="correo" name="correo" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="comentario">Comentario</label>
-                        <textarea id="comentario" name="comentario" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Enviar mensaje</button>
-                </form>
-            </div>
-        </div>
-        
-        <div class="toggle-form" id="toggleBtn">
-            ✉️
-        </div>
+            <tr><td><input type="submit" value="Enviar"></td></tr>
+        </table>
     </div>
 
 </body>
