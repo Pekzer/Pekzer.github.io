@@ -21,7 +21,7 @@ if (!$controller && !$action):
             <a href="index.php?controller=proyecto&action=index">📁 Proyectos</a>
             <a href="index.php?controller=tecnologia&action=index">⚙️ Tecnologías</a>
             <a href="index.php?controller=txp&action=index">🔗 Asignar Tecnologías</a>
-            <a href="views/userview/index.php">🌐 Vista Pública</a>
+            <a href="index.php?controller=userview&action=index">🌐 Vista Pública</a>
             <a href="index.php?controller=correo&action=index">📧 Contacto</a>
     </div>
     <footer>Pagina :3</footer>
