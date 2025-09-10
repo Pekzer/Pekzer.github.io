@@ -4,3 +4,31 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6fa;
+    color: #2f3640;
+    text-align: center;
+    padding: 50px;
+}
+h1 {
+    margin-bottom: 30px;
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.menu a {
+    display: inline-block;
+    padding: 15px 25px;
+    background: #273c75;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+.menu a:hover {
+    background: #40739e;
+}
