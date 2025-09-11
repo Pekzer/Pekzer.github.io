@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/Correo.php';
+require_once BASE_PATH . '/models/Correo.php';
 
 class CorreoController {
     private $model;
@@ -8,19 +8,14 @@ class CorreoController {
         $this->model = new Correo();
     }
 
-    // Mostrar formulario
-    public function index() {
-        $mensaje = null;
-        require __DIR__ . '/../views/correos/index.php';
-    }
+    public function enviar($data) {
+        $resultado = $this->model->enviarCorreo(
+            $data['nombre'],
+            $data['email'],
+            $data['mensaje']
+        );
 
-    // Procesar envío
-    public function store($data) {
-        $correo = htmlspecialchars($data['correo']);
-        $comentario = htmlspecialchars($data['comentario']);
-
-        $mensaje = $this->model->enviar($correo, $comentario);
-
-        require __DIR__ . '/../views/correos/index.php';
+        header("Location:public.php?msg=" . urlencode($resultado));
+        exit;
     }
 }

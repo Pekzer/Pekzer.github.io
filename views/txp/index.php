@@ -4,7 +4,7 @@
 <body>
 <h2>Asignar Tecnologías a Proyectos</h2>
 
-<form method="POST" action="index.php?controller=txp&action=store">
+<form method="POST" action="admin.php?controller=txp&action=store">
     <select name="id_proyecto" required>
         <option value="">-- Proyecto --</option>
         <?php foreach ($proyectos as $p) { ?>
@@ -22,14 +22,29 @@
 
 <br>
 <table border="1" cellpadding="5">
-    <tr><th>Proyecto</th><th>Tecnología</th><th>Acciones</th></tr>
-    <?php foreach ($relaciones as $row) { ?>
+    <tr><th>Proyecto</th><th>Tecnologías</th><th>Acciones</th></tr>
+    <?php foreach ($relaciones as $row) { 
+        $ids = !empty($row['ids_txp']) ? explode(', ', $row['ids_txp']) : [];
+        $techs = !empty($row['tecnologias']) ? explode(', ', $row['tecnologias']) : [];
+    ?>
         <tr>
             <td><?= htmlspecialchars($row['proyecto']) ?></td>
-            <td><?= htmlspecialchars($row['tecnologia']) ?></td>
-            <td><a href="index.php?controller=txp&action=destroy&id=<?= $row['id_txp'] ?>">Eliminar</a></td>
+            <td>
+                <?php foreach ($techs as $index => $tech) { ?>
+                    <?= htmlspecialchars($tech) ?>
+                    <a href="admin.php?controller=txp&action=destroy&id=<?= $ids[$index] ?>">
+                        [Eliminar]
+                    </a><br>
+                <?php } ?>
+            </td>
+            <td>
+                <a href="admin.php?controller=txp&action=destroyAll&id_proyecto=<?= $row['id_proyecto'] ?>">
+                    Eliminar Todas
+                </a>
+            </td>
         </tr>
     <?php } ?>
 </table>
+    <a href="admin.php">Volver</a>
 </body>
 </html>

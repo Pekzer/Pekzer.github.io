@@ -2,48 +2,43 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once BASE_PATH . '/vendor/autoload.php';
 
 class Correo {
-    private $mail;
-
-    public function __construct() {
-        $this->mail = new PHPMailer(true);
-
-        // Configuración general SMTP
-        $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.gmail.com';
-        $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'gonzalo.herrera@exa.unsa.edu.ar'; 
-        $this->mail->Password = '';
-        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mail->Port = 587;
-
-        $this->mail->setFrom('gonzalo.herrera@exa.unsa.edu.ar', 'Mensaje desde el portafolio');
-    }
-
-    public function enviar($correo, $comentario) {
+    public function enviarCorreo($nombre, $email, $mensaje) {
         try {
-            $this->mail->addAddress('gonzalonherrera9000@gmail.com', 'Gonzalo Herrera');
+            $msg="Mensaje enviado correctamente.";
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'gonzalo.herrera@exa.unsa.edu.ar';
+            $mail->Password   = '';             
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
 
-            if (filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-                $this->mail->addReplyTo($correo);
-            } else {
-                $comentario .= " <br><em>El correo ingresado no es válido: $correo</em>";
+            $mail->setFrom('gonzalo.herrera@exa.unsa.edu.ar');
+            $mail->addAddress('gonzalonherrera9000@gmail.com', 'Gonzalo Herrera');
+
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $mail->addAddress($email, $nombre);
+            }
+            else{
+                $msg="Direccion de correo invalida.";
             }
 
-            $this->mail->isHTML(true);
-            $this->mail->Subject = "Nuevo mensaje desde el Portfolio";
-            $this->mail->Body = "
-                <p><strong>Correo:</strong> $correo</p>
-                <p><strong>Mensaje:</strong></p>
-                <p>$comentario</p>
+            $mail->isHTML(true);
+            $mail->Subject = "Nuevo mensaje desde Portfolio";
+            $mail->Body = "
+                <p><strong>Gracias $nombre por tu mensaje</strong></p>
+                <strong><p>$mensaje</p></strong>
+                <strong><p>Nos comunicaremos en brevedad a $correo</p></strong>
             ";
 
-            $this->mail->send();
-            return ["status" => "success", "msg" => "El formulario se envió con éxito."];
+            $mail->send();
+            return $msg;
         } catch (Exception $e) {
-            return ["status" => "error", "msg" => "Error al enviar el mensaje: {$this->mail->ErrorInfo}"];
+            return "Error al enviar correo: {$mail->ErrorInfo}";
         }
     }
 }

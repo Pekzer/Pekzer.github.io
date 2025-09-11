@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private static $host = "localhost";
-    private static $db = "portfolio";
-    private static $user = "root";
-    private static $pass = "";
+    private static $host = "mysql-pekzer.alwaysdata.net"; //localhost
+    private static $db = "pekzer_portfolio"; //portfolio
+    private static $user = "pekzer"; //root
+    private static $pass = "portafolio123"; //''
     private static $charset = "utf8mb4";
 
     public static function connect() {

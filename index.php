@@ -1,59 +1,48 @@
 <?php
-// Obtenemos parámetros de URL
-$controller = $_GET['controller'] ?? null;
-$action     = $_GET['action'] ?? null;
+define('BASE_PATH', __DIR__);
+session_start();
 
-// Si no hay controlador → mostramos menú principal
-if (!$controller && !$action): 
+
+$CLAVE_ADMIN = "43694099"; 
+
+if (!empty($_SESSION['admin']) && $_SESSION['admin'] === true) {
+    header('Location: admin.php');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $claveIngresada = $_POST['clave'] ?? '';
+
+    if ($claveIngresada === $CLAVE_ADMIN) {
+        $_SESSION['admin'] = true;
+        header("Location: admin.php");
+        exit;
+    } else {
+        $error = "Clave incorrecta, intente nuevamente.";
+    }
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Portfolio Herrera Gonzalo">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>Portfolio - Inicio</title>
+<link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
-    <h1>📌 Panel de Administración del Portfolio</h1>
-        <div class="menu">
-            <a href="index.php?controller=proyecto&action=index">📁 Proyectos</a>
-            <a href="index.php?controller=tecnologia&action=index">⚙️ Tecnologías</a>
-            <a href="index.php?controller=txp&action=index">🔗 Asignar Tecnologías</a>
-            <a href="index.php?controller=userview&action=index">🌐 Vista Pública</a>
-            <a href="index.php?controller=correo&action=index">📧 Contacto</a>
-    </div>
-    <footer>Pagina :3</footer>
+<div class="box">
+    <h1>Bienvenido</h1>
+    <p><a class="button" href="public.php">Ver sitio público</a></p>
+
+    <hr>
+
+    <h3>Acceso administrador</h3>
+    <form method="post" style="margin-top:10px;">
+        <input type="password" name="clave" placeholder="Ingrese la clave" required>
+        <button type="submit">Ingresar</button>
+    </form>
+
+</div>
 </body>
 </html>
-<?php
-else:
-    $controllerName = ucfirst($controller) . "Controller";
-    $controllerFile = __DIR__ . "/controllers/{$controllerName}.php";
 
-    if (file_exists($controllerFile)) {
-        require_once $controllerFile;
-
-        if (class_exists($controllerName)) {
-            $objController = new $controllerName();
-
-            if (method_exists($objController, $action)) {
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $objController->$action($_POST);
-                } elseif (isset($_GET['id'])) {
-                    $objController->$action($_GET['id']);
-                } else {
-                    $objController->$action();
-                }
-            } else {
-                echo "❌ Acción '$action' no encontrada en el controlador '$controllerName'.";
-            }
-        } else {
-            echo "❌ Clase '$controllerName' no encontrada en el archivo.";
-        }
-    } else {
-        echo "❌ Controlador '$controllerName' no encontrado.";
-    }
-endif;
-?>

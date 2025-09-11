@@ -1,7 +1,6 @@
 <?php
 require 'connection.php';
 
-// Traer proyectos con sus tecnologías
 $stmt = $pdo->query("
     SELECT p.id_proyecto, p.nombre AS proyecto, p.enlace, 
            GROUP_CONCAT(t.nombre ORDER BY t.nombre SEPARATOR ', ') AS tecnologias

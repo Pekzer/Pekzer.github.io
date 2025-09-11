@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/Tecnologia.php';
+require_once BASE_PATH . '/models/Tecnologia.php';
 
 class TecnologiaController {
     private $model;
@@ -12,16 +12,16 @@ class TecnologiaController {
 
     public function store($data) {
         $this->model->create($data['nombre']);
-        header("Location: index.php?controller=tecnologia&action=index");
+        header("Location: admin.php?controller=tecnologia&action=index");
     }
 
     public function update($data) {
         $this->model->update($data['id'], $data['nombre']);
-        header("Location: index.php?controller=tecnologia&action=index");
+        header("Location: admin.php?controller=tecnologia&action=index");
     }
 
     public function destroy($id) {
         $this->model->delete($id);
-        header("Location: index.php?controller=tecnologia&action=index");
+        header("Location: admin.php?controller=tecnologia&action=index");
     }
 }

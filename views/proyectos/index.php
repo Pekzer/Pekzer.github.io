@@ -4,9 +4,9 @@
 <body>
 <h2>Proyectos</h2>
 
-<form method="POST" action="index.php?controller=proyecto&action=store">
+<form method="POST" action="admin.php?controller=proyecto&action=store">
     <input type="text" name="nombre" placeholder="Nuevo proyecto" required>
-    <input type="text" name="enlace" placeholder="Enlace" required>
+    <input type="text" name="enlace" placeholder="Enlace">
     <button type="submit">Agregar</button>
 </form>
 
@@ -24,10 +24,11 @@
                     <input type="text" name="enlace" placeholder="Nuevo enlace">
                     <button type="submit">Editar</button>
                 </form>
-                <a href="index.php?controller=proyecto&action=destroy&id=<?= $row['id_proyecto'] ?>">Eliminar</a>
+                <a href="admin.php?controller=proyecto&action=destroy&id=<?= $row['id_proyecto'] ?>">Eliminar</a>
             </td>
         </tr>
     <?php } ?>
 </table>
+    <a href="admin.php">Volver</a>
 </body>
 </html>
