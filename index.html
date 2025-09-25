@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio">
+    <meta name="keywords" content="portfolio">
+    <meta name="author" content="Gonzalo Herrera">
+    <title>Portfolio - Gonzalo Herrera</title>
+    <link rel="stylesheet" href="style.css?v=1.3">
+</head>
+<body>
+    <header style="text-align: center; margin-bottom: 30px;">
+        <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+            Bienvenido
+        </h1>
+    </header>
+
+    <main id="userview">
+        <section id="proyectos">
+            <header>
+                <h2>Proyectos y Tecnologías</h2>
+            </header>
+            
+            <div id="loading-proyectos" class="msg" style="background: #3498db; color: white;">
+                Cargando proyectos...
+            </div>
+            
+            <div id="proyectos-container" style="display: none;">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Proyecto</th>
+                                <th>Tecnologías</th>
+                                <th>Enlace</th>
+                            </tr>
+                        </thead>
+                        <tbody id="proyectos-tbody">
+                            <!-- Los proyectos se cargarán aquí con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="error-proyectos" class="msg error" style="display: none;">
+                Error al cargar los proyectos. Verifique que el servidor PHP esté funcionando.
+            </div>
+        </section>
+
+        <aside id="aboutme">
+            <header>
+                <h1>Sobre mí</h1>
+            </header>
+            
+            <div class="about-content">
+                <div class="about-info">
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <strong>Nombre:</strong> Herrera Gonzalo Nicolas
+                        </div>
+                        <div class="info-item">
+                            <strong>Teléfono:</strong> 
+                            <a href="tel:+543874118679" style="color: white; text-decoration: none;">
+                                3874118679
+                            </a>
+                        </div>
+                        <div class="info-item">
+                            <strong>Correo:</strong> 
+                            <a href="mailto:gonzalonherrera9000@gmail.com" style="color: white; text-decoration: none;">
+                                gonzalonherrera9000@gmail.com
+                            </a>
+                        </div>
+                        <div class="info-item">
+                            <strong>LinkedIn:</strong> 
+                            <a href="https://www.linkedin.com/in/pekzer/" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               style="color: white; text-decoration: none;">
+                                https://www.linkedin.com/in/pekzer/
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!--<img src="media/yo.png">-->
+                </div>
+            </div>
+        </aside>
+
+        <section id="correo">
+            <header>
+                <h2>Contacto</h2>
+            </header>
+            
+            <div id="msg-container"></div>
+
+            <form id="contacto-form" novalidate>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" 
+                           id="nombre"
+                           name="nombre" 
+                           placeholder="Tu nombre" 
+                           required 
+                           minlength="2">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" 
+                           id="email"
+                           name="email" 
+                           placeholder="Tu correo" 
+                           required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje"
+                              name="mensaje" 
+                              rows="5" 
+                              placeholder="Escribe tu mensaje..." 
+                              required 
+                              minlength="10"></textarea>
+                </div>
+                
+                <button type="submit" id="submit-button">
+                    Enviar
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px;">
+        <p style="color: white;">© 2025 Gonzalo Herrera</p>
+    </footer>
+
+    <script>
+        const API_BASE = 'https://pekzer.alwaysdata.net/api.php'; 
+        
+        // Función para cargar proyectos
+        async function cargarProyectos() {
+            try {
+                const response = await fetch(`${API_BASE}?action=proyectos`);
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    mostrarProyectos(data.data);
+                } else {
+                    throw new Error(data.error || 'Error desconocido');
+                }
+            } catch (error) {
+                console.error('Error al cargar proyectos:', error);
+                document.getElementById('loading-proyectos').style.display = 'none';
+                document.getElementById('error-proyectos').style.display = 'block';
+            }
+        }
+        
+        // Función para mostrar proyectos
+        function mostrarProyectos(proyectos) {
+            const tbody = document.getElementById('proyectos-tbody');
+            const loading = document.getElementById('loading-proyectos');
+            const container = document.getElementById('proyectos-container');
+            
+            if (proyectos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #7f8c8d; font-style: italic;">
+                            No hay proyectos disponibles en este momento.
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = proyectos.map(proyecto => `
+                    <tr>
+                        <td><strong>${escapeHtml(proyecto.proyecto)}</strong></td>
+                        <td>
+                            ${proyecto.tecnologias 
+                                ? `<span class="tecnologias">${escapeHtml(proyecto.tecnologias)}</span>` 
+                                : '<em style="color: #7f8c8d;">Sin tecnologías</em>'
+                            }
+                        </td>
+                        <td>
+                            ${proyecto.enlace 
+                                ? `<a href="${escapeHtml(proyecto.enlace)}" target="_blank" rel="noopener noreferrer" title="Ver proyecto: ${escapeHtml(proyecto.proyecto)}">Ver Proyecto</a>` 
+                                : '<em style="color: #7f8c8d;">Sin enlace</em>'
+                            }
+                        </td>
+                    </tr>
+                `).join('');
+            }
+            
+            loading.style.display = 'none';
+            container.style.display = 'block';
+        }
+        
+        // Función para escape de HTML
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text ? text.toString().replace(/[&<>"']/g, m => map[m]) : '';
+        }
+        
+        // Función para enviar correo
+        async function enviarCorreo(formData) {
+            try {
+                console.log('Enviando datos:', formData);
+                
+                const response = await fetch(`${API_BASE}?action=enviar_correo`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                console.log('Response status:', response.status);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.success) {
+                    mostrarMensaje(data.message || 'Mensaje enviado correctamente. Te responderé pronto.', 'success');
+                    document.getElementById('contacto-form').reset();
+                } else {
+                    throw new Error(data.error || 'Error al enviar el mensaje');
+                }
+            } catch (error) {
+                console.error('Error completo al enviar correo:', error);
+                let errorMessage = 'Error al enviar el mensaje. ';
+                
+                if (error.message) {
+                    errorMessage += error.message;
+                } else {
+                    errorMessage += 'Intenta nuevamente o contacta directamente.';
+                }
+                
+                mostrarMensaje(errorMessage, 'error');
+            }
+        }
+        
+        // Función para mostrar mensajes
+        function mostrarMensaje(mensaje, tipo) {
+            const container = document.getElementById('msg-container');
+            container.innerHTML = `<div class="msg ${tipo}">${mensaje}</div>`;
+            
+            // Auto-hide después de 5 segundos
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar proyectos al iniciar
+            cargarProyectos();
+            
+            // Manejar envío del formulario
+            const form = document.getElementById('contacto-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    nombre: document.getElementById('nombre').value,
+                    email: document.getElementById('email').value,
+                    mensaje: document.getElementById('mensaje').value
+                };
+                
+                // Validación básica
+                if (!formData.nombre || formData.nombre.length < 1) {
+                    mostrarMensaje('El nombre no debe estar vacío.', 'error');
+                    return;
+                }
+                
+                if (!formData.email || !isValidEmail(formData.email)) {
+                    mostrarMensaje('Por favor, ingresa un correo electrónico válido.', 'error');
+                    return;
+                }
+
+                if (!formData.mensaje || formData.mensaje.length < 1) {
+                    mostrarMensaje('El mensaje no debe estar vacío.', 'error');
+                    return;
+                }
+                
+                // Cambiar estado del botón
+                const button = document.getElementById('submit-button');
+                const originalText = button.textContent;
+                button.textContent = 'Enviando...';
+                button.disabled = true;
+                
+                // Enviar correo
+                enviarCorreo(formData).finally(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                });
+            });
+        });
+        
+        // Función de validación de email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Fallback para sitios que no admiten PHP
+        window.addEventListener('error', function(e) {
+            if (e.message.includes('fetch')) {
+                document.getElementById('loading-proyectos').innerHTML = 
+                    'Este sitio requiere un servidor PHP para funcionar completamente.';
+                document.getElementById('error-proyectos').style.display = 'block';
+                document.getElementById('error-proyectos').innerHTML = 
+                    'Para ver todos los proyectos, visita: <a href="https://pekzer.alwaysdata.net/" style="color: white;">versión completa</a>';
+            }
+        });
+    </script>
+
+    <!-- Audio para mensajes (comentado como en la versión PHP) -->
+    <!--
+    <audio id="mensajeAudio" preload="auto">
+        <source src="media/mensaje.mp3" type="audio/mpeg">
+    </audio>
+    -->
+
+    <div style>
+        <a href="https://pekzer.alwaysdata.net/login.php" 
+            class="admin-button"
+            title="Acceso de administrador">
+            Acceso a edición
+        </a>
+    </div>
+</body>
+</html>
