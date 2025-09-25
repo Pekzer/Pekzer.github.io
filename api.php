@@ -1,8 +1,14 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
-header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+
+// Manejar preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 if (!defined('BASE_PATH')) {
     define('BASE_PATH', __DIR__); 
@@ -25,9 +31,13 @@ try {
             
         case 'enviar_correo':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = json_decode(file_get_contents('php://input'), true);
+                // Obtener datos del POST
+                $input = null;
+                $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
                 
-                if (!$input) {
+                if (strpos($contentType, 'application/json') !== false) {
+                    $input = json_decode(file_get_contents('php://input'), true);
+                } else {
                     $input = $_POST;
                 }
                 
@@ -37,16 +47,24 @@ try {
                 // Validar datos requeridos
                 if (empty($input['nombre']) || empty($input['email']) || empty($input['mensaje'])) {
                     http_response_code(400);
-                    echo json_encode(['success' => false, 'error' => 'Todos los campos son requeridos', 'debug' => $input]);
+                    echo json_encode([
+                        'success' => false, 
+                        'error' => 'Todos los campos son requeridos',
+                        'received' => $input
+                    ]);
                     break;
                 }
                 
                 try {
-                    require_once BASE_PATH . '/controllers/CorreoController.php';
-                    $correoController = new CorreoController();
+                    // Cargar directamente el modelo en lugar del controlador
+                    require_once BASE_PATH . '/models/Correo.php';
+                    $correoModel = new Correo();
                     
-                    // Usar el método específico para API
-                    $resultado = $correoController->enviarAPI($input);
+                    $resultado = $correoModel->enviarCorreo(
+                        $input['nombre'],
+                        $input['email'],
+                        $input['mensaje']
+                    );
                     
                     error_log("API Debug - Resultado: " . $resultado);
                     

@@ -30,9 +30,10 @@ class Txp {
         $stmt = $this->pdo->prepare("DELETE FROM tecnologiasxproyectos WHERE id_txp=:id");
         return $stmt->execute(['id' => $id]);
     }
+    
     public function deleteByProject($id_proyecto) {
-    $stmt = $this->pdo->prepare("DELETE FROM tecnologiasxproyectos WHERE id_proyecto = :id_proyecto");
-    return $stmt->execute(['id_proyecto' => $id_proyecto]);
+        $stmt = $this->pdo->prepare("DELETE FROM tecnologiasxproyectos WHERE id_proyecto = :id_proyecto");
+        return $stmt->execute(['id_proyecto' => $id_proyecto]);
     }   
 
     public function proyectos() {
