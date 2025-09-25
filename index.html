@@ -212,13 +212,28 @@
             try {
                 console.log('Enviando datos:', formData);
                 
-                const response = await fetch(`${API_BASE}?action=enviar_correo`, {
+                // Intentar primero con JSON
+                let response = await fetch(`${API_BASE}?action=enviar_correo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(formData)
                 });
+                
+                // Si falla, intentar con FormData
+                if (!response.ok && response.status !== 500) {
+                    console.log('Reintentando con FormData...');
+                    const form = new FormData();
+                    form.append('nombre', formData.nombre);
+                    form.append('email', formData.email);
+                    form.append('mensaje', formData.mensaje);
+                    
+                    response = await fetch(`${API_BASE}?action=enviar_correo`, {
+                        method: 'POST',
+                        body: form
+                    });
+                }
                 
                 console.log('Response status:', response.status);
                 
@@ -235,8 +250,10 @@
                 console.error('Error completo al enviar correo:', error);
                 let errorMessage = 'Error al enviar el mensaje. ';
                 
-                if (error.message) {
+                if (error.message && error.message !== 'Failed to fetch') {
                     errorMessage += error.message;
+                } else if (error.message === 'Failed to fetch') {
+                    errorMessage += 'Problema de conexión con el servidor. Intenta nuevamente.';
                 } else {
                     errorMessage += 'Intenta nuevamente o contacta directamente.';
                 }
