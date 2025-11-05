@@ -5,24 +5,55 @@ const Projects = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isModalOpen) {
+    const handleKeyDown = (e) => {
+      if (isGalleryOpen) {
+        if (e.key === 'Escape') {
+          setIsGalleryOpen(false);
+        } else if (e.key === 'ArrowLeft') {
+          prevImage();
+        } else if (e.key === 'ArrowRight') {
+          nextImage();
+        }
+      } else if (e.key === 'Escape' && isModalOpen) {
         setIsModalOpen(false);
         setSelectedProject(null);
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isModalOpen]);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, isGalleryOpen]);
+
+  const openGallery = (images, startIndex) => {
+    setCurrentImageIndex(startIndex);
+    setIsGalleryOpen(true);
+  };
+
+  const closeGallery = () => {
+    setIsGalleryOpen(false);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === selectedProject.modalContent.images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? selectedProject.modalContent.images.length - 1 : prev - 1
+    );
+  };
 
   const projects = [
     {
       title: t('projects.hirpace.title'),
       description: t('projects.hirpace.description'),
-      image: '/api/placeholder/400/250',
+      image: '/HIRPACE1.png',
       tech: ['Laravel', 'PHP', 'PostgreSQL', 'React', 'Tailwind'],
       github: '',
       demo: '',
@@ -32,9 +63,15 @@ const Projects = () => {
         description: t('projects.hirpace.modalDescription'),
         features: t('projects.hirpace.features'),
         images: [
-          '/api/placeholder/600/400',
-          '/api/placeholder/600/400',
-          '/api/placeholder/600/400'
+          '/HIRPACE1.png',
+          '/HIRPACE2.png',
+          '/HIRPACE3.png',
+          '/HIRPACE4.png',
+          '/HIRPACE5.png',
+          '/HIRPACE6.png',
+          '/HIRPACE7.png',
+          '/HIRPACE8.png',
+          '/HIRPACE9.png'
         ]
       }
     },
@@ -61,12 +98,20 @@ const Projects = () => {
   const ProjectCard = ({ project, isLarge = false }) => (
     <div className={`bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300 ${isLarge ? 'md:flex' : ''}`}>
       {/* Project Image */}
-      <div className={`relative ${isLarge ? 'md:w-1/2 h-64 md:h-auto' : 'h-48'} bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center`}>
-        <div className="text-white text-6xl opacity-20">
-          <svg fill="currentColor" viewBox="0 0 20 20" className={`${isLarge ? 'w-24 h-24' : 'w-16 h-16'}`}>
-            <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
-          </svg>
-        </div>
+      <div className={`relative ${isLarge ? 'md:w-1/2 h-64 md:h-auto' : 'h-48'} bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center overflow-hidden`}>
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-white text-6xl opacity-20">
+            <svg fill="currentColor" viewBox="0 0 20 20" className={`${isLarge ? 'w-24 h-24' : 'w-16 h-16'}`}>
+              <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
+            </svg>
+          </div>
+        )}
       </div>
 
       <div className={`p-6 ${isLarge ? 'md:w-1/2 md:flex md:flex-col md:justify-center' : ''}`}>
@@ -203,7 +248,11 @@ const Projects = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {project.modalContent.images.map((image, index) => (
-                  <div key={index} className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
+                  <div 
+                    key={index} 
+                    className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    onClick={() => openGallery(project.modalContent.images, index)}
+                  >
                     <img
                       src={image}
                       alt={`${project.title} - Imagen ${index + 1}`}
@@ -273,6 +322,59 @@ const Projects = () => {
             setSelectedProject(null);
           }}
         />
+
+        {/* Gallery Modal */}
+        {isGalleryOpen && selectedProject && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={closeGallery}>
+            <div className="relative max-w-7xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
+              {/* Close Button */}
+              <button
+                onClick={closeGallery}
+                className="absolute top-2 right-2 z-10 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Main Image */}
+              <div className="relative">
+                <img
+                  src={selectedProject.modalContent.images[currentImageIndex]}
+                  alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
+                  className="max-w-full max-h-[85vh] object-contain rounded-lg"
+                />
+
+                {/* Navigation Buttons */}
+                {selectedProject.modalContent.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Image Counter */}
+              <div className="text-center mt-4 text-white">
+                {currentImageIndex + 1} / {selectedProject.modalContent.images.length}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
