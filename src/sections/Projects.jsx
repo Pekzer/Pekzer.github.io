@@ -20,8 +20,8 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Aplicación WEB HIRPACE',
-      description: 'Página web para una institución médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
+      title: t('projects.hirpace.title'),
+      description: t('projects.hirpace.description'),
       image: '/api/placeholder/400/250',
       tech: ['Laravel', 'PHP', 'PostgreSQL', 'React', 'Tailwind'],
       github: '',
@@ -29,15 +29,8 @@ const Projects = () => {
       featured: true,
       hasModal: true,
       modalContent: {
-        description: 'Sistema integral de gestión médica desarrollado para instituciones de salud. Incluye módulos avanzados para la administración eficiente de pacientes, personal médico y operaciones clínicas.',
-        features: [
-          'Sistema de contenedores editables para personalización',
-          'Registro completo de historias clínicas',
-          'Gestión inteligente de turnos médicos',
-          'Sistema de pagos integrado',
-          'Panel de administración para médicos',
-          'Interfaz responsive y moderna'
-        ],
+        description: t('projects.hirpace.modalDescription'),
+        features: t('projects.hirpace.features'),
         images: [
           '/api/placeholder/600/400',
           '/api/placeholder/600/400',
@@ -46,8 +39,8 @@ const Projects = () => {
       }
     },
     {
-      title: 'Dashboard React con TypeScript',
-      description: 'Panel de administración moderno desarrollado con React, TypeScript, Vite y PostgreSQL como base de datos.',
+      title: t('projects.dashboardReact.title'),
+      description: t('projects.dashboardReact.description'),
       image: '/api/placeholder/400/250',
       tech: ['React', 'TypeScript', 'Vite', 'PostgreSQL'],
       github: 'https://github.com/Pekzer/dashboard-react',
@@ -55,8 +48,8 @@ const Projects = () => {
       featured: true
     },
     {
-      title: 'API REST con Java',
-      description: 'API RESTful desarrollada en Java con Spring Boot, conectada a base de datos MySQL para gestión de usuarios.',
+      title: t('projects.apiJava.title'),
+      description: t('projects.apiJava.description'),
       image: '/api/placeholder/400/250',
       tech: ['Java', 'Spring Boot', 'MySQL', 'REST API'],
       github: 'https://github.com/Pekzer/api-java-spring',

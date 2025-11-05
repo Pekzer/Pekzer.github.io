@@ -2,7 +2,10 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const cvFile = language === 'es' ? '/Herrera Gonzalo CV.pdf' : '/Herrera Gonzalo CV (eng).pdf';
+  const cvDownloadName = language === 'es' ? 'Herrera_Gonzalo_CV.pdf' : 'Herrera_Gonzalo_CV_English.pdf';
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
@@ -59,11 +62,11 @@ const Hero = () => {
               {t('home.cta')}
             </button>
             <a
-              href="/Herrera Gonzalo CV.pdf"
-              download="Herrera_Gonzalo_CV.pdf"
+              href={cvFile}
+              download={cvDownloadName}
               className="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 shadow-lg border border-gray-200 dark:border-gray-700"
             >
-              📄 Descargar CV
+              📄 {t('home.cv')}
             </a>
             <button
               onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
@@ -74,7 +77,7 @@ const Hero = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="mt-16 animate-bounce">
+          <div className="mt-16 animate-bounce cursor-pointer" onClick={() => document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })}>
             <svg className="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>

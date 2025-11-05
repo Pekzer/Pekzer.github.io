@@ -6,16 +6,16 @@ const Education = () => {
 
   const education = [
     {
-      title: 'Tecnicatura Universitaria en Programación',
+      title: t('education.title1'),
       company: 'Universidad Nacional de Salta',
-      period: '2021 - Actualidad',
-      description: 'Estudiando programación, estructuras de datos, algoritmos y arquitectura de computadora.'
+      period: t('education.period1'),
+      description: t('education.description1')
     },
     {
-      title: 'Bachiller con orientación en Informática',
+      title: t('education.title2'),
       company: 'Colegio de la Divina Misericordia',
-      period: '2015 - 2019',
-      description: 'Educación secundaria con especialización en informática y tecnología.'
+      period: t('education.period2'),
+      description: t('education.description2')
     }
   ];
 
@@ -24,31 +24,31 @@ const Education = () => {
       title: 'Argentina Programa',
       institution: 'Ministerio de Desarrollo Productivo Argentina',
       year: '2021',
-      description: 'Programa nacional de formación en programación'
+      description: t('education.courseDescription1')
     },
     {
       title: '1000 Programadores Python',
       institution: 'Universidad Nacional de Salta',
       year: '2021',
-      description: 'Curso intensivo de programación en Python'
+      description: t('education.courseDescription2')
     },
     {
       title: 'JavaScript Algorithms and Data Structure',
       institution: 'FreeCodeCamp',
       year: '2022',
-      description: 'Algoritmos y estructuras de datos en JavaScript'
+      description: t('education.courseDescription3')
     },
     {
       title: 'Desarrollo Web',
       institution: 'Universidad Nacional de Salta',
       year: '2023',
-      description: 'Fundamentos del desarrollo web moderno'
+      description: t('education.courseDescription4')
     },
     {
       title: 'Scientific Computing with Python',
       institution: 'FreeCodeCamp',
       year: '2025',
-      description: 'Computación científica con Python'
+      description: t('education.courseDescription5')
     }
   ];
 
@@ -111,16 +111,16 @@ const Education = () => {
             <div className="text-sm opacity-90">{t('about.coursesStats')}</div>
           </div>
           <div className="text-center p-6 bg-gradient-to-br from-portfolio-2 to-portfolio-3 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">4+</div>
+            <div className="text-3xl font-bold mb-2">5+</div>
             <div className="text-sm opacity-90">{t('about.yearsStudying')}</div>
           </div>
           <div className="text-center p-6 bg-gradient-to-br from-portfolio-3 to-portfolio-4 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">2</div>
-            <div className="text-sm opacity-90">Títulos</div>
+            <div className="text-3xl font-bold mb-2">4+</div>
+            <div className="text-sm opacity-90">{t('education.titles')}</div>
           </div>
           <div className="text-center p-6 bg-gradient-to-br from-portfolio-4 to-portfolio-5 rounded-lg text-white">
             <div className="text-3xl font-bold mb-2">100%</div>
-            <div className="text-sm opacity-90">Dedicación</div>
+            <div className="text-sm opacity-90">{t('education.dedication')}</div>
           </div>
         </div>
       </div>

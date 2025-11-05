@@ -99,10 +99,10 @@ const About = () => {
               </h3>
               <div className="flex flex-wrap gap-3">
                 <span className="px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium">
-                  Inglés Avanzado (C2)
+                  {t('about.languagesList.english')}
                 </span>
                 <span className="px-4 py-2 bg-gradient-to-r from-portfolio-2 to-portfolio-3 text-white text-sm rounded-full font-medium">
-                  Español Nativo
+                  {t('about.languagesList.spanish')}
                 </span>
               </div>
             </div>
