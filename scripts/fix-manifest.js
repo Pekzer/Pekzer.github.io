@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ruta al manifest.json en la carpeta dist
-const manifestPath = path.join(__dirname, '..', 'dist', 'favicon', 'manifest.json');
+// Ruta al manifest.json en la carpeta docs
+const manifestPath = path.join(__dirname, '..', 'docs', 'favicon', 'manifest.json');
 
 try {
   // Leer el manifest.json
