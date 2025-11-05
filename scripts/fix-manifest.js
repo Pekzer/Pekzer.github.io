@@ -10,10 +10,10 @@ try {
   const manifest = JSON.parse(manifestContent);
 
   // Actualizar las rutas de los iconos para GitHub Pages
-  manifest.start_url = '/portfolio/';
+  manifest.start_url = '/';
   manifest.icons = manifest.icons.map(icon => ({
     ...icon,
-    src: `/portfolio/favicon/${icon.src}`
+    src: `/favicon/${icon.src}`
   }));
 
   // Escribir el manifest.json actualizado
