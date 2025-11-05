@@ -5,10 +5,9 @@ const About = () => {
   const { t } = useLanguage();
 
   const skills = [
-    { name: 'Backend', tech: ['Java', 'Python', 'Laravel', 'PHP'] },
-    { name: 'Frontend', tech: ['React', 'TypeScript', 'JavaScript', 'HTML', 'Vite'] },
-    { name: 'Base de Datos', tech: ['PostgreSQL', 'MySQL', 'SQL'] },
-    { name: 'Idiomas', tech: ['Inglés Avanzado (C2)', 'Español Nativo'] }
+    { name: t('about.skillsCategories.backend'), tech: ['Java', 'Python', 'Laravel', 'PHP', 'PostgreSQL', 'MySQL'] },
+    { name: t('about.skillsCategories.frontend'), tech: ['React', 'TypeScript', 'JavaScript', 'HTML', 'Vite'] },
+    { name: t('about.skillsCategories.tools'), tech: ['Git', 'Docker', 'AWS'] }
   ];
 
   const education = [
@@ -77,60 +76,34 @@ const About = () => {
           <div>
             <div className="prose prose-lg max-w-none">
               <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                Soy un desarrollador Full Stack en formación, estudiante de la Tecnicatura Universitaria 
-                en Programación en la Universidad Nacional de Salta. Mi pasión por la informática y la 
-                resolución de problemas me ha llevado a especializarme en tecnologías modernas de 
-                desarrollo web.
+                {t('about.paragraph1')}
               </p>
               
               <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                He completado diversos cursos especializados incluyendo Argentina Programa, 
-                1000 Programadores Python, y certificaciones en FreeCodeCamp. Mi stack tecnológico 
-                incluye Java, Python, Laravel, React, PHP y TypeScript, junto con bases de datos 
-                PostgreSQL y MySQL.
+                {t('about.paragraph2')}
+              </p>
+
+              <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                {t('about.paragraph3')}
               </p>
 
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Mi enfoque está en el desarrollo de aplicaciones web modernas, utilizando frameworks 
-                como React para el frontend y Laravel para el backend. Mi nivel de inglés es avanzado (C2) 
-                lo que me permite mantenerme actualizado con las últimas tendencias tecnológicas.
+                {t('about.paragraph4')}
               </p>
             </div>
 
-            {/* Education */}
-            <div className="mt-10">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                {t('about.education')}
+            {/* Languages Section */}
+            <div className="mt-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                {t('about.skillsCategories.languages')}
               </h3>
-              <div className="space-y-6">
-                {education.map((edu, index) => (
-                  <div key={index} className="border-l-4 border-portfolio-1 pl-6">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {edu.title}
-                    </h4>
-                    <p className="text-portfolio-1 font-medium">{edu.company}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{edu.period}</p>
-                    <p className="text-gray-600 dark:text-gray-400">{edu.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Courses */}
-            <div className="mt-10">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                {t('about.courses')}
-              </h3>
-              <div className="space-y-4">
-                {courses.map((course, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-4 shadow-md border border-gray-200 dark:border-gray-700">
-                    <h4 className="text-md font-semibold text-gray-900 dark:text-white">
-                      {course.title}
-                    </h4>
-                    <p className="text-portfolio-1 text-sm">{course.institution} - {course.year}</p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">{course.description}</p>
-                  </div>
-                ))}
+              <div className="flex flex-wrap gap-3">
+                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium">
+                  Inglés Avanzado (C2)
+                </span>
+                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-2 to-portfolio-3 text-white text-sm rounded-full font-medium">
+                  Español Nativo
+                </span>
               </div>
             </div>
           </div>
@@ -161,19 +134,9 @@ const About = () => {
               ))}
             </div>
 
-            {/* Stats */}
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-                <div className="text-3xl font-bold text-portfolio-1">5+</div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm">{t('about.coursesStats')}</div>
-              </div>
-              <div className="text-center p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-                <div className="text-3xl font-bold text-portfolio-1">4+</div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm">{t('about.yearsStudying')}</div>
-              </div>
-            </div>
           </div>
         </div>
+
       </div>
     </section>
   );

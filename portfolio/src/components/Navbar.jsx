@@ -11,7 +11,8 @@ const Navbar = () => {
     { key: 'home', href: '#home' },
     { key: 'about', href: '#about' },
     { key: 'projects', href: '#projects' },
-    { key: 'contact', href: '#contact' }
+    { key: 'contact', href: '#contact' },
+    { key: 'education', href: '#education' }
   ];
 
   const scrollToSection = (href) => {

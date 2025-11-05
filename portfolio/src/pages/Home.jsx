@@ -6,6 +6,7 @@ import Hero from '@/sections/Hero';
 import About from '@/sections/About';
 import Projects from '@/sections/Projects';
 import Contact from '@/sections/Contact';
+import Education from '@/sections/Education';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
             <About />
             <Projects />
             <Contact />
+            <Education />
           </main>
           <Footer />
         </div>

@@ -10,12 +10,12 @@ const Hero = () => {
         <div className="text-center">
           {/* Profile Image */}
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 p-1">
-              <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <svg className="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                </svg>
-              </div>
+            <div className="w-52 h-52 mx-auto rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 p-1">
+              <img
+                src="/yo fondo negro.png"
+                alt="Gonzalo Herrera"
+                className="w-full h-full rounded-full object-cover"
+              />
             </div>
           </div>
 
@@ -58,6 +58,13 @@ const Hero = () => {
             >
               {t('home.cta')}
             </button>
+            <a
+              href="/Herrera Gonzalo CV.pdf"
+              download="Herrera_Gonzalo_CV.pdf"
+              className="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              📄 Descargar CV
+            </a>
             <button
               onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white font-medium rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300"

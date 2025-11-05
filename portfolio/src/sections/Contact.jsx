@@ -10,6 +10,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,16 +22,36 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://formspree.io/f/xqagrzdd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error('Error al enviar el mensaje');
+      }
+    } catch (err) {
+      setError('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
+      console.error('Form submission error:', err);
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1000);
+    }
   };
 
   const contactMethods = [
@@ -100,14 +121,11 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info */}
-          <div>
+          <div className="h-full">
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                {t('about.connectTitle')}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed text-lg">
                 {t('about.connectDescription')}
               </p>
             </div>
@@ -139,8 +157,8 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+          <div className="h-full">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 {t('about.sendMessage')}
               </h3>
@@ -151,7 +169,13 @@ const Contact = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="mb-6 p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-lg border border-red-200 dark:border-red-700">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -187,18 +211,18 @@ const Contact = () => {
                 </div>
 
                 {/* Message */}
-                <div>
+                <div className="flex-1">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t('contact.message')}
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
+                    rows={6}
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full h-full min-h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none"
                     placeholder="Cuéntame sobre tu proyecto o idea..."
                   />
                 </div>
