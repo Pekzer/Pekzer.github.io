@@ -73,7 +73,7 @@ const Contact = () => {
       ),
       label: t('contact.whatsapp'),
       value: '+54 387 411-8679',
-      href: 'https://wa.me/5438741186879'
+      href: 'https://wa.me/543874118679'
     },
     {
       icon: (
