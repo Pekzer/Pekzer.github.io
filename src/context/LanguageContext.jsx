@@ -141,7 +141,7 @@ const translations = {
       education: 'Education'
     },
     home: {
-      title: 'Hello! I am',
+      title: 'Hi! I\'m',
       subtitle: 'Full Stack Developer - DevOps',
       description: 'Passionate about computer science and problem solving. Specialized in web development with React, Laravel and databases.',
       cta: 'View Projects',
