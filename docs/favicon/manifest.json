@@ -1,11 +1,11 @@
 {
- "name": "Portfolio Gonzalo Herrera",
- "short_name": "Portfolio",
+ "name": "PKZR Portfolio",
+ "short_name": "PKZR",
  "description": "Portfolio personal de Gonzalo Herrera - Desarrollador Full Stack",
  "start_url": "/",
  "display": "standalone",
  "background_color": "#ffffff",
- "theme_color": "#3b82f6",
+ "theme_color": "#7c1427",
  "icons": [
   {
    "src": "/favicon/android-icon-36x36.png",

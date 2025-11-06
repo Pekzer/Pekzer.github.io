@@ -59,8 +59,16 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+      {/* Fondo con patrón más visible */}
+      <div className="absolute inset-0 bg-pattern-grid opacity-50"></div>
+      
+      {/* Círculos decorativos más grandes y dramáticos */}
+      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
+      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pulse-intense" style={{ animationDelay: '0.5s' }}></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -98,10 +106,10 @@ const About = () => {
                 {t('about.skillsCategories.languages')}
               </h3>
               <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium">
+                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-lg">
                   {t('about.languagesList.english')}
                 </span>
-                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-2 to-portfolio-3 text-white text-sm rounded-full font-medium">
+                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-2 to-portfolio-3 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-lg">
                   {t('about.languagesList.spanish')}
                 </span>
               </div>
@@ -116,7 +124,7 @@ const About = () => {
             
             <div className="space-y-6">
               {skills.map((skillGroup, index) => (
-                <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700">
+                <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                     {skillGroup.name}
                   </h4>
@@ -124,7 +132,7 @@ const About = () => {
                     {skillGroup.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium"
+                        className="px-3 py-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-md"
                       >
                         {tech}
                       </span>

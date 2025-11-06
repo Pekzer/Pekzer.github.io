@@ -53,8 +53,14 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Fondo con efectos más dramáticos */}
+      <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
+      <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
+      <div className="absolute bottom-20 left-10 w-[550px] h-[550px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/3 right-1/4 w-[480px] h-[480px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '2s' }}></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -73,7 +79,7 @@ const Education = () => {
             </h3>
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border-l-4 border-portfolio-1">
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-portfolio-1 hover-lift transition-all duration-300 shadow-red-900/50">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     {edu.title}
                   </h4>
@@ -92,7 +98,7 @@ const Education = () => {
             </h3>
             <div className="space-y-4">
               {courses.map((course, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
+                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-red-900 dark:border-gray-700 hover-lift transition-all duration-300">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     {course.title}
                   </h4>
@@ -105,22 +111,40 @@ const Education = () => {
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center p-6 bg-gradient-to-br from-portfolio-1 to-portfolio-2 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">5+</div>
-            <div className="text-sm opacity-90">{t('about.coursesStats')}</div>
-          </div>
-          <div className="text-center p-6 bg-gradient-to-br from-portfolio-2 to-portfolio-3 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">5+</div>
-            <div className="text-sm opacity-90">{t('about.yearsStudying')}</div>
-          </div>
-          <div className="text-center p-6 bg-gradient-to-br from-portfolio-3 to-portfolio-4 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">4+</div>
-            <div className="text-sm opacity-90">{t('education.titles')}</div>
-          </div>
-          <div className="text-center p-6 bg-gradient-to-br from-portfolio-4 to-portfolio-5 rounded-lg text-white">
-            <div className="text-3xl font-bold mb-2">100%</div>
-            <div className="text-sm opacity-90">{t('education.dedication')}</div>
+        <div className="mt-16 relative overflow-hidden rounded-lg">
+          <div 
+            className="absolute inset-0 animate-gradient-x" 
+            style={{
+              background: 'linear-gradient(to right, #7c1427 0%, #6a0f1d 10%, #580a14 20%, #45050a 30%, #330000 40%, #45050a 45%, #7c1427 50%, #6a0f1d 60%, #580a14 70%, #45050a 80%, #330000 90%, #45050a 95%, #7c1427 100%)',
+              backgroundSize: '200% 100%',
+              filter: 'blur(8px)'
+            }}
+          ></div>
+          <div 
+            className="absolute inset-0 animate-gradient-x" 
+            style={{
+              background: 'linear-gradient(to right, #7c1427 0%, #6a0f1d 10%, #580a14 20%, #45050a 30%, #330000 40%, #45050a 45%, #7c1427 50%, #6a0f1d 60%, #580a14 70%, #45050a 80%, #330000 90%, #45050a 95%, #7c1427 100%)',
+              backgroundSize: '200% 100%',
+              opacity: 0.7
+            }}
+          ></div>
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center p-6 text-white bg-transparent">
+              <div className="text-3xl font-bold mb-2">5+</div>
+              <div className="text-sm opacity-90">{t('about.coursesStats')}</div>
+            </div>
+            <div className="text-center p-6 text-white bg-transparent">
+              <div className="text-3xl font-bold mb-2">5+</div>
+              <div className="text-sm opacity-90">{t('about.yearsStudying')}</div>
+            </div>
+            <div className="text-center p-6 text-white bg-transparent">
+              <div className="text-3xl font-bold mb-2">4+</div>
+              <div className="text-sm opacity-90">{t('education.titles')}</div>
+            </div>
+            <div className="text-center p-6 text-white bg-transparent">
+              <div className="text-3xl font-bold mb-2">100%</div>
+              <div className="text-sm opacity-90">{t('education.dedication')}</div>
+            </div>
           </div>
         </div>
       </div>

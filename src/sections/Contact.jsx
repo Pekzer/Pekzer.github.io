@@ -109,8 +109,14 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+      {/* Fondo decorativo más dramático */}
+      <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
+      <div className="absolute top-10 right-10 w-[600px] h-[600px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
+      <div className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-gradient-to-br from-portfolio-1 to-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '2s' }}></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -138,13 +144,13 @@ const Contact = () => {
                   href={method.href}
                   target={method.href.startsWith('http') ? '_blank' : '_self'}
                   rel={method.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className="flex items-center p-4 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300 group"
+                  className="flex items-center p-4 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 hover-lift hover:border-portfolio-1 dark:hover:border-portfolio-1 transition-all duration-300 group"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-portfolio-1 to-portfolio-2 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     {method.icon}
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-portfolio-1 dark:group-hover:text-portfolio-1 transition-colors duration-300">
                       {method.label}
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400">
@@ -158,7 +164,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="h-full">
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col hover-lift transition-all duration-300">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 {t('about.sendMessage')}
               </h3>
@@ -188,7 +194,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder="Tu nombre completo"
                   />
                 </div>
@@ -205,7 +211,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder="tu.email@ejemplo.com"
                   />
                 </div>
@@ -222,7 +228,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full h-full min-h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none"
+                    className="w-full h-full min-h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder="Cuéntame sobre tu proyecto o idea..."
                   />
                 </div>
@@ -231,7 +237,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white font-medium rounded-lg hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full px-6 py-3 mt-10 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white font-medium rounded-lg hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 transform hover:scale-102 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shine-effect shadow-lg hover:shadow-xl"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">

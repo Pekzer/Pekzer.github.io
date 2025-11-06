@@ -41,7 +41,7 @@ const Navbar = () => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-portfolio-1 after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {t(`nav.${item.key}`)}
                 </button>
@@ -54,7 +54,7 @@ const Navbar = () => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white text-sm font-medium"
+              className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white text-sm font-medium transition-all duration-300 hover:scale-110 px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               {language === 'es' ? 'EN' : 'ES'}
             </button>
@@ -62,7 +62,7 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white"
+              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               {isDark ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white"
+                className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />

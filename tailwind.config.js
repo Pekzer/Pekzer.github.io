@@ -23,6 +23,19 @@ module.exports = {
         },
         dark: '#333333',
       },
+      animation: {
+        'gradient-x': 'gradient-x 8s linear infinite',
+      },
+      keyframes: {
+        'gradient-x': {
+          '0%': {
+            'background-position': '200% 50%',
+          },
+          '100%': {
+            'background-position': '0% 50%',
+          },
+        },
+      },
     },
   },
   variants: {
