@@ -76,21 +76,21 @@ const Projects = () => {
       }
     },
     {
-      title: t('projects.dashboardReact.title'),
-      description: t('projects.dashboardReact.description'),
+      title: t('projects.stockHome.title'),
+      description: t('projects.stockHome.description'),
       image: '/api/placeholder/400/250',
-      tech: ['React', 'TypeScript', 'Vite', 'PostgreSQL'],
-      github: 'https://github.com/Pekzer/dashboard-react',
-      demo: 'https://github.com/Pekzer/dashboard-react',
-      featured: true
+      tech: ['React Native', 'Expo', 'Firebase'],
+      github: 'https://github.com/Pekzer/stock-home',
+      demo: '',
+      featured: false
     },
     {
-      title: t('projects.apiJava.title'),
-      description: t('projects.apiJava.description'),
+      title: t('projects.dentalWeb.title'),
+      description: t('projects.dentalWeb.description'),
       image: '/api/placeholder/400/250',
-      tech: ['Java', 'Spring Boot', 'MySQL', 'REST API'],
-      github: 'https://github.com/Pekzer/api-java-spring',
-      demo: 'https://github.com/Pekzer/api-java-spring',
+      tech: ['Astro', 'TailwindCSS', 'Markdown/MDX'],
+      github: 'https://github.com/Pekzer/dental-web',
+      demo: '',
       featured: false
     }
   ];

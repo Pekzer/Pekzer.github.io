@@ -102,13 +102,13 @@ const translations = {
           'Interfaz responsive y moderna'
         ]
       },
-      dashboardReact: {
-        title: 'Dashboard React con TypeScript',
-        description: 'Panel de administración moderno desarrollado con React, TypeScript, Vite y PostgreSQL como base de datos.'
+      stockHome: {
+        title: 'Control de Stock para el hogar',
+        description: 'Aplicación móvil para gestión de inventario doméstico desarrollada con React Native, Expo y Firebase.'
       },
-      apiJava: {
-        title: 'API REST con Java',
-        description: 'API RESTful desarrollada en Java con Spring Boot, conectada a base de datos MySQL para gestión de usuarios.'
+      dentalWeb: {
+        title: 'Web informativa sobre prácticas odontológicas',
+        description: 'Sitio web informativo sobre procedimientos dentales desarrollado con Astro, TailwindCSS y contenido en Markdown/MDX.'
       }
     },
     contact: {
@@ -223,13 +223,13 @@ const translations = {
           'Responsive and modern interface'
         ]
       },
-      dashboardReact: {
-        title: 'React Dashboard with TypeScript',
-        description: 'Modern admin panel developed with React, TypeScript, Vite and PostgreSQL as database.'
+      stockHome: {
+        title: 'Home Stock Control',
+        description: 'Mobile app for home inventory management developed with React Native, Expo and Firebase.'
       },
-      apiJava: {
-        title: 'REST API with Java',
-        description: 'RESTful API developed in Java with Spring Boot, connected to MySQL database for user management.'
+      dentalWeb: {
+        title: 'Informative website about dental practices',
+        description: 'Informative website about dental procedures developed with Astro, TailwindCSS and Markdown/MDX content.'
       }
     },
     contact: {
