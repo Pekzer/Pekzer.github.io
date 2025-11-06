@@ -91,7 +91,7 @@ const translations = {
       viewGithub: 'Ver en GitHub',
       hirpace: {
         title: 'Aplicación WEB HIRPACE',
-        description: 'Página web para una institución médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
+        description: 'Página web para una ONG médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
         modalDescription: 'Sistema integral de gestión médica desarrollado para instituciones de salud. Incluye módulos avanzados para la administración eficiente de pacientes, personal médico y operaciones clínicas.',
         features: [
           'Sistema de contenedores editables para personalización',
@@ -212,7 +212,7 @@ const translations = {
       viewGithub: 'View on GitHub',
       hirpace: {
         title: 'HIRPACE WEB Application',
-        description: 'Website for a medical institution, with editable container system, clinical history registration, appointment management and payment handling.',
+        description: 'Website for a medical ONG, with editable container system, clinical history registration, appointment management and payment handling.',
         modalDescription: 'Comprehensive medical management system developed for healthcare institutions. Includes advanced modules for efficient administration of patients, medical staff and clinical operations.',
         features: [
           'Editable container system for customization',
