@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Projects = () => {
@@ -24,8 +25,18 @@ const Projects = () => {
       }
     };
 
+    // Prevent body scroll when modal or gallery is open
+    if (isModalOpen || isGalleryOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
   }, [isModalOpen, isGalleryOpen]);
 
   const openGallery = (images, startIndex) => {
@@ -214,8 +225,8 @@ const Projects = () => {
       }
     };
 
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={handleBackdropClick}>
+    return createPortal(
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={handleBackdropClick}>
         <div className="bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
           <div className="p-6">
             {/* Header */}
@@ -305,7 +316,8 @@ const Projects = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body
     );
   };
 
@@ -361,13 +373,13 @@ const Projects = () => {
         />
 
         {/* Gallery Modal */}
-        {isGalleryOpen && selectedProject && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onClick={closeGallery}>
+        {isGalleryOpen && selectedProject && createPortal(
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000]" onClick={closeGallery}>
             <div className="relative max-w-7xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
               {/* Close Button */}
               <button
                 onClick={closeGallery}
-                className="absolute top-2 right-2 z-10 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors"
+                className="absolute top-2 right-2 z-[10001] bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -387,7 +399,7 @@ const Projects = () => {
                   <>
                     <button
                       onClick={prevImage}
-                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors z-[10001]"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -395,7 +407,7 @@ const Projects = () => {
                     </button>
                     <button
                       onClick={nextImage}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors z-[10001]"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -410,7 +422,8 @@ const Projects = () => {
                 {currentImageIndex + 1} / {selectedProject.modalContent.images.length}
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </section>
