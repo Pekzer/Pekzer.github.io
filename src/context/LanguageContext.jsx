@@ -103,8 +103,19 @@ const translations = {
         ]
       },
       stockHome: {
-        title: 'Control de Stock para el hogar',
-        description: 'Aplicación móvil para gestión de inventario doméstico desarrollada con React Native, Expo y Firebase.'
+        title: 'HomeStock',
+        description: 'Aplicación móvil para gestión de inventario y control de stock con notificaciones de stock bajo.',
+        modalDescription: 'Aplicación completa para el control de inventario doméstico, permitiendo agregar, editar y gestionar productos con alertas visuales para stock bajo.',
+        features: [
+          'Agregar productos con nombre, cantidad y cantidad mínima',
+          'Editar productos existentes',
+          'Actualización rápida de cantidades (+1, +5, -1, -5)',
+          'Notificaciones visuales de productos con stock bajo',
+          'Eliminar productos',
+          'Interfaz simple y eficiente',
+          'Almacenamiento local persistente',
+          'Compatible con iOS, Android y Web'
+        ]
       },
       dentalWeb: {
         title: 'Web informativa sobre prácticas odontológicas',
@@ -224,8 +235,19 @@ const translations = {
         ]
       },
       stockHome: {
-        title: 'Home Stock Control',
-        description: 'Mobile app for home inventory management developed with React Native, Expo and Firebase.'
+        title: 'HomeStock',
+        description: 'Mobile app for inventory management and stock control with low stock notifications.',
+        modalDescription: 'Complete application for home inventory control, allowing to add, edit and manage products with visual alerts for low stock.',
+        features: [
+          'Add products with name, quantity and minimum quantity',
+          'Edit existing products',
+          'Quick quantity updates (+1, +5, -1, -5)',
+          'Visual notifications for low stock products',
+          'Delete products',
+          'Simple and efficient interface',
+          'Persistent local storage',
+          'Compatible with iOS, Android and Web'
+        ]
       },
       dentalWeb: {
         title: 'Informative website about dental practices',

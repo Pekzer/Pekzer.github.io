@@ -78,11 +78,24 @@ const Projects = () => {
     {
       title: t('projects.stockHome.title'),
       description: t('projects.stockHome.description'),
-      image: '/api/placeholder/400/250',
-      tech: ['React Native', 'Expo', 'Firebase'],
-      github: 'https://github.com/Pekzer/stock-home',
+      image: '/homestock1.jpg',
+      tech: ['React Native', 'Expo', 'TypeScript'],
+      github: 'https://github.com/Pekzer/HomeStock',
       demo: '',
-      featured: false
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.stockHome.modalDescription'),
+        features: t('projects.stockHome.features'),
+        images: [
+          '/homestock1.jpg',
+          '/homestock2.jpg',
+          '/homestock3.jpg',
+          '/homestock5.jpg',
+          '/homestock6.jpg',
+          '/iniciostock4.jpg'
+        ]
+      }
     },
     {
       title: t('projects.dentalWeb.title'),
