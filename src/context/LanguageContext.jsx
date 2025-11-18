@@ -83,8 +83,9 @@ const translations = {
     projects: {
       title: 'Proyectos',
       subtitle: 'Mis trabajos recientes',
-      viewProject: 'Ver Proyecto',
-      viewCode: 'Ver Código',
+      viewProject: 'Proyecto',
+      viewWeb: 'Web',
+      viewCode: 'Código',
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
       moreWork: '¿Quieres ver más de mi trabajo?',
@@ -140,7 +141,7 @@ const translations = {
       quickLinks: 'Enlaces Rápidos',
       contactInfo: 'Contacto',
       backToTop: 'Volver arriba',
-      copyright: '© 2025 Gonzalo Herrera. Todos los derechos reservados.'
+      copyright: '© 2025 Gonzalo Herrera.'
     }
   },
   en: {
@@ -215,8 +216,9 @@ const translations = {
     projects: {
       title: 'Projects',
       subtitle: 'My recent work',
-      viewProject: 'View Project',
-      viewCode: 'View Code',
+      viewProject: 'Project',
+      viewWeb: 'Web',
+      viewCode: 'Code',
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
       moreWork: 'Want to see more of my work?',
@@ -272,7 +274,7 @@ const translations = {
       quickLinks: 'Quick Links',
       contactInfo: 'Contact',
       backToTop: 'Back to top',
-      copyright: '© 2025 Gonzalo Herrera. All rights reserved.'
+      copyright: '© 2025 Gonzalo Herrera.'
     }
   }
 };

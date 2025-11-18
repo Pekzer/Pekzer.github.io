@@ -113,7 +113,7 @@ const Projects = () => {
       description: t('projects.dentalWeb.description'),
       image: '/api/placeholder/400/250',
       tech: ['Astro', 'TailwindCSS', 'Markdown/MDX'],
-      github: 'https://github.com/Pekzer/dental-web',
+      github: '',
       demo: '',
       featured: false
     }
@@ -180,46 +180,63 @@ const Projects = () => {
         </div>
 
         {/* Actions */}
-        <div className="flex space-x-3 md:justify-start">
+        <div className="flex flex-col sm:flex-row gap-2 md:justify-start">
+          {/* Botón Ver Proyecto */}
           {project.hasModal ? (
             <button
               onClick={() => {
                 setSelectedProject(project);
                 setIsModalOpen(true);
               }}
-              className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-md hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 text-sm font-medium shine-effect transform hover:scale-105"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-lg hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
             >
               {t('projects.viewProject')}
             </button>
           ) : (
+            <button
+              disabled
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
+            >
+              <span className="line-through">{t('projects.viewProject')}</span>
+            </button>
+          )}
+
+          {/* Botón Ver Web */}
+          {project.demo ? (
             <a
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-md hover:from-portfolio-2 hover:to-portfolio-3 transition-colors duration-300 text-sm font-medium"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 border-2 border-portfolio-1 hover:text-portfolio-1 dark:hover:text-portfolio-1"
             >
-              {t('projects.viewProject')}
+              {t('projects.viewWeb')}
             </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-md hover:from-portfolio-2 hover:to-portfolio-3 transition-colors duration-300 text-sm font-medium"
+          ) : (
+            <button
+              disabled
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
             >
-              Demo Web
-            </a>
+              <span className="line-through">{t('projects.viewWeb')}</span>
+            </button>
           )}
-          {project.github && (
+
+          {/* Botón Ver Código */}
+          {project.github ? (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 text-center px-4 py-2 border border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-md hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors duration-300 text-sm font-medium"
+              className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105"
             >
               {t('projects.viewCode')}
             </a>
+          ) : (
+            <button
+              disabled
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
+            >
+              <span className="line-through">{t('projects.viewCode')}</span>
+            </button>
           )}
         </div>
       </div>
