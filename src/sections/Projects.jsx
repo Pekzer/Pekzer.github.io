@@ -207,7 +207,7 @@ const Projects = () => {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 border-2 border-portfolio-1 hover:text-portfolio-1 dark:hover:text-portfolio-1"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-white dark:bg-gray-900 text-portfolio-1 rounded-lg hover:bg-portfolio-1 hover:text-white transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect border-2 border-portfolio-1"
             >
               {t('projects.viewWeb')}
             </a>
@@ -226,7 +226,7 @@ const Projects = () => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105"
+              className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
             >
               {t('projects.viewCode')}
             </a>
