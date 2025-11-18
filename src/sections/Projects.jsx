@@ -119,11 +119,11 @@ const Projects = () => {
     }
   ];
 
-  const ProjectCard = ({ project, isLarge = false }) => (
-    <div className={`bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 ${isLarge ? 'md:flex' : ''}`}>
+  const ProjectCard = ({ project }) => (
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 md:flex md:h-[400px]">
       {/* Project Image */}
       <div 
-        className={`relative ${isLarge ? 'md:w-1/2 h-64 md:h-auto' : 'h-48'} bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center overflow-hidden group cursor-pointer`}
+        className="relative md:w-1/2 h-64 md:h-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center overflow-hidden group cursor-pointer"
         onClick={() => {
           if (project.hasModal && project.modalContent?.images) {
             setSelectedProject(project);
@@ -149,21 +149,21 @@ const Projects = () => {
           </>
         ) : (
           <div className="text-white text-6xl opacity-20">
-            <svg fill="currentColor" viewBox="0 0 20 20" className={`${isLarge ? 'w-24 h-24' : 'w-16 h-16'}`}>
+            <svg fill="currentColor" viewBox="0 0 20 20" className="w-24 h-24">
               <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
             </svg>
           </div>
         )}
       </div>
 
-      <div className={`p-6 ${isLarge ? 'md:w-1/2 md:flex md:flex-col md:justify-center' : ''}`}>
+      <div className="p-6 md:w-1/2 md:flex md:flex-col md:justify-center">
         {/* Title */}
-        <h3 className={`font-bold text-gray-900 dark:text-white mb-2 ${isLarge ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className={`text-gray-600 dark:text-gray-400 mb-4 ${isLarge ? 'text-lg' : 'line-clamp-3'}`}>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
           {project.description}
         </p>
 
@@ -180,7 +180,7 @@ const Projects = () => {
         </div>
 
         {/* Actions */}
-        <div className={`flex space-x-3 ${isLarge ? 'md:justify-start' : ''}`}>
+        <div className="flex space-x-3 md:justify-start">
           {project.hasModal ? (
             <button
               onClick={() => {
@@ -345,21 +345,12 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="space-y-8">
-          {/* First Project - Full Width */}
-          {projects.length > 0 && (
-            <div className="w-full">
-              <ProjectCard key={0} project={projects[0]} isLarge={true} />
+          {/* All Projects - Full Width, One Over Another */}
+          {projects.map((project, index) => (
+            <div key={index} className="w-full">
+              <ProjectCard project={project} />
             </div>
-          )}
-
-          {/* Other Two Projects - 2 Column Grid */}
-          {projects.length > 1 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.slice(1, 3).map((project, index) => (
-                <ProjectCard key={index + 1} project={project} isLarge={false} />
-              ))}
-            </div>
-          )}
+          ))}
         </div>
 
         {/* Project Modal */}
