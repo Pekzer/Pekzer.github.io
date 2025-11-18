@@ -168,7 +168,7 @@ const Projects = () => {
         </p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-16">
           {project.tech.map((tech, index) => (
             <span
               key={index}
