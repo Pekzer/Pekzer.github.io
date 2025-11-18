@@ -92,7 +92,7 @@ const Projects = () => {
       image: '/homestock1.jpg',
       tech: ['React Native', 'Expo', 'TypeScript'],
       github: 'https://github.com/Pekzer/HomeStock',
-      demo: '',
+      demo: 'https://pekzer.github.io/HomeStock/',
       featured: false,
       hasModal: true,
       modalContent: {
@@ -199,6 +199,16 @@ const Projects = () => {
               className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-md hover:from-portfolio-2 hover:to-portfolio-3 transition-colors duration-300 text-sm font-medium"
             >
               {t('projects.viewProject')}
+            </a>
+          )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-md hover:from-portfolio-2 hover:to-portfolio-3 transition-colors duration-300 text-sm font-medium"
+            >
+              Demo Web
             </a>
           )}
           {project.github && (
