@@ -6,7 +6,7 @@ const About = () => {
 
   const skills = [
     { name: t('about.skillsCategories.backend'), tech: ['Java', 'Python', 'Laravel', 'PHP', 'PostgreSQL', 'MySQL'] },
-    { name: t('about.skillsCategories.frontend'), tech: ['React', 'TypeScript', 'JavaScript', 'HTML', 'Vite'] },
+    { name: t('about.skillsCategories.frontend'), tech: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'CSS', 'HTML', 'Vite'] },
     { name: t('about.skillsCategories.tools'), tech: ['Git','Expo','Node.js', 'Docker'] }
   ];
 
