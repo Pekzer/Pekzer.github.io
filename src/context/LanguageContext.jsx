@@ -145,9 +145,9 @@ const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       placeholders: {
-        name: 'Tu nombre completo',
+        name: 'Tu nombre, o el de tu empresa',
         email: 'tu.email@ejemplo.com',
-        message: 'Cuéntame sobre tu proyecto o idea...'
+        message: 'Cuéntame sobre tu proyecto, idea u oferta laboral'
       }
     },
     footer: {
@@ -292,9 +292,9 @@ const translations = {
       linkedin: 'LinkedIn',
       github: 'GitHub',
       placeholders: {
-        name: 'Your full name',
+        name: 'Your name, or your company\'s name',
         email: 'your.email@example.com',
-        message: 'Tell me about your project or idea...'
+        message: 'Tell me about your project, idea or job offer'
       }
     },
     footer: {
