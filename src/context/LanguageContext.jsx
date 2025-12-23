@@ -143,7 +143,12 @@ const translations = {
       whatsapp: 'WhatsApp',
       location: 'Ubicación',
       linkedin: 'LinkedIn',
-      github: 'GitHub'
+      github: 'GitHub',
+      placeholders: {
+        name: 'Tu nombre completo',
+        email: 'tu.email@ejemplo.com',
+        message: 'Cuéntame sobre tu proyecto o idea...'
+      }
     },
     footer: {
       description: 'Desarrollador Full Stack apasionado por la informática y la resolución de problemas.',
@@ -285,7 +290,12 @@ const translations = {
       whatsapp: 'WhatsApp',
       location: 'Location',
       linkedin: 'LinkedIn',
-      github: 'GitHub'
+      github: 'GitHub',
+      placeholders: {
+        name: 'Your full name',
+        email: 'your.email@example.com',
+        message: 'Tell me about your project or idea...'
+      }
     },
     footer: {
       description: 'Full Stack Developer passionate about computer science and problem solving.',

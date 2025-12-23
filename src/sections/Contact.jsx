@@ -195,7 +195,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
-                    placeholder="Tu nombre completo"
+                    placeholder={t('contact.placeholders.name')}
                   />
                 </div>
 
@@ -212,7 +212,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
-                    placeholder="tu.email@ejemplo.com"
+                    placeholder={t('contact.placeholders.email')}
                   />
                 </div>
 
@@ -229,7 +229,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full h-full min-h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
-                    placeholder="Cuéntame sobre tu proyecto o idea..."
+                    placeholder={t('contact.placeholders.message')}
                   />
                 </div>
 
