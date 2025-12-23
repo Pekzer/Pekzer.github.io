@@ -121,7 +121,7 @@ const translations = {
       dentalWeb: {
         title: 'Web Odontológica Herrera Ramiro',
         description: 'Sitio web profesional para consultorio odontológico, diseñado para informar sobre tratamientos, ubicación y contacto. Optimizado para SEO y rendimiento.',
-        modalDescription: 'Plataforma web moderna y responsiva desarrollada para el consultorio odontológico Herrera Ramiro. El sitio ofrece información detallada sobre tratamientos, ubicación del consultorio y medios de contacto, con un enfoque en la experiencia de usuario y velocidad de carga.',
+        modalDescription: 'Plataforma web moderna y responsiva desarrollada para el consultorio odontológico de Herrera Ramiro. El sitio ofrece información detallada sobre tratamientos, ubicación del consultorio y medios de contacto, con un enfoque en la experiencia de usuario y velocidad de carga.',
         features: [
           'Diseño moderno y responsivo',
           'Optimización SEO para mejor visibilidad',
@@ -263,7 +263,7 @@ const translations = {
       dentalWeb: {
         title: 'Herrera Ramiro Dental Website',
         description: 'Professional website for a dental office, designed to inform about treatments, location, and contact. Optimized for SEO and performance.',
-        modalDescription: 'Modern and responsive web platform developed for the Herrera Ramiro dental office. The site offers detailed information about treatments, office location, and contact methods, with a focus on user experience and loading speed.',
+        modalDescription: "Modern and responsive web platform developed for the Herrera Ramiro's dental office. The site offers detailed information about treatments, office location, and contact methods, with a focus on user experience and loading speed.",
         features: [
           'Modern and responsive design',
           'SEO optimization for better visibility',
