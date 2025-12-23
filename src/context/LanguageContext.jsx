@@ -119,8 +119,17 @@ const translations = {
         ]
       },
       dentalWeb: {
-        title: 'Web informativa sobre prácticas odontológicas',
-        description: 'Sitio web informativo sobre procedimientos dentales desarrollado con Astro, TailwindCSS y contenido en Markdown/MDX.'
+        title: 'Web Odontológica Herrera Ramiro',
+        description: 'Sitio web profesional para consultorio odontológico, diseñado para informar sobre tratamientos, ubicación y contacto. Optimizado para SEO y rendimiento.',
+        modalDescription: 'Plataforma web moderna y responsiva desarrollada para el consultorio odontológico Herrera Ramiro. El sitio ofrece información detallada sobre tratamientos, ubicación del consultorio y medios de contacto, con un enfoque en la experiencia de usuario y velocidad de carga.',
+        features: [
+          'Diseño moderno y responsivo',
+          'Optimización SEO para mejor visibilidad',
+          'Información detallada de tratamientos',
+          'Integración con mapas y contacto',
+          'Alto rendimiento y velocidad de carga',
+          'Desarrollado con Astro para máxima eficiencia'
+        ]
       }
     },
     contact: {
@@ -252,8 +261,17 @@ const translations = {
         ]
       },
       dentalWeb: {
-        title: 'Informative website about dental practices',
-        description: 'Informative website about dental procedures developed with Astro, TailwindCSS and Markdown/MDX content.'
+        title: 'Herrera Ramiro Dental Website',
+        description: 'Professional website for a dental office, designed to inform about treatments, location, and contact. Optimized for SEO and performance.',
+        modalDescription: 'Modern and responsive web platform developed for the Herrera Ramiro dental office. The site offers detailed information about treatments, office location, and contact methods, with a focus on user experience and loading speed.',
+        features: [
+          'Modern and responsive design',
+          'SEO optimization for better visibility',
+          'Detailed treatment information',
+          'Maps and contact integration',
+          'High performance and loading speed',
+          'Developed with Astro for maximum efficiency'
+        ]
       }
     },
     contact: {

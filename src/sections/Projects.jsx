@@ -111,11 +111,21 @@ const Projects = () => {
     {
       title: t('projects.dentalWeb.title'),
       description: t('projects.dentalWeb.description'),
-      image: '/api/placeholder/400/250',
-      tech: ['Astro', 'TailwindCSS', 'Markdown/MDX'],
-      github: '',
-      demo: '',
-      featured: false
+      image: '/odontologia1.jpg',
+      tech: ['Astro', 'TailwindCSS'],
+      github: 'https://github.com/Pekzer/Herrera-Ramiro',
+      demo: 'https://pekzer.github.io/Herrera-Ramiro/',
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.dentalWeb.modalDescription'),
+        features: t('projects.dentalWeb.features'),
+        images: [
+          '/odontologia1.jpg',
+          '/odontologia2.jpg',
+          '/odontologia3.jpg'
+        ]
+      }
     }
   ];
 
