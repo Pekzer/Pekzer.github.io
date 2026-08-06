@@ -107,6 +107,10 @@ const translations = {
       otherProjects: 'Otros Proyectos',
       moreWork: '¿Quieres ver más de mi trabajo?',
       viewGithub: 'Ver en GitHub',
+      featuresTitle: 'Características Principales',
+      techTitle: 'Tecnologías Utilizadas',
+      screenshotsTitle: 'Capturas de Pantalla',
+      close: 'Cerrar',
       hirpace: {
         title: 'Aplicación WEB HIRPACE',
         description: 'Página web para una ONG médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
@@ -271,6 +275,10 @@ const translations = {
       otherProjects: 'Other Projects',
       moreWork: 'Want to see more of my work?',
       viewGithub: 'View on GitHub',
+      featuresTitle: 'Key Features',
+      techTitle: 'Technologies Used',
+      screenshotsTitle: 'Screenshots',
+      close: 'Close',
       hirpace: {
         title: 'HIRPACE WEB Application',
         description: 'Website for a medical ONG, with editable container system, clinical history registration, appointment management and payment handling.',

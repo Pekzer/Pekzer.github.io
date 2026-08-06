@@ -289,7 +289,7 @@ const Projects = () => {
             {/* Features */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Características Principales
+                {t('projects.featuresTitle')}
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {project.modalContent.features.map((feature, index) => (
@@ -306,7 +306,7 @@ const Projects = () => {
             {/* Tech Stack */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Tecnologías Utilizadas
+                {t('projects.techTitle')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech, index) => (
@@ -323,7 +323,7 @@ const Projects = () => {
             {/* Images Gallery */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Capturas de Pantalla
+                {t('projects.screenshotsTitle')}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {project.modalContent.images.map((image, index) => (
@@ -348,7 +348,7 @@ const Projects = () => {
                 onClick={onClose}
                 className="px-6 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
               >
-                Cerrar
+                {t('projects.close')}
               </button>
             </div>
           </div>
