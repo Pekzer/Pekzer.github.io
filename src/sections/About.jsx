@@ -23,24 +23,17 @@ const About = () => {
             {t('about.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-gray-600 dark:text-gray-300 font-primary">
             {t('about.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-8">
-          <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 backdrop-blur-sm relative overflow-hidden">
-            <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3"></div>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {['Full Stack', 'Estudiante', 'Colaboración', 'Soluciones'].map((badge, index) => (
-                <span key={index} className="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
-                  {badge}
-                </span>
-              ))}
-            </div>
+          <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 backdrop-blur-sm relative overflow-hidden hover:shadow-2xl transition-shadow duration-500">
+            <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3 rounded-r-full"></div>
 
-            <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              <p>{t('about.paragraph1')}</p>
+            <div className="space-y-5 text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-primary">
+              <p className="text-xl font-medium text-gray-800 dark:text-gray-100">{t('about.paragraph1')}</p>
               <p>{t('about.paragraph2')}</p>
               <p>{t('about.paragraph3')}</p>
               <p>{t('about.paragraph4')}</p>
@@ -48,35 +41,35 @@ const About = () => {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3">
+            <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skills')}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {t('about.knowledgeAreasList').map((area, index) => (
-                  <div key={index} className="flex items-start gap-2 rounded-xl bg-gray-50 dark:bg-gray-800 px-3 py-2">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0"></span>
-                    <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{area}</span>
+                  <div key={index} className="flex items-start gap-3 rounded-xl bg-gray-50 dark:bg-gray-800 px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200 group">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-200"></span>
+                    <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-primary">{area}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3">
+            <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skillsCategories.languages')}
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3">
+                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-semibold">EN</div>
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.english')}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">C2 / Avanzado</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3">
+                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-semibold">ES</div>
                   <div>
                     <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.spanish')}</p>
@@ -89,19 +82,19 @@ const About = () => {
         </div>
 
         <div className="mt-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3 font-primary">
             <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
             {t('about.techStack')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {skills.map((skillGroup, index) => (
-              <div key={index} className="bg-white/95 dark:bg-gray-900/95 rounded-2xl p-6 shadow-xl border border-gray-200/70 dark:border-gray-700/70 hover:-translate-y-1 transition-all duration-300">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+              <div key={index} className="bg-white/95 dark:bg-gray-900/95 rounded-2xl p-6 shadow-xl border border-gray-200/70 dark:border-gray-700/70 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300 group">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center font-primary">
                   {skillGroup.name}
                 </h4>
                 <div className="flex flex-wrap justify-center gap-2">
                   {skillGroup.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-3 py-1.5 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm font-medium shadow-sm">
+                    <span key={techIndex} className="px-3 py-1.5 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm font-medium shadow-sm group-hover:shadow-md transition-all duration-200">
                       {tech}
                     </span>
                   ))}
