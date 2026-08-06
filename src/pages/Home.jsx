@@ -26,15 +26,45 @@ export default function Home() {
       return next;
     });
 
-    // Wait for React to render the section, then scroll
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const el = document.querySelector(`#${sectionId}`);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+    // Poll for the section element to appear in the DOM, then wait for its
+    // height to stabilize via ResizeObserver so we scroll AFTER the lazy
+    // chunk has loaded and the content has fully rendered.
+    const pollForElement = () => {
+      const el = document.querySelector(`#${sectionId}`);
+      if (!el) {
+        setTimeout(pollForElement, 50);
+        return;
+      }
+
+      let lastHeight = el.offsetHeight;
+      let stableCount = 0;
+
+      const observer = new ResizeObserver(() => {
+        const h = el.offsetHeight;
+        if (h === lastHeight) {
+          stableCount++;
+          // Two consecutive stable frames + height > 150px means content is ready
+          if (stableCount >= 2 && h > 150) {
+            el.scrollIntoView({ behavior: 'smooth' });
+            observer.disconnect();
+          }
+        } else {
+          lastHeight = h;
+          stableCount = 0;
         }
       });
-    });
+
+      observer.observe(el);
+
+      // Safety fallback after 5 s
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth' });
+        observer.disconnect();
+      }, 5000);
+    };
+
+    // Small delay to let React process the state update before polling
+    setTimeout(pollForElement, 50);
   }, []);
 
   return (
@@ -43,7 +73,7 @@ export default function Home() {
         <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
           <Navbar onNavigate={navigateToSection} />
           <main>
-            <Hero />
+            <Hero onNavigate={navigateToSection} />
             <LazySection placeholderHeight="400px" forceRender={forcedSections.has('about')}>
               <Suspense fallback={<SectionFallback />}>
                 <About />

@@ -2,9 +2,18 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-const Hero = () => {
+const Hero = ({ onNavigate }) => {
   const { t, language } = useLanguage();
   const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  const scrollTo = (sectionId) => {
+    if (onNavigate) {
+      onNavigate(sectionId);
+    } else {
+      const el = document.querySelector(`#${sectionId}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const cvFile = language === 'es' ? '/Herrera Gonzalo CV.pdf' : '/Herrera Gonzalo CV (eng).pdf';
   const cvDownloadName = language === 'es' ? 'Herrera_Gonzalo_CV.pdf' : 'Herrera_Gonzalo_CV_English.pdf';
@@ -66,7 +75,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollTo('projects')}
               className="px-8 py-3 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white font-medium rounded-lg hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl shine-effect"
             >
               {t('home.cta')}
@@ -79,7 +88,7 @@ const Hero = () => {
               📄 {t('home.cv')}
             </a>
             <button
-              onClick={() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => scrollTo('contact')}
               className="px-8 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white font-medium rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
             >
               {t('home.contact')}
@@ -87,7 +96,7 @@ const Hero = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="mt-16 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300" onClick={() => document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })}>
+          <div className="mt-16 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300" onClick={() => scrollTo('about')}>
             <svg className="w-6 h-6 mx-auto text-gray-400 hover:text-portfolio-1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
