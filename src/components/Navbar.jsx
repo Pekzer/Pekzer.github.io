@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
 
-const Navbar = ({ onNavigate, onPreload }) => {
+const Navbar = ({ onNavigate }) => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +47,6 @@ const Navbar = ({ onNavigate, onPreload }) => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  onMouseEnter={() => onPreload?.(item.key)}
                   className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-portfolio-1 after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {t(`nav.${item.key}`)}

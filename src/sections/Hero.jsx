@@ -6,14 +6,7 @@ const Hero = ({ onNavigate }) => {
   const { t, language } = useLanguage();
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
-  const scrollTo = (sectionId) => {
-    if (onNavigate) {
-      onNavigate(sectionId);
-    } else {
-      const el = document.querySelector(`#${sectionId}`);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollTo = (sectionId) => onNavigate(sectionId);
 
   const cvFile = language === 'es' ? '/Herrera Gonzalo CV.pdf' : '/Herrera Gonzalo CV (eng).pdf';
   const cvDownloadName = language === 'es' ? 'Herrera_Gonzalo_CV.pdf' : 'Herrera_Gonzalo_CV_English.pdf';
