@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, memo } from 'react';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const ROWS = 15;
 const COLS = 15;
@@ -137,7 +138,23 @@ const nextGeneration = (grid) => {
   );
 };
 
+// Memoized cell to avoid re-rendering unchanged cells
+const Cell = memo(({ alive, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`w-[16px] h-[16px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
+      alive
+        ? 'bg-portfolio-1 hover:bg-portfolio-2'
+        : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+    }`}
+    aria-label={`Cell: ${alive ? 'alive' : 'dead'}`}
+  />
+));
+
+Cell.displayName = 'Cell';
+
 const GameOfLife = () => {
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [grid, setGrid] = useState(createHeartGrid);
   const [isRunning, setIsRunning] = useState(false);
   const runningRef = useRef(isRunning);
@@ -148,14 +165,18 @@ const GameOfLife = () => {
   }, []);
 
   useEffect(() => {
-    if (!isRunning) return;
+    // Only run simulation on desktop
+    if (!isRunning || !isDesktop) return;
     const interval = setInterval(() => {
       if (runningRef.current) {
         step();
       }
     }, 350);
     return () => clearInterval(interval);
-  }, [isRunning, step]);
+  }, [isRunning, step, isDesktop]);
+
+  // Don't render anything on mobile — save CPU/battery
+  if (!isDesktop) return null;
 
   const handleCellClick = (r, c) => {
     setGrid((prev) => {
@@ -191,22 +212,17 @@ const GameOfLife = () => {
   };
 
   return (
-    <div className="hidden lg:flex flex-col items-center mt-8">
+    <div className="flex flex-col items-center mt-8">
       <div
         className="inline-grid gap-[1px]"
         style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}
       >
         {grid.map((row, r) =>
           row.map((cell, c) => (
-            <button
+            <Cell
               key={`${r}-${c}`}
+              alive={cell}
               onClick={() => handleCellClick(r, c)}
-              className={`w-[16px] h-[16px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
-                cell
-                  ? 'bg-portfolio-1 hover:bg-portfolio-2'
-                  : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
-              }`}
-              aria-label={`Cell ${r},${c}: ${cell ? 'alive' : 'dead'}`}
             />
           ))
         )}

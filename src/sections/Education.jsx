@@ -1,9 +1,11 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import useMediaQuery from '@/hooks/useMediaQuery';
 import GameOfLife from '@/components/GameOfLife';
 
 const Education = () => {
   const { t } = useLanguage();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const education = [
     {
@@ -57,9 +59,14 @@ const Education = () => {
     <section id="education" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Fondo con efectos más dramáticos */}
       <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
-      <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
-      <div className="absolute bottom-20 left-10 w-[550px] h-[550px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/3 right-1/4 w-[480px] h-[480px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '2s' }}></div>
+      {/* Círculos decorativos — solo en desktop */}
+      {isDesktop && (
+        <>
+          <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
+          <div className="absolute bottom-20 left-10 w-[550px] h-[550px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/3 right-1/4 w-[480px] h-[480px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '2s' }}></div>
+        </>
+      )}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}

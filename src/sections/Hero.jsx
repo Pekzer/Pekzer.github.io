@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const Hero = () => {
   const { t, language } = useLanguage();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const cvFile = language === 'es' ? '/Herrera Gonzalo CV.pdf' : '/Herrera Gonzalo CV (eng).pdf';
   const cvDownloadName = language === 'es' ? 'Herrera_Gonzalo_CV.pdf' : 'Herrera_Gonzalo_CV_English.pdf';
@@ -12,11 +14,15 @@ const Hero = () => {
       {/* Patrón de fondo más visible */}
       <div className="absolute inset-0 bg-pattern-dots opacity-70"></div>
       
-      {/* Círculos decorativos de fondo más grandes y dramáticos */}
-      <div className="absolute top-10 -left-20 w-96 h-96 bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
-      <div className="absolute top-40 right-10 w-[500px] h-[500px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute bottom-20 left-1/4 w-[400px] h-[400px] bg-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute -bottom-20 -right-20 w-[450px] h-[450px] bg-gradient-to-br from-portfolio-1 to-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
+      {/* Círculos decorativos — solo en desktop (muy costosos en GPU móvil) */}
+      {isDesktop && (
+        <>
+          <div className="absolute top-10 -left-20 w-96 h-96 bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
+          <div className="absolute top-40 right-10 w-[500px] h-[500px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-20 left-1/4 w-[400px] h-[400px] bg-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute -bottom-20 -right-20 w-[450px] h-[450px] bg-gradient-to-br from-portfolio-1 to-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
+        </>
+      )}
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="text-center">

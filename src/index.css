@@ -248,4 +248,10 @@
   .shine-effect::before {
     transition: left 0.3s ease;
   }
+
+  /* Reducir área de pintado y costo de layout en móviles */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
 }

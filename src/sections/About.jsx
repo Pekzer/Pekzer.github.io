@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const About = () => {
   const { t } = useLanguage();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const [isMeowOpen, setIsMeowOpen] = useState(false);
 
   const handleMeowClick = useCallback(() => {
@@ -28,9 +30,14 @@ const About = () => {
   return (
     <section id="about" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-pattern-grid opacity-40"></div>
-      <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense"></div>
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pulse-intense" style={{ animationDelay: '0.5s' }}></div>
+      {/* Círculos decorativos — solo en desktop */}
+      {isDesktop && (
+        <>
+          <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense"></div>
+          <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pulse-intense" style={{ animationDelay: '0.5s' }}></div>
+        </>
+      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">

@@ -12,9 +12,13 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs',
+    target: 'es2020',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router', 'react-router-dom'],
+          'react-extra': ['react-helmet-async'],
+        },
       },
     },
   },
