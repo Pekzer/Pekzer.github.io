@@ -2,6 +2,113 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
+const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
+  const { t } = useLanguage();
+
+  if (!isOpen || !project) return null;
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={handleBackdropClick}>
+      <div className="bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <div className="p-6">
+          {/* Header */}
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                {project.title}
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                {project.modalContent.description}
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Features */}
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t('projects.featuresTitle')}
+            </h3>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {project.modalContent.features.map((feature, index) => (
+                <li key={index} className="flex items-center text-gray-600 dark:text-gray-400">
+                  <svg className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Tech Stack */}
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t('projects.techTitle')}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-portfolio-1 text-white rounded-full text-sm font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Images Gallery */}
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {t('projects.screenshotsTitle')}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {project.modalContent.images.map((image, index) => (
+                <div 
+                  key={index} 
+                  className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden hover:scale-110 transition-transform duration-300 cursor-pointer"
+                  onClick={() => onOpenGallery(project.modalContent.images, index)}
+                >
+                  <img
+                    src={image}
+                    alt={`${project.title} - Imagen ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Close Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            >
+              {t('projects.close')}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const Projects = () => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
@@ -253,111 +360,6 @@ const Projects = () => {
     </div>
   );
 
-  const ProjectModal = ({ project, isOpen, onClose }) => {
-    if (!isOpen || !project) return null;
-
-    const handleBackdropClick = (e) => {
-      if (e.target === e.currentTarget) {
-        onClose();
-      }
-    };
-
-    return createPortal(
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={handleBackdropClick}>
-        <div className="bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-          <div className="p-6">
-            {/* Header */}
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400">
-                  {project.modalContent.description}
-                </p>
-              </div>
-              <button
-                onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Features */}
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {t('projects.featuresTitle')}
-              </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {project.modalContent.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-600 dark:text-gray-400">
-                    <svg className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {t('projects.techTitle')}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-portfolio-1 text-white rounded-full text-sm font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Images Gallery */}
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {t('projects.screenshotsTitle')}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {project.modalContent.images.map((image, index) => (
-                  <div 
-                    key={index} 
-                    className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden hover:scale-110 transition-transform duration-300 cursor-pointer"
-                    onClick={() => openGallery(project.modalContent.images, index)}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} - Imagen ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Close Button */}
-            <div className="flex justify-end">
-              <button
-                onClick={onClose}
-                className="px-6 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
-              >
-                {t('projects.close')}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>,
-      document.body
-    );
-  };
-
   const featuredProjects = projects.filter(p => p.featured);
   const otherProjects = projects.filter(p => !p.featured);
 
@@ -398,6 +400,7 @@ const Projects = () => {
             setIsModalOpen(false);
             setSelectedProject(null);
           }}
+          onOpenGallery={openGallery}
         />
 
         {/* Gallery Modal */}
