@@ -31,9 +31,9 @@ const About = () => {
     <section id="about" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-pattern-grid opacity-40"></div>
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
-      <div className={`absolute top-20 right-10 rounded-full mix-blend-multiply filter bg-portfolio-1 pointer-events-none ${isDesktop ? 'w-[500px] h-[500px] blur-3xl opacity-20 pulse-intense' : 'w-40 h-40 blur-xl opacity-10'}`}></div>
-      <div className={`absolute bottom-10 left-10 rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'w-[450px] h-[450px] blur-3xl opacity-20 pulse-intense' : 'w-36 h-36 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
-      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'w-[600px] h-[600px] blur-3xl opacity-10 pulse-intense' : 'w-48 h-48 blur-xl opacity-5'}`} style={isDesktop ? { animationDelay: '0.5s' } : {}}></div>
+      <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-1 pointer-events-none ${isDesktop ? 'top-20 right-10 w-[500px] h-[500px] blur-3xl opacity-20 pulse-intense' : 'top-[28%] -right-8 w-36 h-36 blur-xl opacity-15'}`}></div>
+      <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'bottom-10 left-10 w-[450px] h-[450px] blur-3xl opacity-20 pulse-intense' : 'top-[58%] -left-8 w-32 h-32 blur-xl opacity-12'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
+      <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-3xl opacity-10 pulse-intense' : 'top-[82%] right-1/4 w-40 h-40 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '0.5s' } : {}}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
