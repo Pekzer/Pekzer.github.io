@@ -3,56 +3,48 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 const ROWS = 32;
 const COLS = 32;
 
-// Hollow Minecraft-style heart, centered within a 32×32 grid.
-// Filled heart spans rows 9–23 (15 rows) and cols 7–24 (18 cols).
-// Only the outline cells are alive.
-const filledHeartCells = new Set();
-for (let r = 9; r <= 23; r++) {
-  for (let c = 7; c <= 24; c++) {
-    filledHeartCells.add(`${r},${c}`);
-  }
-}
-// Carve out the top cleft (between the two lobes)
-for (let r = 9; r <= 11; r++) {
-  for (let c = 15; c <= 16; c++) {
-    filledHeartCells.delete(`${r},${c}`);
-  }
-}
-// Carve out inner area to make it hollow
-// The filled shape at its widest: rows 13-15 have cols 7-24 (18 wide)
-// We remove everything except the outline
-for (let r = 12; r <= 22; r++) {
-  for (let c = 9; c <= 22; c++) {
-    filledHeartCells.delete(`${r},${c}`);
-  }
-}
-// But keep the cleft edges and inner lobe edges
-// Row 10 cleft edges: 14,17
-filledHeartCells.add('10,14');
-filledHeartCells.add('10,17');
-// Row 11 cleft bottom: 15,16
-filledHeartCells.add('11,15');
-filledHeartCells.add('11,16');
-// Keep bottom tip fill for rows 22-23 center
-for (let r = 22; r <= 23; r++) {
-  for (let c = 14; c <= 17; c++) {
-    filledHeartCells.add(`${r},${c}`);
-  }
-}
-// Keep row 21 center
-filledHeartCells.add('21,15');
-filledHeartCells.add('21,16');
+// Pixel-art heart (26 rows provided, padded to 32×32)
+const heartPattern = [
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+];
 
 const createHeartGrid = () => {
-  const grid = Array.from({ length: ROWS }, () =>
-    Array.from({ length: COLS }, () => false)
-  );
-  for (const key of filledHeartCells) {
-    const [r, c] = key.split(',').map(Number);
-    grid[r][c] = true;
-  }
-  return grid;
+  return heartPattern.map((row) => row.map((cell) => cell === 1));
 };
+
+const createEmptyGrid = () =>
+  Array.from({ length: ROWS }, () => Array.from({ length: COLS }, () => false));
 
 const countNeighbors = (grid, row, col) => {
   let count = 0;
@@ -108,6 +100,11 @@ const GameOfLife = () => {
     });
   };
 
+  const clearGrid = () => {
+    setGrid(createEmptyGrid());
+    setIsRunning(false);
+  };
+
   return (
     <div className="hidden lg:flex flex-col items-center mt-4">
       <div
@@ -153,6 +150,16 @@ const GameOfLife = () => {
           )}
         </button>
         <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">Game of Life</span>
+        <button
+          onClick={clearGrid}
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          title="Clear"
+          aria-label="Clear grid"
+        >
+          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </button>
       </div>
     </div>
   );
