@@ -10,60 +10,10 @@ const About = () => {
     { name: t('about.skillsCategories.tools'), tech: ['Git','Expo','Node.js', 'Docker', 'Firebase'] }
   ];
 
-  const education = [
-    {
-      title: 'Tecnicatura Universitaria en Programación',
-      company: 'Universidad Nacional de Salta',
-      period: '2021 - Actualidad',
-      description: 'Estudiando programación, estructuras de datos, algoritmos y arquitectura de computadora.'
-    },
-    {
-      title: 'Bachiller con orientación en Informática',
-      company: 'Colegio de la Divina Misericordia',
-      period: '2015 - 2019',
-      description: 'Educación secundaria con especialización en informática y tecnología.'
-    }
-  ];
-
-  const courses = [
-    {
-      title: 'Argentina Programa',
-      institution: 'Ministerio de Desarrollo Productivo Argentina',
-      year: '2021',
-      description: 'Programa nacional de formación en programación'
-    },
-    {
-      title: '1000 Programadores Python',
-      institution: 'Universidad Nacional de Salta',
-      year: '2021',
-      description: 'Curso intensivo de programación en Python'
-    },
-    {
-      title: 'JavaScript Algorithms and Data Structure',
-      institution: 'FreeCodeCamp',
-      year: '2022',
-      description: 'Algoritmos y estructuras de datos en JavaScript'
-    },
-    {
-      title: 'Desarrollo Web',
-      institution: 'Universidad Nacional de Salta',
-      year: '2023',
-      description: 'Fundamentos del desarrollo web moderno'
-    },
-    {
-      title: 'Scientific Computing with Python',
-      institution: 'FreeCodeCamp',
-      year: '2025',
-      description: 'Computación científica con Python'
-    }
-  ];
-
   return (
     <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-      {/* Fondo con patrón más visible */}
+      {/* Fondo decorativo */}
       <div className="absolute inset-0 bg-pattern-grid opacity-50"></div>
-      
-      {/* Círculos decorativos más grandes y dramáticos */}
       <div className="absolute top-20 right-10 w-[500px] h-[500px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
       <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-portfolio-3 to-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-10 pulse-intense" style={{ animationDelay: '0.5s' }}></div>
@@ -74,84 +24,103 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('about.title')}
           </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300">
             {t('about.subtitle')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - About Text */}
-          <div>
-            <div className="prose prose-lg max-w-none bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg">
-              <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                {t('about.paragraph1')}
-              </p>
-              
-              <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                {t('about.paragraph2')}
-              </p>
+        {/* About Text - Full Width */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 md:p-10 shadow-xl border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+            {/* Accent line */}
+            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3 rounded-l-2xl"></div>
+            
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-5">
+              {t('about.paragraph1')}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-5">
+              {t('about.paragraph2')}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-5">
+              {t('about.paragraph3')}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+              {t('about.paragraph4')}
+            </p>
+          </div>
+        </div>
 
-              <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                {t('about.paragraph3')}
-              </p>
-
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                {t('about.paragraph4')}
-              </p>
-            </div>
-
-            {/* Languages Section */}
-            <div className="mt-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                {t('about.skillsCategories.languages')}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-lg">
-                  {t('about.languagesList.english')}
-                </span>
-                <span className="px-4 py-2 bg-gradient-to-r from-portfolio-2 to-portfolio-3 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-lg">
-                  {t('about.languagesList.spanish')}
-                </span>
+        {/* Knowledge Areas + Languages - 2 Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16">
+          {/* Knowledge Areas - 3/5 width */}
+          <div className="lg:col-span-3">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <span className="h-8 w-1.5 bg-gradient-to-b from-portfolio-1 to-portfolio-2 rounded-full inline-block"></span>
+              {t('about.skills')}
+            </h3>
+            
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
+                {t('about.knowledgeAreasList').map((area, index) => (
+                  <div key={index} className="flex items-center gap-3 py-1.5">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0"></div>
+                    <span className="text-gray-700 dark:text-gray-300 text-sm md:text-base">{area}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column - Knowledge Areas */}
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              {t('about.skills')}
+          {/* Languages - 2/5 width */}
+          <div className="lg:col-span-2">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <span className="h-8 w-1.5 bg-gradient-to-b from-portfolio-1 to-portfolio-2 rounded-full inline-block"></span>
+              {t('about.skillsCategories.languages')}
             </h3>
             
-            <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg">
-              <ul className="space-y-3">
-                {t('about.knowledgeAreasList').map((area, index) => (
-                  <li key={index} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0"></span>
-                    <span className="leading-relaxed">{area}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-gray-700 h-full">
+              <div className="flex flex-col gap-4 h-full justify-center">
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover-lift transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                    EN
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.english')}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">C2 Proficient</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover-lift transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                    ES
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.spanish')}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Nativo</p>
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
 
-        {/* Tech Stack - Bottom */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        {/* Tech Stack */}
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
+            <span className="h-8 w-1.5 bg-gradient-to-b from-portfolio-1 to-portfolio-2 rounded-full inline-block"></span>
             {t('about.techStack')}
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {skills.map((skillGroup, index) => (
-              <div key={index} className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg hover-lift transition-all duration-300">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+              <div key={index} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 hover-lift transition-all duration-300 group">
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-5 text-center group-hover:text-portfolio-1 dark:group-hover:text-portfolio-2 transition-colors duration-300">
                   {skillGroup.name}
                 </h4>
                 <div className="flex flex-wrap justify-center gap-2">
                   {skillGroup.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-md"
+                      className="px-3.5 py-1.5 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover:scale-105 cursor-default transition-transform duration-300 hover:shadow-md"
                     >
                       {tech}
                     </span>
