@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 
 const About = () => {
   const { t } = useLanguage();
+  const [isMeowOpen, setIsMeowOpen] = useState(false);
+
+  const handleMeowClick = useCallback(() => {
+    setIsMeowOpen(true);
+    try {
+      new Audio('/Meaw.mp3').play();
+    } catch (e) {
+      // Audio may be blocked by browser
+    }
+  }, []);
+
+  const closeMeow = useCallback(() => {
+    setIsMeowOpen(false);
+  }, []);
 
   const skills = [
     { name: t('about.skillsCategories.backend'), tech: ['Java', 'Python', 'Laravel', 'PHP', 'PostgreSQL', 'MySQL'] },
@@ -56,7 +71,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500 h-full flex flex-col">
+            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500 h-full flex flex-col relative">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skillsCategories.languages')}
@@ -76,12 +91,16 @@ const About = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
                   </div>
                 </div>
-                <div className="hidden lg:flex flex-1 items-center justify-center">
-                  <pre className="text-xs leading-tight text-gray-900 dark:text-gray-100 font-mono select-none text-center">
+                <button
+                  onClick={handleMeowClick}
+                  className="hidden lg:block absolute bottom-3 right-3 text-left cursor-pointer hover:scale-110 transition-transform duration-300"
+                  title="Meow!"
+                >
+                  <pre className="text-[10px] leading-tight text-gray-900 dark:text-gray-100 font-mono select-none">
 {`   |\\__/,|   (\`\\
   _.|o o  |_   ) )
 -(((---(((--------`}</pre>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -110,6 +129,30 @@ const About = () => {
           </div>
         </div>
       </div>
+      {isMeowOpen && createPortal(
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={closeMeow}
+        >
+          <div
+            className="relative max-w-[90vw] max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={closeMeow}
+              className="absolute -top-4 -right-4 w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 shadow-lg transition-colors z-10 text-xl font-bold"
+            >
+              ✕
+            </button>
+            <img
+              src="/Meaw.jpeg"
+              alt="Meow"
+              className="rounded-2xl shadow-2xl max-h-[85vh] object-contain"
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
