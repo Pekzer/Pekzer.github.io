@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useCallback } from 'react';
+import React, { Suspense, useState, useCallback, useEffect } from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Navbar from '@/components/Navbar';
@@ -12,11 +12,34 @@ const Projects = React.lazy(() => import('@/sections/Projects'));
 const Contact = React.lazy(() => import('@/sections/Contact'));
 const Education = React.lazy(() => import('@/sections/Education'));
 
+// Map of dynamic import triggers – called to preload chunks without rendering
+const sectionPreloaders = {
+  about: () => import('@/sections/About'),
+  projects: () => import('@/sections/Projects'),
+  contact: () => import('@/sections/Contact'),
+  education: () => import('@/sections/Education'),
+};
+
 const SectionFallback = () => <div className="h-96 bg-white dark:bg-gray-900" />;
 
 export default function Home() {
   // Track which sections have been force-requested via navbar navigation
   const [forcedSections, setForcedSections] = useState(new Set());
+
+  // Preload all lazy section chunks in the background after the initial
+  // render so that by the time the user clicks a nav link the chunk is
+  // already cached and renders instantly.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      Object.values(sectionPreloaders).forEach((load) => load());
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Preload a specific section on hover (called from Navbar)
+  const preloadSection = useCallback((sectionId) => {
+    sectionPreloaders[sectionId]?.();
+  }, []);
 
   const navigateToSection = useCallback((sectionId) => {
     // Force the lazy section to render
@@ -26,9 +49,15 @@ export default function Home() {
       return next;
     });
 
-    // Poll for the section element to appear in the DOM, then wait for its
-    // height to stabilize via ResizeObserver so we scroll AFTER the lazy
-    // chunk has loaded and the content has fully rendered.
+    // If the section is already in the DOM with full content, scroll immediately
+    const existing = document.querySelector(`#${sectionId}`);
+    if (existing && existing.offsetHeight > 150) {
+      existing.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    // Otherwise poll for the section element to appear and its height to
+    // stabilize (lazy chunk still loading).
     const pollForElement = () => {
       const el = document.querySelector(`#${sectionId}`);
       if (!el) {
@@ -43,7 +72,6 @@ export default function Home() {
         const h = el.offsetHeight;
         if (h === lastHeight) {
           stableCount++;
-          // Two consecutive stable frames + height > 150px means content is ready
           if (stableCount >= 2 && h > 150) {
             el.scrollIntoView({ behavior: 'smooth' });
             observer.disconnect();
@@ -56,14 +84,12 @@ export default function Home() {
 
       observer.observe(el);
 
-      // Safety fallback after 5 s
       setTimeout(() => {
         el.scrollIntoView({ behavior: 'smooth' });
         observer.disconnect();
       }, 5000);
     };
 
-    // Small delay to let React process the state update before polling
     setTimeout(pollForElement, 50);
   }, []);
 
@@ -71,7 +97,7 @@ export default function Home() {
     <ThemeProvider>
       <LanguageProvider>
         <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-          <Navbar onNavigate={navigateToSection} />
+          <Navbar onNavigate={navigateToSection} onPreload={preloadSection} />
           <main>
             <Hero onNavigate={navigateToSection} />
             <LazySection placeholderHeight="400px" forceRender={forcedSections.has('about')}>
