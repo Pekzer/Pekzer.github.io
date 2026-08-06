@@ -117,7 +117,7 @@ const Contact = () => {
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
       <div className={`absolute top-10 right-10 rounded-full mix-blend-multiply filter bg-portfolio-1 ${isDesktop ? 'w-[600px] h-[600px] blur-3xl opacity-25 pulse-intense' : 'w-40 h-40 blur-xl opacity-10'}`}></div>
       <div className={`absolute bottom-10 left-10 rounded-full mix-blend-multiply filter bg-portfolio-2 ${isDesktop ? 'w-[550px] h-[550px] blur-3xl opacity-30 pulse-intense' : 'w-36 h-36 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1s' } : {}}></div>
-      <div className={`absolute top-1/3 left-1/3 rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-1 to-portfolio-3 ${isDesktop ? 'w-[500px] h-[500px] blur-3xl opacity-15 pulse-intense' : 'w-44 h-44 blur-xl opacity-5'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
+      <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-1 to-portfolio-3 ${isDesktop ? 'top-1/3 left-1/3 w-[500px] h-[500px] blur-3xl opacity-15 pulse-intense' : '-bottom-5 -right-5 w-44 h-44 blur-xl opacity-5'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
