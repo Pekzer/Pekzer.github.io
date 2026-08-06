@@ -91,6 +91,13 @@ const About = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
                   </div>
                 </div>
+                <div className="flex items-center gap-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-3 to-portfolio-4 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">BR</div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">{t('about.languagesList.portuguese')}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">{t('about.languagesList.portugueseStatus')}</p>
+                  </div>
+                </div>
                 <button
                   onClick={handleMeowClick}
                   className="hidden lg:block absolute bottom-3 right-3 text-left cursor-pointer hover:scale-110 transition-transform duration-300"

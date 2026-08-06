@@ -77,7 +77,9 @@ const translations = {
       },
       languagesList: {
         english: 'Inglés Avanzado (C2)',
-        spanish: 'Español Nativo'
+        spanish: 'Español Nativo',
+        portuguese: 'Portugués (BR)',
+        portugueseStatus: 'Trabajando en ello'
       }
     },
     education: {
@@ -239,7 +241,9 @@ const translations = {
       },
       languagesList: {
         english: 'Advanced English (C2)',
-        spanish: 'Native Spanish'
+        spanish: 'Native Spanish',
+        portuguese: 'Portuguese (BR)',
+        portugueseStatus: 'Working on it'
       }
     },
     education: {
