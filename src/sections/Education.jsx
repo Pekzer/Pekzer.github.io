@@ -87,9 +87,9 @@ const Education = () => {
                   <p className="text-portfolio-1 font-medium mb-1">{edu.company}</p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{edu.period}</p>
                   <p className="text-gray-600 dark:text-gray-400">{edu.description}</p>
-                  {index === 1 && <GameOfLife />}
                 </div>
               ))}
+              <GameOfLife />
             </div>
           </div>
 
