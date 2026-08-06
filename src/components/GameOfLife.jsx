@@ -9,7 +9,7 @@ const heartPattern = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0],
-  [0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0],
+  [0,0,0,1,0,0,1,1,1,1,0,0,1,0,0,0],
   [0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0],
   [0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0],
   [0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0],
@@ -30,45 +30,47 @@ const createHeartGrid = () => {
 const createEmptyGrid = () =>
   Array.from({ length: ROWS }, () => Array.from({ length: COLS }, () => false));
 
-// Glider — perpetual diagonal motion
-const createGliderGrid = () => {
+// Pattern 1 — centered
+const createPattern1Grid = () => {
   const grid = createEmptyGrid();
-  const r = 6, c = 6;
+  const r = 5, c = 6;
   grid[r][c + 1] = true;
-  grid[r + 1][c + 2] = true;
-  grid[r + 2][c] = true;
-  grid[r + 2][c + 1] = true;
-  grid[r + 2][c + 2] = true;
-  return grid;
-};
-
-// Toad — period-2 oscillator
-const createToadGrid = () => {
-  const grid = createEmptyGrid();
-  const r = 7, c = 6;
-  grid[r][c + 1] = true;
-  grid[r][c + 2] = true;
-  grid[r][c + 3] = true;
-  grid[r + 1][c] = true;
   grid[r + 1][c + 1] = true;
-  grid[r + 1][c + 2] = true;
+  grid[r + 2][c] = true;
+  grid[r + 2][c + 2] = true;
+  grid[r + 2][c + 1] = true; // center
+  grid[r + 3][c + 1] = true;
+  grid[r + 4][c + 1] = true;
   return grid;
 };
 
-// LWSS (Lightweight Spaceship) — perpetual horizontal motion
-const createLWSSGrid = () => {
+// Pattern 2 — centered
+const createPattern2Grid = () => {
   const grid = createEmptyGrid();
-  const r = 6, c = 6;
-  grid[r][c + 1] = true;
+  const r = 6, c = 5;
+  grid[r][c] = true;
   grid[r][c + 4] = true;
-  grid[r + 1][c] = true;
-  grid[r + 1][c + 4] = true;
-  grid[r + 2][c] = true;
-  grid[r + 2][c + 4] = true;
-  grid[r + 3][c] = true;
+  grid[r + 1][c + 1] = true;
+  grid[r + 1][c + 3] = true;
+  grid[r + 2][c + 2] = true;
   grid[r + 3][c + 1] = true;
   grid[r + 3][c + 2] = true;
   grid[r + 3][c + 3] = true;
+  return grid;
+};
+
+// Pattern 3 — centered
+const createPattern3Grid = () => {
+  const grid = createEmptyGrid();
+  const r = 6, c = 4;
+  grid[r][c + 3] = true;
+  grid[r + 1][c + 3] = true;
+  grid[r + 2][c] = true;
+  grid[r + 2][c + 1] = true;
+  grid[r + 2][c + 5] = true;
+  grid[r + 2][c + 6] = true;
+  grid[r + 3][c + 2] = true;
+  grid[r + 3][c + 4] = true;
   return grid;
 };
 
@@ -136,18 +138,18 @@ const GameOfLife = () => {
     setIsRunning(false);
   };
 
-  const resetToGlider = () => {
-    setGrid(createGliderGrid());
+  const resetToPattern1 = () => {
+    setGrid(createPattern1Grid());
     setIsRunning(false);
   };
 
-  const resetToToad = () => {
-    setGrid(createToadGrid());
+  const resetToPattern2 = () => {
+    setGrid(createPattern2Grid());
     setIsRunning(false);
   };
 
-  const resetToLWSS = () => {
-    setGrid(createLWSSGrid());
+  const resetToPattern3 = () => {
+    setGrid(createPattern3Grid());
     setIsRunning(false);
   };
 
@@ -220,34 +222,38 @@ const GameOfLife = () => {
           </svg>
         </button>
         <button
-          onClick={resetToGlider}
+          onClick={resetToPattern1}
           className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
-          title="Glider — perpetual motion"
-          aria-label="Glider pattern"
+          title="Pattern 1"
+          aria-label="Pattern 1"
         >
           <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.5 2L12 6l-4 8-1 2-3 3 2 3 4-1 3-4 3-3 2-4 1.5-3.5L13.5 2zM12 8l1.5 3L12 14l-2-1.5L12 8z"/>
+            <rect x="8" y="4" width="2" height="16" rx="1"/>
+            <rect x="14" y="4" width="2" height="16" rx="1"/>
           </svg>
         </button>
         <button
-          onClick={resetToToad}
+          onClick={resetToPattern2}
           className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
-          title="Toad — oscillator"
-          aria-label="Toad pattern"
+          title="Pattern 2"
+          aria-label="Pattern 2"
         >
           <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3"/>
-            <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2"/>
+            <circle cx="8" cy="8" r="2"/>
+            <circle cx="16" cy="8" r="2"/>
+            <circle cx="12" cy="16" r="2"/>
           </svg>
         </button>
         <button
-          onClick={resetToLWSS}
+          onClick={resetToPattern3}
           className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
-          title="LWSS — spaceship"
-          aria-label="LWSS pattern"
+          title="Pattern 3"
+          aria-label="Pattern 3"
         >
           <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M3 12l4-8 4 4 4-4 4 8-8 4-8-4z"/>
+            <rect x="4" y="6" width="4" height="4" rx="0.5"/>
+            <rect x="16" y="6" width="4" height="4" rx="0.5"/>
+            <rect x="10" y="14" width="4" height="4" rx="0.5"/>
           </svg>
         </button>
       </div>
