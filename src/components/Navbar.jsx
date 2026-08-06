@@ -17,16 +17,16 @@ const Navbar = ({ onNavigate }) => {
 
   const scrollToSection = (href) => {
     const sectionId = href.replace('#', '');
-    // If onNavigate is provided (lazy sections need force-render), use it
+    setIsMenuOpen(false);
     if (onNavigate) {
       onNavigate(sectionId);
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      return;
     }
-    setIsMenuOpen(false);
+    const el = document.querySelector(href);
+    if (!el) return;
+    const navbarHeight = 64;
+    const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
   return (
