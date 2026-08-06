@@ -14,15 +14,11 @@ const Hero = () => {
       {/* Patrón de fondo más visible */}
       <div className="absolute inset-0 bg-pattern-dots opacity-70"></div>
       
-      {/* Círculos decorativos — solo en desktop (muy costosos en GPU móvil) */}
-      {isDesktop && (
-        <>
-          <div className="absolute top-10 -left-20 w-96 h-96 bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense"></div>
-          <div className="absolute top-40 right-10 w-[500px] h-[500px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-20 left-1/4 w-[400px] h-[400px] bg-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pulse-intense" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute -bottom-20 -right-20 w-[450px] h-[450px] bg-gradient-to-br from-portfolio-1 to-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
-        </>
-      )}
+      {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
+      <div className={`absolute top-10 -left-20 rounded-full mix-blend-multiply filter bg-portfolio-1 ${isDesktop ? 'w-96 h-96 blur-3xl opacity-30 pulse-intense' : 'w-48 h-48 blur-xl opacity-10'}`}></div>
+      <div className={`absolute top-40 right-10 rounded-full mix-blend-multiply filter bg-portfolio-2 ${isDesktop ? 'w-[500px] h-[500px] blur-3xl opacity-25 pulse-intense' : 'w-40 h-40 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1s' } : {}}></div>
+      <div className={`absolute bottom-20 left-1/4 rounded-full mix-blend-multiply filter bg-portfolio-3 ${isDesktop ? 'w-[400px] h-[400px] blur-3xl opacity-20 pulse-intense' : 'w-36 h-36 blur-xl opacity-8'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
+      <div className={`absolute -bottom-20 -right-20 rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-1 to-portfolio-2 ${isDesktop ? 'w-[450px] h-[450px] blur-3xl opacity-25 pulse-intense' : 'w-44 h-44 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="text-center">

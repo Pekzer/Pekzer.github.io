@@ -254,26 +254,4 @@
     content-visibility: auto;
     contain-intrinsic-size: auto 500px;
   }
-
-  /* Reemplazar patrones de fondo pesados por colores sólidos en móvil */
-  .bg-pattern-dots,
-  .bg-pattern-grid {
-    background-image: none !important;
-  }
-
-  .bg-pattern-dots {
-    background-color: #f9fafb !important;
-  }
-
-  .dark .bg-pattern-dots {
-    background-color: #111827 !important;
-  }
-
-  .bg-pattern-grid {
-    background-color: #ffffff !important;
-  }
-
-  .dark .bg-pattern-grid {
-    background-color: #111827 !important;
-  }
 }
