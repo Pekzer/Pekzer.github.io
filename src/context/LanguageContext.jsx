@@ -112,7 +112,7 @@ const translations = {
       screenshotsTitle: 'Capturas de Pantalla',
       close: 'Cerrar',
       hirpace: {
-        title: 'Aplicación WEB HIRPACE',
+        title: 'Aplicación WEB HIRPACE ASFASFASF',
         description: 'Página web para una ONG médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
         modalDescription: 'Sistema integral de gestión médica desarrollado para instituciones de salud. Incluye módulos avanzados para la administración eficiente de pacientes, personal médico y operaciones clínicas.',
         features: [
