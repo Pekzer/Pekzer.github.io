@@ -17,7 +17,7 @@ const Hero = () => {
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
       <div className={`absolute top-10 -left-20 rounded-full mix-blend-multiply filter bg-portfolio-1 pointer-events-none ${isDesktop ? 'w-96 h-96 blur-3xl opacity-30 pulse-intense' : 'w-48 h-48 blur-xl opacity-10'}`}></div>
       <div className={`absolute top-40 right-10 rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'w-[500px] h-[500px] blur-3xl opacity-25 pulse-intense' : 'w-40 h-40 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1s' } : {}}></div>
-      <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-3 pointer-events-none ${isDesktop ? 'bottom-20 left-1/4 w-[400px] h-[400px] blur-3xl opacity-20 pulse-intense' : 'top-[45%] -left-10 w-48 h-32 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
+      <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-3 pointer-events-none ${isDesktop ? 'bottom-20 left-1/4 w-[400px] h-[400px] blur-3xl opacity-20 pulse-intense' : 'top-[35%] -left-10 w-48 h-32 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-1 to-portfolio-2 pointer-events-none ${isDesktop ? '-bottom-20 -right-20 w-[450px] h-[450px] blur-3xl opacity-25 pulse-intense' : '-bottom-10 -right-10 w-40 h-40 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="text-center">
