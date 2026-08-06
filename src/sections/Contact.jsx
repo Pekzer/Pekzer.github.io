@@ -111,7 +111,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
       {/* Fondo decorativo más dramático */}
-      <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
+      <div className="absolute inset-0 bg-pattern-grid opacity-60"></div>
       <div className="absolute top-10 right-10 w-[600px] h-[600px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
       <div className="absolute bottom-10 left-10 w-[550px] h-[550px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense" style={{ animationDelay: '1s' }}></div>
       <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-gradient-to-br from-portfolio-1 to-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '2s' }}></div>

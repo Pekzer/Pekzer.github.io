@@ -56,24 +56,24 @@ const About = () => {
               </div>
             </div>
 
-            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500">
+            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500 h-full flex flex-col">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skillsCategories.languages')}
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-semibold flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">EN</div>
+              <div className="flex-1 flex flex-col justify-center space-y-4">
+                <div className="flex items-center gap-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">EN</div>
                   <div className="min-w-0">
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-white transition-colors duration-300">{t('about.languagesList.english')}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">C2 / Avanzado</p>
+                    <p className="font-semibold text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">{t('about.languagesList.english')}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">C2 / Avanzado</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-semibold flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">ES</div>
+                <div className="flex items-center gap-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">ES</div>
                   <div className="min-w-0">
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-white transition-colors duration-300">{t('about.languagesList.spanish')}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
+                    <p className="font-semibold text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">{t('about.languagesList.spanish')}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
                   </div>
                 </div>
               </div>
