@@ -1,38 +1,58 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-const ROWS = 16;
-const COLS = 16;
+const ROWS = 32;
+const COLS = 32;
 
-// Heart pattern on a 16x16 grid
-//    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
-// 0  . . . . . . . . . . . . . . . .
-// 1  . . . # # . . . . . # # . . . .
-// 2  . . # # # # . . . . # # # # . .
-// 3  . . # # # # . . . . # # # # . .
-// 4  . . . # # # . . . . # # # . . .
-// 5  . . . . # # # . . # # # . . . .
-// 6  . . . . . # # # # # # . . . . .
-// 7  . . . . . . # # # # . . . . . .
-// 8  . . . . . . . # # . . . . . . .
-// 9  . . . . . . . . . . . . . . . .
-const heartPattern = [
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, true,  true,  false, false, false, false, false, true,  true,  false, false, false, false],
-  [false, false, true,  true,  true,  true,  false, false, false, false, true,  true,  true,  true,  false, false],
-  [false, false, true,  true,  true,  true,  false, false, false, false, true,  true,  true,  true,  false, false],
-  [false, false, false, true,  true,  true,  false, false, false, false, true,  true,  true,  false, false, false],
-  [false, false, false, false, true,  true,  true,  false, false, true,  true,  true,  false, false, false, false],
-  [false, false, false, false, false, true,  true,  true,  true,  true,  true,  false, false, false, false, false],
-  [false, false, false, false, false, false, true,  true,  true,  true,  false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, true,  true,  false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-];
+// Hollow Minecraft-style heart, centered within a 32×32 grid.
+// Filled heart spans rows 9–23 (15 rows) and cols 7–24 (18 cols).
+// Only the outline cells are alive.
+const filledHeartCells = new Set();
+for (let r = 9; r <= 23; r++) {
+  for (let c = 7; c <= 24; c++) {
+    filledHeartCells.add(`${r},${c}`);
+  }
+}
+// Carve out the top cleft (between the two lobes)
+for (let r = 9; r <= 11; r++) {
+  for (let c = 15; c <= 16; c++) {
+    filledHeartCells.delete(`${r},${c}`);
+  }
+}
+// Carve out inner area to make it hollow
+// The filled shape at its widest: rows 13-15 have cols 7-24 (18 wide)
+// We remove everything except the outline
+for (let r = 12; r <= 22; r++) {
+  for (let c = 9; c <= 22; c++) {
+    filledHeartCells.delete(`${r},${c}`);
+  }
+}
+// But keep the cleft edges and inner lobe edges
+// Row 10 cleft edges: 14,17
+filledHeartCells.add('10,14');
+filledHeartCells.add('10,17');
+// Row 11 cleft bottom: 15,16
+filledHeartCells.add('11,15');
+filledHeartCells.add('11,16');
+// Keep bottom tip fill for rows 22-23 center
+for (let r = 22; r <= 23; r++) {
+  for (let c = 14; c <= 17; c++) {
+    filledHeartCells.add(`${r},${c}`);
+  }
+}
+// Keep row 21 center
+filledHeartCells.add('21,15');
+filledHeartCells.add('21,16');
+
+const createHeartGrid = () => {
+  const grid = Array.from({ length: ROWS }, () =>
+    Array.from({ length: COLS }, () => false)
+  );
+  for (const key of filledHeartCells) {
+    const [r, c] = key.split(',').map(Number);
+    grid[r][c] = true;
+  }
+  return grid;
+};
 
 const countNeighbors = (grid, row, col) => {
   let count = 0;
@@ -61,7 +81,7 @@ const nextGeneration = (grid) => {
 };
 
 const GameOfLife = () => {
-  const [grid, setGrid] = useState(heartPattern);
+  const [grid, setGrid] = useState(createHeartGrid);
   const [isRunning, setIsRunning] = useState(false);
   const runningRef = useRef(isRunning);
   runningRef.current = isRunning;
@@ -89,7 +109,7 @@ const GameOfLife = () => {
   };
 
   return (
-    <div className="hidden lg:block mt-4">
+    <div className="hidden lg:flex flex-col items-center mt-4">
       <div
         className="inline-grid gap-[1px]"
         style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}
@@ -99,7 +119,7 @@ const GameOfLife = () => {
             <button
               key={`${r}-${c}`}
               onClick={() => handleCellClick(r, c)}
-              className={`w-[10px] h-[10px] rounded-sm transition-colors duration-150 cursor-pointer border-0 p-0 ${
+              className={`w-[7px] h-[7px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
                 cell
                   ? 'bg-portfolio-1 hover:bg-portfolio-2'
                   : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
