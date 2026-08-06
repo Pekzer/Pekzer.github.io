@@ -16,17 +16,13 @@ const Navbar = ({ onNavigate }) => {
   ];
 
   const scrollToSection = (href) => {
-    const sectionId = href.replace('#', '');
     setIsMenuOpen(false);
+    const sectionId = href.replace('#', '');
     if (onNavigate) {
       onNavigate(sectionId);
       return;
     }
-    const el = document.querySelector(href);
-    if (!el) return;
-    const navbarHeight = 64;
-    const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
-    window.scrollTo({ top, behavior: 'smooth' });
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

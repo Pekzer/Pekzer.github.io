@@ -11,11 +11,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   const scrollToSection = (sectionId) => {
-    const el = document.querySelector(`#${sectionId}`);
-    if (!el) return;
-    const navbarHeight = 64; // h-16 fixed navbar
-    const top = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
-    window.scrollTo({ top, behavior: 'smooth' });
+    document.querySelector(`#${sectionId}`)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

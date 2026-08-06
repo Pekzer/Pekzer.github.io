@@ -54,6 +54,11 @@
     @apply text-sm font-primary md:text-base;
   }
 
+  /* Offset for fixed navbar when using scrollIntoView */
+  section {
+    scroll-margin-top: 4rem; /* h-16 = 64px */
+  }
+
   .layout {
     max-width: 68rem;
     @apply mx-auto w-11/12;
