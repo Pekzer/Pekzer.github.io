@@ -40,7 +40,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6">
             <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-2xl transition-shadow duration-500">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
@@ -48,9 +48,9 @@ const About = () => {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {t('about.knowledgeAreasList').map((area, index) => (
-                  <div key={index} className="flex items-start gap-3 rounded-xl bg-gray-50 dark:bg-gray-800 px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200 group">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-200"></span>
-                    <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-primary">{area}</span>
+                  <div key={index} className="flex items-start gap-3 rounded-xl bg-gray-50 dark:bg-gray-800 px-3 py-2.5 hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:scale-125 transition-all duration-300"></span>
+                    <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-primary group-hover:text-white transition-colors duration-300">{area}</span>
                   </div>
                 ))}
               </div>
@@ -62,18 +62,18 @@ const About = () => {
                 {t('about.skillsCategories.languages')}
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-semibold">EN</div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.english')}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">C2 / Avanzado</p>
+                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-semibold flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">EN</div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-white transition-colors duration-300">{t('about.languagesList.english')}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">C2 / Avanzado</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors duration-200">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-semibold">ES</div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{t('about.languagesList.spanish')}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Nativo</p>
+                <div className="flex items-center gap-3 rounded-2xl bg-gray-50 dark:bg-gray-800 p-3 hover:bg-portfolio-1 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 group">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-semibold flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-300">ES</div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-white transition-colors duration-300">{t('about.languagesList.spanish')}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
                   </div>
                 </div>
               </div>

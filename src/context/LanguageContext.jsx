@@ -50,7 +50,8 @@ const translations = {
         'Bases de Datos Relacionales',
         'Normalización de bases de datos',
         'Cálculo de probabilidad',
-        'Análisis de datos'
+        'Análisis de datos',
+        'Mantenimiento de hardware'
       ],
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
@@ -80,7 +81,7 @@ const translations = {
       }
     },
     education: {
-      description1: 'Estudiando programación, estructuras de datos, algoritmos y arquitectura de computadora.',
+      description1: 'Formación en desarrollo de software, algoritmos, estructuras de datos, arquitectura de computadoras, bases de datos e ingeniería de software.',
       description2: 'Educación secundaria con especialización en informática y tecnología.',
       period1: '2021 - 2026',
       period2: '2015 - 2019',
@@ -211,7 +212,8 @@ const translations = {
         'Relational Databases',
         'Database Normalization',
         'Probability Calculus',
-        'Data Analysis'
+        'Data Analysis',
+        'Hardware Maintenance'
       ],
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
@@ -241,7 +243,7 @@ const translations = {
       }
     },
     education: {
-      description1: 'Studying programming, data structures, algorithms and computer architecture.',
+      description1: 'Education in software development, algorithms, data structures, computer architecture, databases, and software engineering.',
       description2: 'Secondary education with specialization in computer science and technology.',
       period1: '2021 - 2026',
       period2: '2015 - 2019',
