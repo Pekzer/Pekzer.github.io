@@ -30,7 +30,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="text-2xl font-bold text-portfolio-1 dark:text-white">
-              Gonzalo N. Herrera
+              Gonzalo Herrera (Pekzer)
             </a>
           </div>
 

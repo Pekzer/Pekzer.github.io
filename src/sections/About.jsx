@@ -7,7 +7,7 @@ const About = () => {
   const skills = [
     { name: t('about.skillsCategories.backend'), tech: ['Java', 'Python', 'Laravel', 'PHP', 'PostgreSQL', 'MySQL'] },
     { name: t('about.skillsCategories.frontend'), tech: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'CSS', 'HTML', 'Vite'] },
-    { name: t('about.skillsCategories.tools'), tech: ['Git','Expo','Node.js', 'Docker'] }
+    { name: t('about.skillsCategories.tools'), tech: ['Git','Expo','Node.js', 'Docker', 'Firebase'] }
   ];
 
   const education = [
@@ -82,7 +82,7 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - About Text */}
           <div>
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg">
               <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                 {t('about.paragraph1')}
               </p>
@@ -116,32 +116,49 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column - Skills */}
+          {/* Right Column - Knowledge Areas */}
           <div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               {t('about.skills')}
             </h3>
             
-            <div className="space-y-6">
-              {skills.map((skillGroup, index) => (
-                <div key={index} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                    {skillGroup.name}
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {skillGroup.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-md"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg">
+              <ul className="space-y-3">
+                {t('about.knowledgeAreasList').map((area, index) => (
+                  <li key={index} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0"></span>
+                    <span className="leading-relaxed">{area}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
+          </div>
+        </div>
+
+        {/* Tech Stack - Bottom */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            {t('about.techStack')}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {skills.map((skillGroup, index) => (
+              <div key={index} className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg hover-lift transition-all duration-300">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">
+                  {skillGroup.name}
+                </h4>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {skillGroup.tech.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white text-sm rounded-full font-medium hover-scale cursor-default transition-transform duration-300 hover:shadow-md"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -22,7 +22,7 @@ const translations = {
     home: {
       title: '¡Hola! Soy',
       subtitle: 'Desarrollador Full Stack - DevOps',
-      description: 'Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web con React, Laravel y bases de datos.',
+      description: 'Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
       cta: 'Ver Proyectos',
       contact: 'Contactar',
       cv: 'Descargar CV'
@@ -32,12 +32,26 @@ const translations = {
       subtitle: 'Conoce mi historia',
       description: 'Soy un programador apasionado por la informática y la resolución de problemas. Actualmente cursando la Tecnicatura Universitaria en Programación en la Universidad Nacional de Salta.',
       skills: 'Conocimientos',
+      techStack: 'Stack Tecnológico',
       experience: 'Educación',
       education: 'Educación',
       educationSubtitle: 'Mi trayectoria educativa y desarrollo profesional',
       courses: 'Cursos',
       languages: 'Idiomas',
       tools: 'Herramientas',
+      knowledgeAreasList: [
+        'Arquitectura de Computadoras',
+        'Diseño y Análisis de Algoritmos',
+        'Estructuras de Datos',
+        'Sistemas Operativos',
+        'Análisis y Diseño de Software',
+        'Pruebas de sistemas (testing)',
+        'Modelado Entidad-Relación',
+        'Bases de Datos Relacionales',
+        'Normalización de bases de datos',
+        'Cálculo de probabilidad',
+        'Análisis de datos'
+      ],
       featuredProjects: 'Proyectos Destacados',
       otherProjects: 'Otros Proyectos',
       moreWork: '¿Quieres ver más de mi trabajo?',
@@ -68,7 +82,7 @@ const translations = {
     education: {
       description1: 'Estudiando programación, estructuras de datos, algoritmos y arquitectura de computadora.',
       description2: 'Educación secundaria con especialización en informática y tecnología.',
-      period1: '2021 - Actualidad',
+      period1: '2021 - 2026',
       period2: '2015 - 2019',
       courseDescription1: 'Programa nacional de formación en programación',
       courseDescription2: 'Curso intensivo de programación en Python',
@@ -155,7 +169,7 @@ const translations = {
       quickLinks: 'Enlaces Rápidos',
       contactInfo: 'Contacto',
       backToTop: 'Volver arriba',
-      copyright: '© 2025 Gonzalo Herrera.'
+      copyright: '© 2026 Gonzalo Herrera.'
     }
   },
   en: {
@@ -169,7 +183,7 @@ const translations = {
     home: {
       title: 'Hi! I\'m',
       subtitle: 'Full Stack Developer - DevOps',
-      description: 'Passionate about computer science and problem solving. Specialized in web development with React, Laravel and databases.',
+      description: 'Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
       cta: 'View Projects',
       contact: 'Contact',
       cv: 'Download CV'
@@ -179,12 +193,26 @@ const translations = {
       subtitle: 'Know my story',
       description: 'I am a programmer passionate about computer science and problem solving. Currently studying University Programming Technician at Universidad Nacional de Salta.',
       skills: 'Knowledge',
+      techStack: 'Tech Stack',
       experience: 'Education',
       education: 'Education',
       educationSubtitle: 'My educational journey and professional development',
       courses: 'Courses',
       languages: 'Languages',
       tools: 'Tools',
+      knowledgeAreasList: [
+        'Computer Architecture',
+        'Algorithm Design and Analysis',
+        'Data Structures',
+        'Operating Systems',
+        'Software Analysis and Design',
+        'System Testing',
+        'Entity-Relationship Modeling',
+        'Relational Databases',
+        'Database Normalization',
+        'Probability Calculus',
+        'Data Analysis'
+      ],
       featuredProjects: 'Featured Projects',
       otherProjects: 'Other Projects',
       moreWork: 'Want to see more of my work?',
@@ -215,7 +243,7 @@ const translations = {
     education: {
       description1: 'Studying programming, data structures, algorithms and computer architecture.',
       description2: 'Secondary education with specialization in computer science and technology.',
-      period1: '2021 - Present',
+      period1: '2021 - 2026',
       period2: '2015 - 2019',
       courseDescription1: 'National training program in programming',
       courseDescription2: 'Intensive Python programming course',
@@ -302,7 +330,7 @@ const translations = {
       quickLinks: 'Quick Links',
       contactInfo: 'Contact',
       backToTop: 'Back to top',
-      copyright: '© 2025 Gonzalo Herrera.'
+      copyright: '© 2026 Gonzalo Herrera.'
     }
   }
 };

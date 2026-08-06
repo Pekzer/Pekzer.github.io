@@ -110,43 +110,7 @@ const Education = () => {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="mt-16 relative overflow-hidden rounded-lg">
-          <div 
-            className="absolute inset-0 animate-gradient-x" 
-            style={{
-              background: 'linear-gradient(to right, #7c1427 0%, #6a0f1d 10%, #580a14 20%, #45050a 30%, #330000 40%, #45050a 45%, #7c1427 50%, #6a0f1d 60%, #580a14 70%, #45050a 80%, #330000 90%, #45050a 95%, #7c1427 100%)',
-              backgroundSize: '200% 100%',
-              filter: 'blur(8px)'
-            }}
-          ></div>
-          <div 
-            className="absolute inset-0 animate-gradient-x" 
-            style={{
-              background: 'linear-gradient(to right, #7c1427 0%, #6a0f1d 10%, #580a14 20%, #45050a 30%, #330000 40%, #45050a 45%, #7c1427 50%, #6a0f1d 60%, #580a14 70%, #45050a 80%, #330000 90%, #45050a 95%, #7c1427 100%)',
-              backgroundSize: '200% 100%',
-              opacity: 0.7
-            }}
-          ></div>
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center p-6 text-white bg-transparent">
-              <div className="text-3xl font-bold mb-2">5+</div>
-              <div className="text-sm opacity-90">{t('about.coursesStats')}</div>
-            </div>
-            <div className="text-center p-6 text-white bg-transparent">
-              <div className="text-3xl font-bold mb-2">5+</div>
-              <div className="text-sm opacity-90">{t('about.yearsStudying')}</div>
-            </div>
-            <div className="text-center p-6 text-white bg-transparent">
-              <div className="text-3xl font-bold mb-2">4+</div>
-              <div className="text-sm opacity-90">{t('education.titles')}</div>
-            </div>
-            <div className="text-center p-6 text-white bg-transparent">
-              <div className="text-3xl font-bold mb-2">100%</div>
-              <div className="text-sm opacity-90">{t('education.dedication')}</div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

@@ -53,7 +53,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-1 to-portfolio-2 bg-clip-text text-transparent">
-              Gonzalo N. Herrera
+              Gonzalo Herrera (Pekzer)
             </h3>
             <p className="text-gray-400 mb-4">
               {t('footer.description')}

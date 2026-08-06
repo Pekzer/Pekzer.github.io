@@ -52,7 +52,7 @@ const Hero = () => {
 
           {/* Tech Stack */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL'].map((tech) => (
+            {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL', 'Firebase'].map((tech) => (
               <span
                 key={tech}
                 className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700 hover-scale hover:bg-white dark:hover:bg-gray-700 hover:border-portfolio-1 dark:hover:border-portfolio-1 cursor-default transition-all duration-300 hover:shadow-md"
