@@ -76,10 +76,12 @@ const About = () => {
                     <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-300">Nativo</p>
                   </div>
                 </div>
-                <pre className="hidden lg:block text-[10px] leading-tight text-gray-400 dark:text-gray-500 font-mono mt-auto pt-2 select-none">
+                <div className="hidden lg:flex flex-1 items-center justify-center">
+                  <pre className="text-xs leading-tight text-gray-900 dark:text-gray-100 font-mono select-none text-center">
 {`   |\\__/,|   (\`\\
   _.|o o  |_   ) )
 -(((---(((--------`}</pre>
+                </div>
               </div>
             </div>
           </div>
