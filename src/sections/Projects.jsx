@@ -364,7 +364,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Fondo con efectos más dramáticos */}
-      <div className="absolute inset-0 bg-pattern-grid opacity-50"></div>
+      <div className="absolute inset-0 bg-pattern-dots opacity-50"></div>
       <div className="absolute top-20 left-10 w-[550px] h-[550px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
       <div className="absolute bottom-20 right-10 w-[600px] h-[600px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-portfolio-2 to-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '0.75s' }}></div>
