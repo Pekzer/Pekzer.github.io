@@ -29,15 +29,11 @@ const About = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-8">
-          <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 backdrop-blur-sm relative overflow-hidden hover:shadow-2xl transition-shadow duration-500">
-            <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3 rounded-r-full"></div>
-            {/* Animated background glow */}
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-portfolio-1/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-            <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-portfolio-2/10 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-portfolio-1/5 via-transparent to-portfolio-2/5 bg-[length:200%_100%] animate-gradient-x opacity-40"></div>
+          <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 md:p-10 shadow-2xl border border-gray-200/70 dark:border-gray-700/70 backdrop-blur-sm relative overflow-hidden hover:shadow-2xl hover:-translate-y-1 hover:border-portfolio-1/50 dark:hover:border-portfolio-1/50 transition-all duration-500 group">
+            <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3 rounded-r-full group-hover:w-2 transition-all duration-500"></div>
 
             <div className="space-y-5 text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-primary">
-              <p className="text-xl font-medium text-gray-800 dark:text-gray-100">{t('about.paragraph1')}</p>
+              <p className="text-xl font-medium text-gray-800 dark:text-gray-100 group-hover:text-portfolio-1 dark:group-hover:text-portfolio-1 transition-colors duration-500">{t('about.paragraph1')}</p>
               <p>{t('about.paragraph2')}</p>
               <p>{t('about.paragraph3')}</p>
               <p>{t('about.paragraph4')}</p>
