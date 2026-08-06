@@ -1,42 +1,26 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-const ROWS = 32;
-const COLS = 32;
+const ROWS = 16;
+const COLS = 16;
 
-// Pixel-art heart (26 rows provided, padded to 32×32)
+// Heart outline pattern for 16×16
 const heartPattern = [
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0],
+  [0,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0],
+  [0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0],
+  [0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0],
+  [0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0],
+  [0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0],
+  [0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0],
+  [0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ];
 
 const createHeartGrid = () => {
@@ -45,6 +29,48 @@ const createHeartGrid = () => {
 
 const createEmptyGrid = () =>
   Array.from({ length: ROWS }, () => Array.from({ length: COLS }, () => false));
+
+// Glider — perpetual diagonal motion
+const createGliderGrid = () => {
+  const grid = createEmptyGrid();
+  const r = 6, c = 6;
+  grid[r][c + 1] = true;
+  grid[r + 1][c + 2] = true;
+  grid[r + 2][c] = true;
+  grid[r + 2][c + 1] = true;
+  grid[r + 2][c + 2] = true;
+  return grid;
+};
+
+// Toad — period-2 oscillator
+const createToadGrid = () => {
+  const grid = createEmptyGrid();
+  const r = 7, c = 6;
+  grid[r][c + 1] = true;
+  grid[r][c + 2] = true;
+  grid[r][c + 3] = true;
+  grid[r + 1][c] = true;
+  grid[r + 1][c + 1] = true;
+  grid[r + 1][c + 2] = true;
+  return grid;
+};
+
+// LWSS (Lightweight Spaceship) — perpetual horizontal motion
+const createLWSSGrid = () => {
+  const grid = createEmptyGrid();
+  const r = 6, c = 6;
+  grid[r][c + 1] = true;
+  grid[r][c + 4] = true;
+  grid[r + 1][c] = true;
+  grid[r + 1][c + 4] = true;
+  grid[r + 2][c] = true;
+  grid[r + 2][c + 4] = true;
+  grid[r + 3][c] = true;
+  grid[r + 3][c + 1] = true;
+  grid[r + 3][c + 2] = true;
+  grid[r + 3][c + 3] = true;
+  return grid;
+};
 
 const countNeighbors = (grid, row, col) => {
   let count = 0;
@@ -110,6 +136,21 @@ const GameOfLife = () => {
     setIsRunning(false);
   };
 
+  const resetToGlider = () => {
+    setGrid(createGliderGrid());
+    setIsRunning(false);
+  };
+
+  const resetToToad = () => {
+    setGrid(createToadGrid());
+    setIsRunning(false);
+  };
+
+  const resetToLWSS = () => {
+    setGrid(createLWSSGrid());
+    setIsRunning(false);
+  };
+
   return (
     <div className="hidden lg:flex flex-col items-center mt-8">
       <div
@@ -121,7 +162,7 @@ const GameOfLife = () => {
             <button
               key={`${r}-${c}`}
               onClick={() => handleCellClick(r, c)}
-              className={`w-[7px] h-[7px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
+              className={`w-[14px] h-[14px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
                 cell
                   ? 'bg-portfolio-1 hover:bg-portfolio-2'
                   : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -165,14 +206,48 @@ const GameOfLife = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
         </button>
+      </div>
+
+      <div className="flex items-center gap-2 mt-1.5">
         <button
           onClick={resetToHeart}
           className="flex items-center justify-center w-6 h-6 rounded-full bg-portfolio-1/15 hover:bg-portfolio-1/30 dark:hover:bg-portfolio-1/30 transition-all duration-200"
-          title="Love"
-          aria-label="Reset to heart pattern"
+          title="Heart"
+          aria-label="Heart pattern"
         >
           <svg className="w-3 h-3 text-portfolio-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
+        </button>
+        <button
+          onClick={resetToGlider}
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          title="Glider — perpetual motion"
+          aria-label="Glider pattern"
+        >
+          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13.5 2L12 6l-4 8-1 2-3 3 2 3 4-1 3-4 3-3 2-4 1.5-3.5L13.5 2zM12 8l1.5 3L12 14l-2-1.5L12 8z"/>
+          </svg>
+        </button>
+        <button
+          onClick={resetToToad}
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          title="Toad — oscillator"
+          aria-label="Toad pattern"
+        >
+          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/>
+            <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+        </button>
+        <button
+          onClick={resetToLWSS}
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          title="LWSS — spaceship"
+          aria-label="LWSS pattern"
+        >
+          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 12l4-8 4 4 4-4 4 8-8 4-8-4z"/>
           </svg>
         </button>
       </div>
