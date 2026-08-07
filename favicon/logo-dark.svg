@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Logo PKZR Dark">
+  <rect width="200" height="200" fill="#7c1427" stroke="#000000" stroke-width="7"/>
+  <g font-family="Segoe UI, Roboto, Arial, sans-serif" font-weight="1000" text-anchor="middle">
+    <text x="100" y="88" font-size="88">
+      <tspan fill="#000000">P</tspan><tspan fill="#ffffff">K</tspan>
+    </text>
+    <text x="100" y="172" font-size="88">
+      <tspan fill="#ffffff">Z</tspan><tspan fill="#000000">R</tspan>
+    </text>
+  </g>
+</svg>
