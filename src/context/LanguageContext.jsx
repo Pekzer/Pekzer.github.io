@@ -77,7 +77,9 @@ const translations = {
       },
       languagesList: {
         english: 'Inglés Avanzado (C2)',
+        englishLevel: 'C2 / Avanzado',
         spanish: 'Español Nativo',
+        spanishLevel: 'Nativo',
         portuguese: 'Portugués (BR)',
         portugueseStatus: 'Trabajando en ello'
       }
@@ -245,7 +247,9 @@ const translations = {
       },
       languagesList: {
         english: 'Advanced English (C2)',
+        englishLevel: 'C2 / Advanced',
         spanish: 'Native Spanish',
+        spanishLevel: 'Native',
         portuguese: 'Portuguese (BR)',
         portugueseStatus: 'Working on it'
       }

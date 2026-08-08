@@ -84,14 +84,14 @@ const About = () => {
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">EN</div>
                   <div className="min-w-0">
                     <p className="font-semibold text-gray-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.english')}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-200">C2 / Avanzado</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.englishLevel')}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">ES</div>
                   <div className="min-w-0">
                     <p className="font-semibold text-gray-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.spanish')}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-200">Nativo</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.spanishLevel')}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 rounded-2xl bg-gray-50 dark:bg-gray-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
