@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import Reveal from '@/components/Reveal';
 
 const About = () => {
   const { t } = useLanguage();
@@ -36,7 +37,7 @@ const About = () => {
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-3xl opacity-10 pulse-intense' : 'top-[82%] right-1/4 w-40 h-40 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '0.5s' } : {}}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16" delay={0}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('about.title')}
           </h2>
@@ -44,9 +45,9 @@ const About = () => {
           <p className="text-xl text-gray-600 dark:text-gray-300 font-primary">
             {t('about.subtitle')}
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 gap-8">
+        <Reveal className="grid grid-cols-1 gap-8" delay={100}>
           <div className="bg-white/95 dark:bg-gray-900/95 rounded-3xl p-8 md:p-10 shadow-lg md:shadow-2xl border border-gray-200/70 dark:border-gray-700/70 relative overflow-hidden hover:shadow-xl md:hover:shadow-2xl md:hover:-translate-y-1 hover:border-portfolio-1/50 dark:hover:border-portfolio-1/50 transition-colors duration-200 group">
             <div className="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b from-portfolio-1 via-portfolio-2 to-portfolio-3 rounded-r-full group-hover:w-2 transition-all duration-300"></div>
 
@@ -59,7 +60,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-lg md:shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-xl md:hover:shadow-2xl transition-shadow duration-200">
+            <div className="md:col-span-2 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-lg md:shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover-lift hover:border-portfolio-1 dark:hover:border-portfolio-1 hover:shadow-xl md:hover:shadow-2xl transition-all duration-300">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skills')}
@@ -74,7 +75,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-lg md:shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover:shadow-xl md:hover:shadow-2xl transition-shadow duration-200 h-full flex flex-col relative">
+            <div className="md:col-span-1 bg-white/95 dark:bg-gray-900/95 rounded-3xl p-6 shadow-lg md:shadow-2xl border border-gray-200/70 dark:border-gray-700/70 hover-lift hover:border-portfolio-1 dark:hover:border-portfolio-1 hover:shadow-xl md:hover:shadow-2xl transition-all duration-300 h-full flex flex-col relative">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-3 font-primary">
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skillsCategories.languages')}
@@ -114,16 +115,16 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-8">
+        <Reveal className="mt-8" delay={200}>
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3 font-primary">
             <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
             {t('about.techStack')}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {skills.map((skillGroup, index) => (
-              <div key={index} className="bg-white/95 dark:bg-gray-900/95 rounded-2xl p-6 shadow-md md:shadow-xl border border-gray-200/70 dark:border-gray-700/70 md:hover:-translate-y-1.5 md:hover:shadow-2xl transition-colors duration-200 group">
+              <div key={index} className="bg-white/95 dark:bg-gray-900/95 rounded-2xl p-6 shadow-md md:shadow-xl border border-gray-200/70 dark:border-gray-700/70 hover:border-portfolio-1 dark:hover:border-portfolio-1 md:hover:-translate-y-1.5 md:hover:shadow-2xl transition-colors duration-200 group">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center font-primary">
                   {skillGroup.name}
                 </h4>
@@ -137,7 +138,7 @@ const About = () => {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
       {isMeowOpen && createPortal(
         <div

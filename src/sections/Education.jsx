@@ -2,6 +2,7 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import GameOfLife from '@/components/GameOfLife';
+import Reveal from '@/components/Reveal';
 
 const Education = () => {
   const { t } = useLanguage();
@@ -65,19 +66,18 @@ const Education = () => {
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'top-1/3 right-1/4 w-[480px] h-[480px] blur-3xl opacity-15 pulse-intense' : '-bottom-5 -right-5 w-44 h-44 blur-xl opacity-5'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16" delay={0}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('nav.education')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300">
             {t('about.educationSubtitle')}
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Education */}
-          <div>
+          <Reveal delay={100}>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
               {t('about.education')}
             </h3>
@@ -94,10 +94,10 @@ const Education = () => {
               ))}
               <GameOfLife />
             </div>
-          </div>
+          </Reveal>
 
           {/* Courses */}
-          <div>
+          <Reveal delay={200}>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
               {t('about.courses')}
             </h3>
@@ -112,7 +112,7 @@ const Education = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
 
 

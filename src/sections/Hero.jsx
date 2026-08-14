@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import Reveal from '@/components/Reveal';
 
 const Hero = ({ onNavigate }) => {
   const { t, language } = useLanguage();
@@ -22,7 +23,7 @@ const Hero = ({ onNavigate }) => {
       <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-3 pointer-events-none ${isDesktop ? 'bottom-20 left-1/4 w-[400px] h-[400px] blur-3xl opacity-20 pulse-intense' : 'top-[15%] -right-10 w-48 h-32 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-1 to-portfolio-2 pointer-events-none ${isDesktop ? '-bottom-20 -right-20 w-[450px] h-[450px] blur-3xl opacity-25 pulse-intense' : '-bottom-10 -left-10 w-40 h-40 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="text-center">
+        <Reveal className="text-center" delay={0}>
           {/* Profile Image */}
           <div className="mb-8">
             <div className="w-52 h-52 mx-auto rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 p-1 hover-lift hover-glow">
@@ -94,7 +95,7 @@ const Hero = ({ onNavigate }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
