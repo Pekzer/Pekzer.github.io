@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import Reveal from '@/components/Reveal';
+import Reveal, { RevealGroup } from '@/components/Reveal';
 
 const About = () => {
   const { t } = useLanguage();
@@ -36,7 +36,7 @@ const About = () => {
       <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'bottom-10 left-10 w-[450px] h-[450px] blur-3xl opacity-20 pulse-intense' : 'top-[58%] -left-8 w-32 h-32 blur-xl opacity-12'}`} style={isDesktop ? { animationDelay: '1.5s' } : {}}></div>
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] blur-3xl opacity-10 pulse-intense' : 'top-[82%] right-1/4 w-40 h-40 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '0.5s' } : {}}></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('about.title')}
@@ -139,7 +139,7 @@ const About = () => {
             ))}
           </div>
         </Reveal>
-      </div>
+      </RevealGroup>
       {isMeowOpen && createPortal(
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"

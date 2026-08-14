@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import Reveal from '@/components/Reveal';
+import Reveal, { RevealGroup } from '@/components/Reveal';
 
 const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
   const { t } = useLanguage();
@@ -372,7 +372,7 @@ const Projects = () => {
       <div className="absolute bottom-20 right-10 w-[600px] h-[600px] bg-portfolio-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pulse-intense" style={{ animationDelay: '1.5s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-portfolio-2 to-portfolio-3 rounded-full mix-blend-multiply filter blur-3xl opacity-15 pulse-intense" style={{ animationDelay: '0.75s' }}></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('projects.title')}
@@ -456,7 +456,7 @@ const Projects = () => {
           </div>,
           document.body
         )}
-      </div>
+      </RevealGroup>
     </section>
   );
 };

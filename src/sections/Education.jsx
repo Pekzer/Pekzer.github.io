@@ -2,7 +2,7 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import GameOfLife from '@/components/GameOfLife';
-import Reveal from '@/components/Reveal';
+import Reveal, { RevealGroup } from '@/components/Reveal';
 
 const Education = () => {
   const { t } = useLanguage();
@@ -65,7 +65,7 @@ const Education = () => {
       <div className={`absolute bottom-20 left-10 rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'w-[550px] h-[550px] blur-3xl opacity-25 pulse-intense' : 'w-36 h-36 blur-xl opacity-10'}`} style={isDesktop ? { animationDelay: '1s' } : {}}></div>
       <div className={`absolute rounded-full mix-blend-multiply filter bg-gradient-to-br from-portfolio-3 to-portfolio-1 pointer-events-none ${isDesktop ? 'top-1/3 right-1/4 w-[480px] h-[480px] blur-3xl opacity-15 pulse-intense' : '-bottom-5 -right-5 w-44 h-44 blur-xl opacity-5'}`} style={isDesktop ? { animationDelay: '2s' } : {}}></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {t('nav.education')}
@@ -116,7 +116,7 @@ const Education = () => {
         </div>
 
 
-      </div>
+      </RevealGroup>
     </section>
   );
 };
