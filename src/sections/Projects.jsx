@@ -386,7 +386,12 @@ const Projects = () => {
         <div className="space-y-8">
           {/* All Projects - Full Width, One Over Another */}
           {projects.map((project, index) => (
-            <Reveal key={index} className="w-full" delay={(index % 3) * 100}>
+            <Reveal
+              key={index}
+              className="w-full"
+              delay={(index % 3) * 100}
+              variant={index % 2 === 0 ? 'left' : 'right'}
+            >
               <ProjectCard project={project} />
             </Reveal>
           ))}

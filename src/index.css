@@ -75,25 +75,168 @@
 @layer components {
   .reveal {
     opacity: 0;
-    transform: translateY(28px);
+    will-change: transform, opacity, filter;
+  }
+
+  .reveal[data-variant='up'] {
+    transform: translateY(32px);
+  }
+
+  .reveal[data-variant='down'] {
+    transform: translateY(-32px);
+  }
+
+  .reveal[data-variant='left'] {
+    transform: translateX(56px);
+  }
+
+  .reveal[data-variant='right'] {
+    transform: translateX(-56px);
+  }
+
+  .reveal[data-variant='zoom'] {
+    transform: scale(0.92);
+  }
+
+  .reveal[data-variant='flip'] {
+    transform: perspective(900px) rotateX(14deg);
+    transform-origin: center top;
+  }
+
+  .reveal[data-variant='blur'] {
+    transform: none;
+    filter: blur(12px);
   }
 
   .reveal-visible {
-    animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-duration: var(--reveal-duration, 0.8s);
+    animation-timing-function: var(--reveal-ease, cubic-bezier(0.16, 1, 0.3, 1));
+    animation-delay: var(--reveal-delay, 0ms);
+    animation-fill-mode: both;
+    animation-name: reveal-up;
+    will-change: transform, opacity, filter;
+  }
+
+  .reveal-visible[data-variant='down'] {
+    animation-name: reveal-down;
+  }
+
+  .reveal-visible[data-variant='left'] {
+    animation-name: reveal-left;
+  }
+
+  .reveal-visible[data-variant='right'] {
+    animation-name: reveal-right;
+  }
+
+  .reveal-visible[data-variant='zoom'] {
+    animation-name: reveal-zoom;
+  }
+
+  .reveal-visible[data-variant='flip'] {
+    animation-name: reveal-flip;
+    transform-origin: center top;
+  }
+
+  .reveal-visible[data-variant='blur'] {
+    animation-name: reveal-blur;
   }
 
   .reveal-done {
     opacity: 1;
+    transform: none;
+    filter: none;
+    will-change: auto;
   }
 
   @keyframes reveal-up {
     from {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(32px);
+      filter: blur(4px);
     }
     to {
       opacity: 1;
       transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-down {
+    from {
+      opacity: 0;
+      transform: translateY(-32px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-left {
+    from {
+      opacity: 0;
+      transform: translateX(56px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-right {
+    from {
+      opacity: 0;
+      transform: translateX(-56px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-zoom {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-flip {
+    from {
+      opacity: 0;
+      transform: perspective(900px) rotateX(14deg);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  @keyframes reveal-blur {
+    from {
+      opacity: 0;
+      transform: scale(1.04);
+      filter: blur(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
     }
   }
 }
@@ -288,9 +431,26 @@
 
   .reveal,
   .reveal-visible,
-  .reveal-done {
-    opacity: 1;
-    transform: none;
-    animation: none;
+  .reveal-done,
+  .reveal[data-variant] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
+/* Respetar la preferencia de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-visible,
+  .reveal-done,
+  .reveal[data-variant] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    will-change: auto;
   }
 }
