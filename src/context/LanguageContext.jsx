@@ -105,10 +105,11 @@ const translations = {
       viewProject: 'Proyecto',
       viewWeb: 'Web',
       viewCode: 'Código',
-      featuredProjects: 'Proyectos Destacados',
+      featuredProjects: 'Proyecto Destacado',
       otherProjects: 'Otros Proyectos',
       moreWork: '¿Quieres ver más de mi trabajo?',
       viewGithub: 'Ver en GitHub',
+      viewTestSite: 'Sitio de Prueba',
       featuresTitle: 'Características Principales',
       techTitle: 'Tecnologías Utilizadas',
       screenshotsTitle: 'Capturas de Pantalla',
@@ -152,6 +153,22 @@ const translations = {
           'Integración con mapas y contacto',
           'Alto rendimiento y velocidad de carga',
           'Desarrollado con Astro para máxima eficiencia'
+        ]
+      },
+      lloCashas: {
+        title: 'LloCA$Has',
+        description: 'Aplicación móvil para registro y control de cuentas de ahorro compartidas.',
+        modalDescription: 'Aplicación móvil para la gestión de cuentas de ahorro compartidas, con registro de transacciones en tiempo real, sincronización entre usuarios y control de ingresos, gastos y pagos pendientes.',
+        features: [
+          'Crear cuentas de ahorro con nombre y descripción',
+          'Compartir cuentas entre múltiples usuarios',
+          'Balance en tiempo real',
+          'Transacciones: ingresos, gastos y pendientes',
+          'Cálculo del balance total si se pagan todos los pendientes',
+          'Descripciones opcionales en cada transacción',
+          'Historial de transacciones por cuenta',
+          'Pago de pendientes que se convierten en gastos',
+          'Eliminación de transacciones erróneas'
         ]
       }
     },
@@ -275,10 +292,11 @@ const translations = {
       viewProject: 'Project',
       viewWeb: 'Web',
       viewCode: 'Code',
-      featuredProjects: 'Featured Projects',
+      featuredProjects: 'Featured Project',
       otherProjects: 'Other Projects',
       moreWork: 'Want to see more of my work?',
       viewGithub: 'View on GitHub',
+      viewTestSite: 'Test Site',
       featuresTitle: 'Key Features',
       techTitle: 'Technologies Used',
       screenshotsTitle: 'Screenshots',
@@ -322,6 +340,22 @@ const translations = {
           'Maps and contact integration',
           'High performance and loading speed',
           'Developed with Astro for maximum efficiency'
+        ]
+      },
+      lloCashas: {
+        title: 'LloCA$Has',
+        description: 'Mobile app for registration and control of shared savings accounts.',
+        modalDescription: 'Mobile app for managing shared savings accounts, with real-time transaction tracking, cross-user synchronization and control of income, expenses and pending payments.',
+        features: [
+          'Create savings accounts with name and description',
+          'Share accounts between multiple users',
+          'Real-time balance',
+          'Transactions: income, expenses and pending',
+          'Total balance calculation if all pending items are paid',
+          'Optional descriptions on each transaction',
+          'Transaction history per account',
+          'Pending payments that become expenses',
+          'Delete erroneous transactions'
         ]
       }
     },

@@ -175,7 +175,8 @@ const Projects = () => {
       image: '/HIRPACE1.png',
       tech: ['Laravel', 'PHP', 'PostgreSQL', 'React', 'Tailwind'],
       github: '',
-      demo: '',
+      demo: 'https://www.hirpace.org.ar/',
+      testSite: 'https://teal-grouse-899950.hostingersite.com/',
       featured: true,
       hasModal: true,
       modalContent: {
@@ -232,6 +233,28 @@ const Projects = () => {
           '/odontologia1.jpg',
           '/odontologia2.jpg',
           '/odontologia3.jpg'
+        ]
+      }
+    },
+    {
+      title: t('projects.lloCashas.title'),
+      description: t('projects.lloCashas.description'),
+      image: '/LloCASHas1.jpg',
+      tech: ['React Native', 'Firebase', 'Expo'],
+      github: '',
+      demo: '',
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.lloCashas.modalDescription'),
+        features: t('projects.lloCashas.features'),
+        images: [
+          '/LloCASHas1.jpg',
+          '/LloCASHas2.jpg',
+          '/LloCASHas3.jpg',
+          '/LloCASHas4.jpg',
+          '/LloCASHas5.jpg',
+          '/LloCASHas6.jpg'
         ]
       }
     }
@@ -338,15 +361,15 @@ const Projects = () => {
             </button>
           )}
 
-          {/* Botón Ver Código */}
-          {project.github ? (
+          {/* Botón Ver Código / Sitio de Prueba */}
+          {project.github || project.testSite ? (
             <a
-              href={project.github}
+              href={project.github || project.testSite}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
             >
-              {t('projects.viewCode')}
+              {project.testSite ? t('projects.viewTestSite') : t('projects.viewCode')}
             </a>
           ) : (
             <button
@@ -382,19 +405,46 @@ const Projects = () => {
           </p>
         </Reveal>
 
-        {/* Projects Grid */}
-        <div className="space-y-8">
-          {/* All Projects - Full Width, One Over Another */}
-          {projects.map((project, index) => (
-            <Reveal
-              key={index}
-              className="w-full"
-              delay={(index % 3) * 100}
-              variant={index % 2 === 0 ? 'left' : 'right'}
-            >
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
+        {/* Featured Project */}
+        <div className="mb-12">
+          <Reveal className="text-center mb-8" delay={0}>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              {t('projects.featuredProjects')}
+            </h3>
+          </Reveal>
+          <div className="space-y-8">
+            {featuredProjects.map((project, index) => (
+              <Reveal
+                key={index}
+                className="w-full"
+                delay={0}
+                variant="left"
+              >
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Other Projects */}
+        <div>
+          <Reveal className="text-center mb-8" delay={0}>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              {t('projects.otherProjects')}
+            </h3>
+          </Reveal>
+          <div className="space-y-8">
+            {otherProjects.map((project, index) => (
+              <Reveal
+                key={index}
+                className="w-full"
+                delay={(index % 3) * 100}
+                variant={index % 2 === 0 ? 'left' : 'right'}
+              >
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
+          </div>
         </div>
 
         {/* Project Modal */}
