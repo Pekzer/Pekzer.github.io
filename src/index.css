@@ -454,3 +454,32 @@
     will-change: auto;
   }
 }
+
+/* ===== Cursores personalizados ===== */
+html,
+body {
+  cursor: url('/cursor.png'), auto;
+}
+
+/* Enlaces, botones y acciones */
+a,
+button,
+[role='button'],
+.cursor-pointer {
+  cursor: url('/linkcursor.png'), pointer;
+}
+
+/* Texto editable / seleccionable */
+input,
+textarea,
+select,
+[contenteditable='true'] {
+  cursor: url('/textcursor.png'), text;
+}
+
+/* No disponible / prohibido */
+.cursor-not-allowed,
+[disabled],
+[aria-disabled='true'] {
+  cursor: url('/unavaliblecursor.png'), not-allowed;
+}
