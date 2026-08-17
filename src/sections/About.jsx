@@ -130,7 +130,7 @@ const About = () => {
                 </h4>
                 <div className="flex flex-wrap justify-center gap-2">
                   {skillGroup.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-3 py-1.5 rounded-full bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium shadow-sm hover:bg-portfolio-1 dark:hover:bg-portfolio-1 hover:text-white hover:shadow-md md:hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                    <span key={techIndex} className="px-3 py-1.5 rounded-full bg-portfolio-1 text-white text-sm font-medium shadow-sm hover:bg-portfolio-3 hover:shadow-lg hover:scale-105 md:hover:-translate-y-0.5 dark:hover:bg-gray-100 dark:hover:text-portfolio-1 transition-all duration-200 cursor-default">
                       {tech}
                     </span>
                   ))}
