@@ -460,53 +460,60 @@ const Projects = () => {
 
         {/* Gallery Modal */}
         {isGalleryOpen && selectedProject && createPortal(
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[10000]" onClick={closeGallery}>
-            <div className="relative max-w-7xl max-h-full p-4" onClick={(e) => e.stopPropagation()}>
-              {/* Close Button */}
-              <button
-                onClick={closeGallery}
-                className="absolute top-2 right-2 z-[10001] bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+          <div className="fixed inset-0 bg-black bg-opacity-75 z-[10000]" onClick={closeGallery}>
+            {/* Close Button — fixed position, independent of image size */}
+            <button
+              onClick={(e) => { e.stopPropagation(); closeGallery(); }}
+              className="fixed top-4 right-4 z-[10002] bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors"
+              aria-label={t('projects.close')}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-              {/* Main Image */}
-              <div className="relative">
-                <img
-                  src={selectedProject.modalContent.images[currentImageIndex]}
-                  alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
-                  className="max-w-full max-h-[85vh] object-contain rounded-lg"
-                />
+            {/* Navigation Buttons — fixed position, vertically centered in viewport */}
+            {selectedProject.modalContent.images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                  className="fixed left-4 top-1/2 transform -translate-y-1/2 z-[10002] bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                  aria-label="Previous"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                  className="fixed right-4 top-1/2 transform -translate-y-1/2 z-[10002] bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors"
+                  aria-label="Next"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
 
-                {/* Navigation Buttons */}
-                {selectedProject.modalContent.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors z-[10001]"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full p-3 hover:bg-opacity-75 transition-colors z-[10001]"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
+            {/* Main Image */}
+            <div
+              className="flex h-full w-full items-center justify-center p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedProject.modalContent.images[currentImageIndex]}
+                alt={`${selectedProject.title} - Imagen ${currentImageIndex + 1}`}
+                className="max-w-full max-h-[85vh] object-contain rounded-lg"
+              />
+            </div>
 
-              {/* Image Counter */}
-              <div className="text-center mt-4 text-white">
-                {currentImageIndex + 1} / {selectedProject.modalContent.images.length}
-              </div>
+            {/* Image Counter — fixed position */}
+            <div
+              className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[10002] text-white font-medium"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {currentImageIndex + 1} / {selectedProject.modalContent.images.length}
             </div>
           </div>,
           document.body
