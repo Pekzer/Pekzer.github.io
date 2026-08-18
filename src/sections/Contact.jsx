@@ -75,8 +75,8 @@ const Contact = () => {
         </svg>
       ),
       label: t('contact.whatsapp'),
-      value: '+54 387 411-8679',
-      href: 'https://wa.me/543874118679'
+      value: '@Pekzer',
+      href: 'https://wa.me/Pekzer'
     },
     {
       icon: (
