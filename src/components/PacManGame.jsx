@@ -61,7 +61,7 @@ const moveGhost = (g, pac) => {
 const PacManGame = () => {
   const [status, setStatus] = useState('idle'); // idle | running | over | won
   const [score, setScore] = useState(0);
-  const [, setTick] = useState(0);
+  const [tick, setTick] = useState(0);
 
   const dotsRef = useRef(MAZE.map((row) => row.split('').map((c) => c === '.')));
   const totalDotsRef = useRef(
@@ -279,6 +279,12 @@ const PacManGame = () => {
   const ghosts = ghostsRef.current;
   const dots = dotsRef.current;
   const cherry = cherryRef.current;
+  const pacColor =
+    powerRef.current > 0
+      ? tick % 2 === 0
+        ? 'bg-yellow-300'
+        : 'bg-yellow-500'
+      : 'bg-yellow-400';
 
   return (
     <div className="flex flex-col items-center">
@@ -307,7 +313,7 @@ const PacManGame = () => {
                 className="w-[16px] h-[16px] bg-gray-200 dark:bg-gray-700 flex items-center justify-center"
               >
                 {isPac ? (
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className={`w-3 h-3 rounded-full ${pacColor}`} />
                 ) : ghostIndex !== -1 ? (
                   <div
                     className={`w-3 h-3 rounded-t-full ${
@@ -331,7 +337,6 @@ const PacManGame = () => {
       <div className="flex items-center gap-2 mt-2">
         <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
           Pac-Man · Score: {score}
-          {powerRef.current > 0 ? ' · 🔥' : ''}
         </span>
       </div>
 
