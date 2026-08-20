@@ -71,33 +71,65 @@ const PacManGame = () => {
   );
   const pacRef = useRef({ r: 1, c: 1 });
   const dirRef = useRef({ r: 0, c: 1 });
-  const dirQueueRef = useRef([]);
+  const queuedDirRef = useRef(null);
   const ghostsRef = useRef([
     { r: 7, c: 5, dir: { r: 0, c: -1 } },
     { r: 7, c: 9, dir: { r: 0, c: 1 } },
   ]);
   const scoreRef = useRef(0);
+  const dotsEatenRef = useRef(0);
+  const cherryRef = useRef(null);
+  const powerRef = useRef(0);
+
+  const freeCells = () => {
+    const pac = pacRef.current;
+    const ghosts = ghostsRef.current;
+    const cells = [];
+    for (let r = 0; r < SIZE; r += 1) {
+      for (let c = 0; c < SIZE; c += 1) {
+        if (MAZE[r][c] === '#') continue;
+        if (pac.r === r && pac.c === c) continue;
+        if (ghosts.some((g) => g.r === r && g.c === c)) continue;
+        cells.push({ r, c });
+      }
+    }
+    return cells;
+  };
 
   const changeDirection = useCallback((d) => {
-    const current = dirRef.current;
-    if (d.r === -current.r && d.c === -current.c) return;
-    const q = dirQueueRef.current;
-    const last = q[q.length - 1] || current;
-    if (d.r === -last.r && d.c === -last.c) return;
-    q.push(d);
-    if (q.length > 2) q.shift();
+    const pac = pacRef.current;
+    const nr = pac.r + d.r;
+    const nc = pac.c + d.c;
+    if (
+      nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE && MAZE[nr][nc] !== '#'
+    ) {
+      dirRef.current = d;
+      queuedDirRef.current = null;
+    } else {
+      queuedDirRef.current = d;
+    }
   }, []);
+
+  const spawnCherry = () => {
+    const free = freeCells();
+    if (free.length === 0) return;
+    const cell = free[Math.floor(Math.random() * free.length)];
+    cherryRef.current = { r: cell.r, c: cell.c, ttl: 35 };
+  };
 
   const reset = () => {
     dotsRef.current = MAZE.map((row) => row.split('').map((c) => c === '.'));
     pacRef.current = { r: 1, c: 1 };
     dirRef.current = { r: 0, c: 1 };
-    dirQueueRef.current = [];
+    queuedDirRef.current = null;
     ghostsRef.current = [
       { r: 7, c: 5, dir: { r: 0, c: -1 } },
       { r: 7, c: 9, dir: { r: 0, c: 1 } },
     ];
     scoreRef.current = 0;
+    dotsEatenRef.current = 0;
+    cherryRef.current = null;
+    powerRef.current = 0;
     setScore(0);
     setTick((t) => t + 1);
   };
@@ -110,10 +142,21 @@ const PacManGame = () => {
   useEffect(() => {
     if (status !== 'running') return;
     const interval = setInterval(() => {
-      if (dirQueueRef.current.length) {
-        dirRef.current = dirQueueRef.current.shift();
-      }
       const pac = pacRef.current;
+
+      // Apply a buffered turn as soon as it becomes possible
+      const queued = queuedDirRef.current;
+      if (queued) {
+        const qr = pac.r + queued.r;
+        const qc = pac.c + queued.c;
+        if (
+          qr >= 0 && qr < SIZE && qc >= 0 && qc < SIZE && MAZE[qr][qc] !== '#'
+        ) {
+          dirRef.current = queued;
+          queuedDirRef.current = null;
+        }
+      }
+
       const dir = dirRef.current;
       const nr = pac.r + dir.r;
       const nc = pac.c + dir.c;
@@ -122,23 +165,59 @@ const PacManGame = () => {
         pacRef.current = { r: nr, c: nc };
         if (dotsRef.current[nr][nc]) {
           dotsRef.current[nr][nc] = false;
+          dotsEatenRef.current += 1;
           scoreRef.current += 10;
           setScore(scoreRef.current);
-          if (scoreRef.current / 10 >= totalDotsRef.current) {
+          if (dotsEatenRef.current >= totalDotsRef.current) {
             setStatus('won');
             setTick((t) => t + 1);
             return;
           }
+          if (dotsEatenRef.current % 10 === 0 && !cherryRef.current) {
+            spawnCherry();
+          }
         }
+
+        const cherry = cherryRef.current;
+        if (cherry && cherry.r === nr && cherry.c === nc) {
+          scoreRef.current += 100;
+          setScore(scoreRef.current);
+          cherryRef.current = null;
+          powerRef.current = 40;
+        }
+      }
+
+      if (cherryRef.current) {
+        cherryRef.current.ttl -= 1;
+        if (cherryRef.current.ttl <= 0) cherryRef.current = null;
+      }
+
+      if (powerRef.current > 0) {
+        powerRef.current -= 1;
       }
 
       ghostsRef.current = ghostsRef.current.map((g) =>
         moveGhost(g, pacRef.current)
       );
 
-      const hit = ghostsRef.current.some(
-        (g) => g.r === pacRef.current.r && g.c === pacRef.current.c
-      );
+      // Collisions: eat ghosts while powered, otherwise game over
+      let hit = false;
+      ghostsRef.current = ghostsRef.current.map((g) => {
+        if (g.r !== pacRef.current.r || g.c !== pacRef.current.c) return g;
+        if (powerRef.current > 0) {
+          scoreRef.current += 50;
+          setScore(scoreRef.current);
+          const free = freeCells();
+          if (free.length) {
+            const cell = free[Math.floor(Math.random() * free.length)];
+            return { r: cell.r, c: cell.c, dir: { r: 0, c: 1 } };
+          }
+          return g;
+        }
+        hit = true;
+        return g;
+      });
+
       if (hit) {
         setStatus('over');
       }
@@ -168,6 +247,7 @@ const PacManGame = () => {
   const pac = pacRef.current;
   const ghosts = ghostsRef.current;
   const dots = dotsRef.current;
+  const cherry = cherryRef.current;
 
   return (
     <div className="flex flex-col items-center">
@@ -189,6 +269,7 @@ const PacManGame = () => {
             const isPac = pac.r === r && pac.c === c;
             const ghostIndex = ghosts.findIndex((g) => g.r === r && g.c === c);
             const hasDot = dots[r][c];
+            const isCherry = cherry && cherry.r === r && cherry.c === c;
             return (
               <div
                 key={`${r}-${c}`}
@@ -202,6 +283,11 @@ const PacManGame = () => {
                       ghostIndex === 0 ? 'bg-portfolio-1' : 'bg-blue-800'
                     }`}
                   />
+                ) : isCherry ? (
+                  <div
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: '#ef4444' }}
+                  />
                 ) : hasDot ? (
                   <div className="w-1.5 h-1.5 rounded-full bg-gray-500 dark:bg-gray-300" />
                 ) : null}
@@ -214,6 +300,7 @@ const PacManGame = () => {
       <div className="flex items-center gap-2 mt-2">
         <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
           Pac-Man · Score: {score}
+          {powerRef.current > 0 ? ' · 🔥' : ''}
         </span>
       </div>
 
@@ -221,7 +308,7 @@ const PacManGame = () => {
         <div className="flex flex-col items-center gap-1.5 mt-1">
           {status !== 'idle' && (
             <span className="text-[10px] font-medium text-portfolio-1">
-              {status === 'won' ? 'You Win! 🎉' : 'Game Over · Score: ' + score}
+              {status === 'won' ? 'You Win!' : 'Game Over · Score: ' + score}
             </span>
           )}
           <button

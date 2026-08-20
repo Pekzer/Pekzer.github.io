@@ -3,6 +3,23 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 const SIZE = 15;
 const TICK_MS = 160;
 
+const HEAD_COLOR = '#7c1427';
+const TAIL_COLOR = '#330000';
+
+const lerpColor = (c1, c2, t) => {
+  const hex = (c) => [
+    parseInt(c.slice(1, 3), 16),
+    parseInt(c.slice(3, 5), 16),
+    parseInt(c.slice(5, 7), 16),
+  ];
+  const a = hex(c1);
+  const b = hex(c2);
+  const r = Math.round(a[0] + (b[0] - a[0]) * t);
+  const g = Math.round(a[1] + (b[1] - a[1]) * t);
+  const bl = Math.round(a[2] + (b[2] - a[2]) * t);
+  return `rgb(${r}, ${g}, ${bl})`;
+};
+
 const createInitialSnake = () => [
   { r: 7, c: 8 },
   { r: 7, c: 7 },
@@ -111,6 +128,12 @@ const SnakeGame = () => {
   const snake = snakeRef.current;
   const food = foodRef.current;
 
+  const snakeCells = {};
+  snake.forEach((seg, i) => {
+    const t = snake.length > 1 ? i / (snake.length - 1) : 0;
+    snakeCells[`${seg.r}-${seg.c}`] = lerpColor(HEAD_COLOR, TAIL_COLOR, t);
+  });
+
   return (
     <div className="flex flex-col items-center">
       <div
@@ -119,23 +142,19 @@ const SnakeGame = () => {
       >
         {Array.from({ length: SIZE }).map((_, r) =>
           Array.from({ length: SIZE }).map((_, c) => {
-            const isHead = snake[0].r === r && snake[0].c === c;
-            const isBody = snake
-              .slice(1)
-              .some((s) => s.r === r && s.c === c);
+            const segColor = snakeCells[`${r}-${c}`];
             const isFood = food.r === r && food.c === c;
             return (
               <div
                 key={`${r}-${c}`}
                 className={`w-[16px] h-[16px] ${
-                  isHead
-                    ? 'bg-portfolio-1'
-                    : isBody
-                    ? 'bg-portfolio-2'
+                  segColor
+                    ? ''
                     : isFood
                     ? 'bg-blue-800'
                     : 'bg-gray-200 dark:bg-gray-700'
                 }`}
+                style={segColor ? { backgroundColor: segColor } : undefined}
               />
             );
           })

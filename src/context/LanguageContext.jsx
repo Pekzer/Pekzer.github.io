@@ -35,7 +35,15 @@ const translations = {
       pacman: 'Pac-Man',
       minesweeper: 'Buscaminas',
       lightsOut: 'Fuera Luces',
-      tetris: 'Tetris'
+      tetris: 'Tetris',
+      desc: {
+        conway: 'Clic para dibujar células y ▶ para ejecutar. Una viva sobrevive con 2-3 vecinas; una muerta nace con 3.',
+        snake: 'Mueve con flechas o WASD y come la comida sin chocar.',
+        pacman: 'Flechas o WASD para moverte: come puntos y esquiva fantasmas.',
+        minesweeper: 'Clic para revelar y clic derecho para marcar las minas.',
+        lightsOut: 'Clic para alternar las luces: apágalas todas para ganar.',
+        tetris: 'Flechas para mover y rotar, espacio para caer: completa líneas.'
+      }
     },
     about: {
       title: 'Sobre Mí',
@@ -232,7 +240,15 @@ const translations = {
       pacman: 'Pac-Man',
       minesweeper: 'Minesweeper',
       lightsOut: 'Lights Out',
-      tetris: 'Tetris'
+      tetris: 'Tetris',
+      desc: {
+        conway: 'Click to draw cells and ▶ to run. A live cell survives with 2-3 neighbours; a dead one is born with 3.',
+        snake: 'Move with arrows or WASD and eat food without crashing.',
+        pacman: 'Arrows or WASD to move: eat dots and dodge ghosts.',
+        minesweeper: 'Click to reveal and right-click to flag mines.',
+        lightsOut: 'Click to toggle lights: turn them all off to win.',
+        tetris: 'Arrows to move and rotate, space to drop: complete lines.'
+      }
     },
     about: {
       title: 'About Me',

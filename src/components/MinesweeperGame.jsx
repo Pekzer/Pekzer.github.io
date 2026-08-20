@@ -182,7 +182,7 @@ const MinesweeperGame = () => {
       {status !== 'playing' && (
         <div className="flex flex-col items-center gap-1.5 mt-1">
           <span className="text-[10px] font-medium text-portfolio-1">
-            {status === 'won' ? 'You Win! 🎉' : 'Boom! 💥'}
+            {status === 'won' ? 'You Win!' : 'Boom! 💥'}
           </span>
           <button
             onClick={reset}
