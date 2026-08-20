@@ -16,21 +16,21 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={handleBackdropClick}>
-      <div className="bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white dark:bg-dark-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="p-6">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              <h2 className="text-3xl font-bold text-light-900 dark:text-white mb-2">
                 {project.title}
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
+              <p className="text-lg text-light-600 dark:text-dark-400">
                 {project.modalContent.description}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="text-light-400 hover:text-light-600 dark:hover:text-dark-300"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -40,12 +40,12 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
 
           {/* Features */}
           <div className="mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-light-900 dark:text-white mb-4">
               {t('projects.featuresTitle')}
             </h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {project.modalContent.features.map((feature, index) => (
-                <li key={index} className="flex items-center text-gray-600 dark:text-gray-400">
+                <li key={index} className="flex items-center text-light-600 dark:text-dark-400">
                   <svg className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -57,7 +57,7 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
 
           {/* Tech Stack */}
           <div className="mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-light-900 dark:text-white mb-4">
               {t('projects.techTitle')}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -74,14 +74,14 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
 
           {/* Images Gallery */}
           <div className="mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <h3 className="text-xl font-semibold text-light-900 dark:text-white mb-4">
               {t('projects.screenshotsTitle')}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.modalContent.images.map((image, index) => (
                 <div 
                   key={index} 
-                  className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden hover:scale-110 transition-transform duration-300 cursor-pointer"
+                  className="aspect-video bg-light-200 dark:bg-dark-700 rounded-lg overflow-hidden hover:scale-110 transition-transform duration-300 cursor-pointer"
                   onClick={() => onOpenGallery(project.modalContent.images, index)}
                 >
                   <img
@@ -98,7 +98,7 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
           <div className="flex justify-end">
             <button
               onClick={onClose}
-              className="px-6 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+              className="px-6 py-2 bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 rounded-lg hover:bg-light-200 dark:hover:bg-dark-700 transition-colors duration-300"
             >
               {t('projects.close')}
             </button>
@@ -261,7 +261,7 @@ const Projects = () => {
   ];
 
   const ProjectCard = ({ project }) => (
-    <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover-lift transition-all duration-300 md:flex md:h-[400px]">
+    <div className="bg-white dark:bg-dark-900 rounded-lg shadow-lg overflow-hidden border border-light-200 dark:border-dark-700 hover-lift transition-all duration-300 md:flex md:h-[400px]">
       {/* Project Image */}
       <div 
         className="relative md:w-1/2 h-64 md:h-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center overflow-hidden group cursor-pointer"
@@ -299,12 +299,12 @@ const Projects = () => {
 
       <div className="p-6 md:w-1/2 md:flex md:flex-col md:justify-center">
         {/* Title */}
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-2xl md:text-3xl font-bold text-light-900 dark:text-white mb-2">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-lg text-light-600 dark:text-dark-400 mb-4">
           {project.description}
         </p>
 
@@ -313,7 +313,7 @@ const Projects = () => {
           {project.tech.map((tech, index) => (
             <span
               key={index}
-              className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded hover-scale transition-transform duration-300 cursor-default hover:bg-gray-200 dark:hover:bg-gray-700"
+              className="px-2 py-1 text-xs font-medium bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 rounded hover-scale transition-transform duration-300 cursor-default hover:bg-light-200 dark:hover:bg-dark-700"
             >
               {tech}
             </span>
@@ -336,7 +336,7 @@ const Projects = () => {
           ) : (
             <button
               disabled
-              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-light-300 dark:bg-dark-700 text-light-500 dark:text-dark-500 rounded-lg cursor-not-allowed text-base font-medium"
             >
               <span className="line-through">{t('projects.viewProject')}</span>
             </button>
@@ -348,14 +348,14 @@ const Projects = () => {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center px-4 py-3 bg-white dark:bg-gray-900 text-portfolio-1 rounded-lg hover:bg-portfolio-1 hover:text-white transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect border-2 border-portfolio-1"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-white dark:bg-dark-900 text-portfolio-1 rounded-lg hover:bg-portfolio-1 hover:text-white transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect border-2 border-portfolio-1"
             >
               {t('projects.viewWeb')}
             </a>
           ) : (
             <button
               disabled
-              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-light-300 dark:bg-dark-700 text-light-500 dark:text-dark-500 rounded-lg cursor-not-allowed text-base font-medium"
             >
               <span className="line-through">{t('projects.viewWeb')}</span>
             </button>
@@ -367,14 +367,14 @@ const Projects = () => {
               href={project.github || project.testSite}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
+              className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-dark-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
             >
               {project.testSite ? t('projects.viewTestSite') : t('projects.viewCode')}
             </a>
           ) : (
             <button
               disabled
-              className="flex-1 flex items-center justify-center px-4 py-3 bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-500 rounded-lg cursor-not-allowed text-base font-medium"
+              className="flex-1 flex items-center justify-center px-4 py-3 bg-light-300 dark:bg-dark-700 text-light-500 dark:text-dark-500 rounded-lg cursor-not-allowed text-base font-medium"
             >
               <span className="line-through">{t('projects.viewCode')}</span>
             </button>
@@ -388,7 +388,7 @@ const Projects = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <section id="projects" className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
       {/* Fondo con efectos más dramáticos */}
       <div className="absolute inset-0 bg-pattern-dots opacity-50"></div>
       <div className="absolute top-20 left-10 w-[550px] h-[550px] bg-portfolio-1 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pulse-intense"></div>
@@ -397,10 +397,10 @@ const Projects = () => {
       
       <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-light-900 dark:text-white mb-4">
             {t('projects.title')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-light-600 dark:text-dark-300">
             {t('projects.subtitle')}
           </p>
         </Reveal>
@@ -408,7 +408,7 @@ const Projects = () => {
         {/* Featured Project */}
         <div className="mb-12">
           <Reveal className="text-center mb-8" delay={0}>
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            <h3 className="text-2xl md:text-3xl font-bold text-light-900 dark:text-white">
               {t('projects.featuredProjects')}
             </h3>
           </Reveal>
@@ -429,7 +429,7 @@ const Projects = () => {
         {/* Other Projects */}
         <div>
           <Reveal className="text-center mb-8" delay={0}>
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+            <h3 className="text-2xl md:text-3xl font-bold text-light-900 dark:text-white">
               {t('projects.otherProjects')}
             </h3>
           </Reveal>

@@ -84,13 +84,13 @@ const Games = () => {
                 onClick={() => setActive(game.id)}
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${isActive
                     ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-portfolio-1 dark:hover:border-portfolio-1'
+                    : 'bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 border-light-200 dark:border-dark-700 hover:border-portfolio-1 dark:hover:border-portfolio-1'
                   }`}
               >
                 {t(`games.${game.id}`)}
                 <span className="text-sm leading-none">{game.icon}</span>
               </button>
-              <div className="pointer-events-none absolute left-full top-1/2 transform -translate-y-1/2 ml-2 w-44 px-2 py-1.5 rounded bg-gray-900 text-white text-[10px] leading-snug shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 dark:bg-gray-700">
+              <div className="pointer-events-none absolute left-full top-1/2 transform -translate-y-1/2 ml-2 w-44 px-2 py-1.5 rounded bg-light-900 text-white text-[10px] leading-snug shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 dark:bg-dark-700">
                 {t(`games.desc.${game.id}`)}
               </div>
             </div>
@@ -107,7 +107,7 @@ const Games = () => {
           onClick={toggleMusic}
           className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${musicOn
               ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
+              : 'bg-light-100 dark:bg-dark-800 text-light-400 dark:text-dark-500 border-light-200 dark:border-dark-700'
             }`}
         >
           <span className="text-sm leading-none">{musicOn ? '🎵' : '🔇'}</span>
@@ -117,7 +117,7 @@ const Games = () => {
           onClick={toggleSfx}
           className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${sfxOn
               ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
+              : 'bg-light-100 dark:bg-dark-800 text-light-400 dark:text-dark-500 border-light-200 dark:border-dark-700'
             }`}
         >
           <span className="text-sm leading-none">{sfxOn ? '🔊' : '🔇'}</span>
@@ -127,7 +127,7 @@ const Games = () => {
         {withExpand && (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center justify-center gap-1.5 px-3 py-2 mt-2 rounded-lg text-xs font-medium transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+            className="flex items-center justify-center gap-1.5 px-3 py-2 mt-2 rounded-lg text-xs font-medium transition-all duration-200 border border-light-200 dark:border-dark-700 bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
           >
             <span className="text-sm leading-none">🔍</span>
             {t('games.expand')}
@@ -147,12 +147,12 @@ const Games = () => {
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="relative bg-gray-100 dark:bg-gray-800 rounded-2xl p-10 shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            className="relative bg-light-100 dark:bg-dark-800 rounded-2xl p-10 shadow-2xl border border-light-200 dark:border-dark-700 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-light-200 dark:bg-dark-700 text-light-700 dark:text-dark-200 hover:bg-light-300 dark:hover:bg-dark-600 transition-colors duration-200"
               aria-label="Close"
             >
               ✕

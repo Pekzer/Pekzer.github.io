@@ -47,7 +47,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
+    <footer className="bg-light-900 dark:bg-dark-950 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
@@ -55,7 +55,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-portfolio-1 to-portfolio-2 bg-clip-text text-transparent">
               Gonzalo Herrera (Pekzer)
             </h3>
-            <p className="text-gray-400 mb-4">
+            <p className="text-light-400 mb-4">
               {t('footer.description')}
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
@@ -65,7 +65,7 @@ const Footer = () => {
                   href={link.href}
                   target={link.href.startsWith('http') ? '_blank' : '_self'}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                  className="text-light-400 hover:text-white transition-colors duration-300"
                   aria-label={link.name}
                 >
                   {link.icon}
@@ -87,7 +87,7 @@ const Footer = () => {
                         element.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 capitalize"
+                    className="text-light-400 hover:text-white transition-colors duration-300 capitalize"
                   >
                     {t(`nav.${section}`)}
                   </button>
@@ -99,7 +99,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="text-center md:text-right">
             <h4 className="text-lg font-semibold mb-4">{t('footer.contactInfo')}</h4>
-            <div className="space-y-3 text-gray-400">
+            <div className="space-y-3 text-light-400">
               <div className="flex items-center justify-center md:justify-end">
                 <a href="mailto:herreragonzalodev@gmail.com" className="hover:text-white transition-colors duration-300">
                   herreragonzalodev@gmail.com
@@ -131,15 +131,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
+        <div className="border-t border-light-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-light-400 text-sm mb-4 md:mb-0">
             {t('footer.copyright')}
           </p>
           
           {/* Back to Top */}
           <button
             onClick={scrollToTop}
-            className="flex items-center text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+            className="flex items-center text-light-400 hover:text-white transition-colors duration-300 text-sm"
           >
             <span className="mr-2">{t('footer.backToTop')}</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

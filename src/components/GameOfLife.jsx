@@ -146,7 +146,7 @@ const Cell = memo(({ alive, onClick }) => (
     className={`w-[16px] h-[16px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
       alive
         ? 'bg-portfolio-1 hover:bg-portfolio-2'
-        : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+        : 'bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600'
     }`}
     aria-label={`Cell: ${alive ? 'alive' : 'dead'}`}
   />
@@ -235,14 +235,14 @@ const GameOfLife = () => {
           onClick={() => setIsRunning(!isRunning)}
           className={`flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 ${
             isRunning
-              ? 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+              ? 'bg-light-300 dark:bg-dark-600 hover:bg-light-400 dark:hover:bg-dark-500'
               : 'bg-portfolio-1 hover:bg-portfolio-2'
           }`}
           title={isRunning ? 'Pause' : 'Start'}
           aria-label={isRunning ? 'Pause' : 'Start'}
         >
           {isRunning ? (
-            <svg className="w-3 h-3 text-gray-700 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3 h-3 text-light-700 dark:text-dark-200" fill="currentColor" viewBox="0 0 24 24">
               <rect x="6" y="4" width="4" height="16" rx="1" />
               <rect x="14" y="4" width="4" height="16" rx="1" />
             </svg>
@@ -252,14 +252,14 @@ const GameOfLife = () => {
             </svg>
           )}
         </button>
-        <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">Game of Life</span>
+        <span className="text-[10px] text-light-400 dark:text-dark-500 select-none">Game of Life</span>
         <button
           onClick={clearGrid}
-          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600 transition-all duration-200"
           title="Clear"
           aria-label="Clear grid"
         >
-          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 text-light-500 dark:text-dark-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
         </button>
@@ -278,22 +278,22 @@ const GameOfLife = () => {
         </button>
         <button
           onClick={resetToPattern1}
-          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600 transition-all duration-200"
           title="Pattern 1"
           aria-label="Pattern 1"
         >
-          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 text-light-500 dark:text-dark-400" fill="currentColor" viewBox="0 0 24 24">
             <rect x="8" y="4" width="2" height="16" rx="1"/>
             <rect x="14" y="4" width="2" height="16" rx="1"/>
           </svg>
         </button>
         <button
           onClick={resetToPattern2}
-          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600 transition-all duration-200"
           title="Pattern 2"
           aria-label="Pattern 2"
         >
-          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 text-light-500 dark:text-dark-400" fill="currentColor" viewBox="0 0 24 24">
             <circle cx="8" cy="8" r="2"/>
             <circle cx="16" cy="8" r="2"/>
             <circle cx="12" cy="16" r="2"/>
@@ -301,11 +301,11 @@ const GameOfLife = () => {
         </button>
         <button
           onClick={resetToPattern3}
-          className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200"
+          className="flex items-center justify-center w-6 h-6 rounded-full bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600 transition-all duration-200"
           title="Pattern 3"
           aria-label="Pattern 3"
         >
-          <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 text-light-500 dark:text-dark-400" fill="currentColor" viewBox="0 0 24 24">
             <rect x="4" y="6" width="4" height="4" rx="0.5"/>
             <rect x="16" y="6" width="4" height="4" rx="0.5"/>
             <rect x="10" y="14" width="4" height="4" rx="0.5"/>

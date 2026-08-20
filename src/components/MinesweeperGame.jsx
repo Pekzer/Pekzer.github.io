@@ -17,7 +17,7 @@ const NUMBER_COLORS = {
   4: 'text-purple-700',
   5: 'text-yellow-700',
   6: 'text-teal-600',
-  7: 'text-gray-700 dark:text-gray-200',
+  7: 'text-light-700 dark:text-dark-200',
   8: 'text-pink-700',
 };
 
@@ -357,9 +357,9 @@ const MinesweeperGame = () => {
         {board.map((row, r) =>
           row.map((cell, c) => {
             let content = null;
-            let bg = 'bg-gray-200 dark:bg-gray-700';
+            let bg = 'bg-light-200 dark:bg-dark-700';
             if (cell.revealed) {
-              bg = 'bg-gray-100 dark:bg-gray-800';
+              bg = 'bg-light-100 dark:bg-dark-800';
               if (cell.mine) content = '💣';
               else if (cell.adjacent > 0) content = cell.adjacent;
             } else if (cell.flagged) {
@@ -393,7 +393,7 @@ const MinesweeperGame = () => {
               className={`px-2 py-1 rounded-full text-[10px] font-medium transition-colors duration-200 ${
                 active
                   ? 'bg-portfolio-1 text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  : 'bg-light-200 dark:bg-dark-700 text-light-600 dark:text-dark-300 hover:bg-light-300 dark:hover:bg-dark-600'
               }`}
             >
               {d.label} · {d.mines}
@@ -403,7 +403,7 @@ const MinesweeperGame = () => {
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
+        <span className="text-[10px] text-light-400 dark:text-dark-500 select-none">
           Minesweeper · 💣 {minesLeft}
         </span>
       </div>

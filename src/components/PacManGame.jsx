@@ -299,7 +299,7 @@ const PacManGame = () => {
               return (
                 <div
                   key={`${r}-${c}`}
-                  className="w-[16px] h-[16px] bg-gray-500 dark:bg-gray-600"
+                  className="w-[16px] h-[16px] bg-light-500 dark:bg-dark-600"
                 />
               );
             }
@@ -310,7 +310,7 @@ const PacManGame = () => {
             return (
               <div
                 key={`${r}-${c}`}
-                className="w-[16px] h-[16px] bg-gray-200 dark:bg-gray-700 flex items-center justify-center"
+                className="w-[16px] h-[16px] bg-light-200 dark:bg-dark-700 flex items-center justify-center"
               >
                 {isPac ? (
                   <div className={`w-3 h-3 rounded-full ${pacColor}`} />
@@ -326,7 +326,7 @@ const PacManGame = () => {
                     style={{ backgroundColor: '#ef4444' }}
                   />
                 ) : hasDot ? (
-                  <div className="w-1.5 h-1.5 rounded-full bg-gray-500 dark:bg-gray-300" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-light-500 dark:bg-dark-300" />
                 ) : null}
               </div>
             );
@@ -335,7 +335,7 @@ const PacManGame = () => {
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
+        <span className="text-[10px] text-light-400 dark:text-dark-500 select-none">
           Pac-Man · Score: {score}
         </span>
       </div>

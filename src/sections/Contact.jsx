@@ -112,7 +112,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <section id="contact" className="py-20 bg-light-50 dark:bg-dark-800 relative overflow-hidden">
       {/* Fondo decorativo */}
       <div className="absolute inset-0 bg-pattern-grid opacity-60"></div>
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
@@ -122,10 +122,10 @@ const Contact = () => {
       
       <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-light-900 dark:text-white mb-4">
             {t('contact.title')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-light-600 dark:text-dark-300">
             {t('contact.subtitle')}
           </p>
         </Reveal>
@@ -134,7 +134,7 @@ const Contact = () => {
           {/* Contact Info */}
           <Reveal className="h-full" delay={100}>
             <div className="mb-8">
-              <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed text-lg">
+              <p className="text-light-600 dark:text-dark-400 mb-8 leading-relaxed text-lg">
                 {t('about.connectDescription')}
               </p>
             </div>
@@ -147,16 +147,16 @@ const Contact = () => {
                   href={method.href}
                   target={method.href.startsWith('http') ? '_blank' : '_self'}
                   rel={method.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className="flex items-center p-4 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 hover-lift hover:border-portfolio-1 dark:hover:border-portfolio-1 transition-all duration-300 group"
+                  className="flex items-center p-4 bg-white dark:bg-dark-900 rounded-lg shadow-md border border-light-200 dark:border-dark-700 hover-lift hover:border-portfolio-1 dark:hover:border-portfolio-1 transition-all duration-300 group"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-portfolio-1 to-portfolio-2 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     {method.icon}
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-portfolio-1 dark:group-hover:text-portfolio-1 transition-colors duration-300">
+                    <h4 className="text-lg font-semibold text-light-900 dark:text-white group-hover:text-portfolio-1 dark:group-hover:text-portfolio-1 transition-colors duration-300">
                       {method.label}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-light-600 dark:text-dark-400">
                       {method.value}
                     </p>
                   </div>
@@ -167,8 +167,8 @@ const Contact = () => {
 
           {/* Contact Form */}
           <Reveal className="h-full" delay={200}>
-            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 border border-gray-200 dark:border-gray-700 h-full flex flex-col hover-lift transition-all duration-300">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <div className="bg-white dark:bg-dark-900 rounded-lg shadow-lg p-8 border border-light-200 dark:border-dark-700 h-full flex flex-col hover-lift transition-all duration-300">
+              <h3 className="text-2xl font-bold text-light-900 dark:text-white mb-6">
                 {t('about.sendMessage')}
               </h3>
 
@@ -187,7 +187,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-light-700 dark:text-dark-300 mb-2">
                     {t('contact.name')}
                   </label>
                   <input
@@ -197,14 +197,14 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+                    className="w-full px-4 py-3 border border-light-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-dark-800 text-light-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder={t('contact.placeholders.name')}
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-light-700 dark:text-dark-300 mb-2">
                     {t('contact.email')}
                   </label>
                   <input
@@ -214,14 +214,14 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+                    className="w-full px-4 py-3 border border-light-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-dark-800 text-light-900 dark:text-white transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder={t('contact.placeholders.email')}
                   />
                 </div>
 
                 {/* Message */}
                 <div className="flex-1">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-light-700 dark:text-dark-300 mb-2">
                     {t('contact.message')}
                   </label>
                   <textarea
@@ -231,7 +231,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full h-full min-h-32 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+                    className="w-full h-full min-h-32 px-4 py-3 border border-light-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-portfolio-1 focus:border-transparent bg-white dark:bg-dark-800 text-light-900 dark:text-white resize-none transition-all duration-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
                     placeholder={t('contact.placeholders.message')}
                   />
                 </div>

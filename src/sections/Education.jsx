@@ -57,7 +57,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <section id="education" className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
       {/* Fondo con efectos más dramáticos */}
       <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
@@ -67,10 +67,10 @@ const Education = () => {
 
       <RevealGroup className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal className="text-center mb-16" delay={0}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-light-900 dark:text-white mb-4">
             {t('nav.education')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-light-600 dark:text-dark-300">
             {t('about.educationSubtitle')}
           </p>
         </Reveal>
@@ -78,18 +78,18 @@ const Education = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Education */}
           <Reveal delay={100}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+            <h3 className="text-2xl font-bold text-light-900 dark:text-white mb-8">
               {t('about.education')}
             </h3>
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 border-l-4 border-portfolio-1 hover-lift transition-all duration-300 shadow-red-900/50">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <div key={index} className="bg-white dark:bg-dark-800 rounded-lg p-6 border-l-4 border-portfolio-1 hover-lift transition-all duration-300 shadow-red-900/50">
+                  <h4 className="text-lg font-semibold text-light-900 dark:text-white mb-2">
                     {edu.title}
                   </h4>
                   <p className="text-portfolio-1 font-medium mb-1">{edu.company}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{edu.period}</p>
-                  <p className="text-gray-600 dark:text-gray-400">{edu.description}</p>
+                  <p className="text-sm text-light-500 dark:text-dark-400 mb-3">{edu.period}</p>
+                  <p className="text-light-600 dark:text-dark-400">{edu.description}</p>
                 </div>
               ))}
               <div id="games" style={{ scrollMarginTop: '4rem' }}>
@@ -100,17 +100,17 @@ const Education = () => {
 
           {/* Courses */}
           <Reveal delay={200}>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+            <h3 className="text-2xl font-bold text-light-900 dark:text-white mb-8">
               {t('about.courses')}
             </h3>
             <div className="space-y-4">
               {courses.map((course, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-red-900 dark:border-gray-700 hover-lift transition-all duration-300">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <div key={index} className="bg-white dark:bg-dark-800 rounded-lg p-6 border border-red-900 dark:border-dark-700 hover-lift transition-all duration-300">
+                  <h4 className="text-lg font-semibold text-light-900 dark:text-white mb-2">
                     {course.title}
                   </h4>
                   <p className="text-portfolio-1 text-sm font-medium mb-1">{course.institution} - {course.year}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{course.description}</p>
+                  <p className="text-light-600 dark:text-dark-400 text-sm leading-relaxed">{course.description}</p>
                 </div>
               ))}
             </div>

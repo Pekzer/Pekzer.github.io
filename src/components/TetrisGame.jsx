@@ -259,17 +259,17 @@ const TetrisGame = () => {
             row.map((cell, c) => (
               <div
                 key={`${r}-${c}`}
-                className="w-[16px] h-[16px] bg-gray-200 dark:bg-gray-700"
+                className="w-[16px] h-[16px] bg-light-200 dark:bg-dark-700"
                 style={cell ? { backgroundColor: cell } : undefined}
               />
             ))
           )}
         </div>
 
-        <div className="flex flex-col gap-1 text-[10px] text-gray-500 dark:text-gray-400 select-none">
+        <div className="flex flex-col gap-1 text-[10px] text-light-500 dark:text-dark-400 select-none">
           <span>
             Score:{' '}
-            <span className="font-medium text-gray-700 dark:text-gray-200">{score}</span>
+            <span className="font-medium text-light-700 dark:text-dark-200">{score}</span>
           </span>
           <span>Lines: {lines}</span>
           <span>Level: {level}</span>
@@ -291,7 +291,7 @@ const TetrisGame = () => {
                 return (
                   <div
                     key={`${r}-${c}`}
-                    className="w-3 h-3 bg-gray-200 dark:bg-gray-700"
+                    className="w-3 h-3 bg-light-200 dark:bg-dark-700"
                     style={filled ? { backgroundColor: next.color } : undefined}
                   />
                 );
@@ -301,7 +301,7 @@ const TetrisGame = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-400 dark:text-gray-500 select-none">
+      <div className="flex items-center gap-2 mt-2 text-[10px] text-light-400 dark:text-dark-500 select-none">
         ← → move · ↑ rotate · ↓ drop · Space hard drop · P pause
       </div>
 

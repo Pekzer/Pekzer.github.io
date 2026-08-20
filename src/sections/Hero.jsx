@@ -37,7 +37,7 @@ const Hero = ({ onNavigate }) => {
 
           {/* Title */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
-            <span className="text-gray-900 dark:text-white">{t('home.title')}</span>
+            <span className="text-light-900 dark:text-white">{t('home.title')}</span>
             <br />
             <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 bg-clip-text text-transparent hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300">
               Gonzalo Herrera
@@ -45,12 +45,12 @@ const Hero = ({ onNavigate }) => {
           </h1>
 
           {/* Subtitle */}
-          <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-6 font-medium">
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-light-600 dark:text-dark-300 mb-6 font-medium">
             {t('home.subtitle')}
           </h2>
 
           {/* Description */}
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-light-600 dark:text-dark-400 mb-8 max-w-2xl mx-auto">
             {t('home.description')}
           </p>
 
@@ -59,7 +59,7 @@ const Hero = ({ onNavigate }) => {
             {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL', 'Firebase'].map((tech) => (
               <span
                 key={tech}
-                className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700 hover-scale hover:bg-white dark:hover:bg-gray-700 hover:border-portfolio-1 dark:hover:border-portfolio-1 cursor-default transition-all duration-300 hover:shadow-md"
+                className="px-4 py-2 bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 rounded-full text-sm font-medium border border-light-200 dark:border-dark-700 hover-scale hover:bg-white dark:hover:bg-dark-700 hover:border-portfolio-1 dark:hover:border-portfolio-1 cursor-default transition-all duration-300 hover:shadow-md"
               >
                 {tech}
               </span>
@@ -77,13 +77,13 @@ const Hero = ({ onNavigate }) => {
             <a
               href={cvFile}
               download={cvDownloadName}
-              className="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-700 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+              className="px-8 py-3 bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 font-medium rounded-lg hover:bg-light-200 dark:hover:bg-dark-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl border border-light-200 dark:border-dark-700 hover:border-portfolio-1 dark:hover:border-portfolio-1"
             >
               📄 {t('home.cv')}
             </a>
             <button
               onClick={() => scrollTo('contact')}
-              className="px-8 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white font-medium rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
+              className="px-8 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white font-medium rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-dark-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl"
             >
               {t('home.contact')}
             </button>
@@ -91,7 +91,7 @@ const Hero = ({ onNavigate }) => {
 
           {/* Scroll Indicator */}
           <div className="mt-16 animate-bounce cursor-pointer hover:scale-110 transition-transform duration-300" onClick={() => scrollTo('about')}>
-            <svg className="w-6 h-6 mx-auto text-gray-400 hover:text-portfolio-1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 mx-auto text-light-400 hover:text-portfolio-1 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>

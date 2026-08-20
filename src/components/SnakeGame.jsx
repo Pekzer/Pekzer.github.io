@@ -156,7 +156,7 @@ const SnakeGame = () => {
                     ? ''
                     : isFood
                     ? 'bg-[#1e1b4b]'
-                    : 'bg-gray-200 dark:bg-gray-700'
+                    : 'bg-light-200 dark:bg-dark-700'
                 }`}
                 style={segColor ? { backgroundColor: segColor } : undefined}
               />
@@ -166,7 +166,7 @@ const SnakeGame = () => {
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
+        <span className="text-[10px] text-light-400 dark:text-dark-500 select-none">
           Snake · Score: {score}
         </span>
       </div>

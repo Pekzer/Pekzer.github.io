@@ -158,7 +158,7 @@ const LightsOutGame = () => {
               className={`w-[16px] h-[16px] transition-colors duration-150 cursor-pointer border-0 p-0 ${
                 cell > 0
                   ? ''
-                  : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  : 'bg-light-200 dark:bg-dark-700 hover:bg-light-300 dark:hover:bg-dark-600'
               }`}
               style={cell > 0 ? { backgroundColor: colorForValue(cell, mode) } : undefined}
               aria-label={`Cell ${r}-${c}: level ${cell}`}
@@ -168,7 +168,7 @@ const LightsOutGame = () => {
       </div>
 
       <div className="flex items-center gap-2 mt-2">
-        <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
+        <span className="text-[10px] text-light-400 dark:text-dark-500 select-none">
           Lights Out · Moves: {moves}
         </span>
       </div>
@@ -181,7 +181,7 @@ const LightsOutGame = () => {
             className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 ${
               difficulty === d.key
                 ? 'bg-portfolio-1 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                : 'bg-light-200 dark:bg-dark-700 text-light-600 dark:text-dark-300 hover:bg-light-300 dark:hover:bg-dark-600'
             }`}
           >
             {d.label}
@@ -197,7 +197,7 @@ const LightsOutGame = () => {
             className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 ${
               mode === m
                 ? 'bg-portfolio-1 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                : 'bg-light-200 dark:bg-dark-700 text-light-600 dark:text-dark-300 hover:bg-light-300 dark:hover:bg-dark-600'
             }`}
           >
             Mod {m}

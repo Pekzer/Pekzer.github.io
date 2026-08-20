@@ -12,16 +12,42 @@ module.exports = {
       colors: {
         primary: {
           400: '#00E0F3',
-          500: '#00c4fd',
         },
         portfolio: {
           1: '#7c1427',
           2: '#6a0f1d',
           3: '#580a14',
           4: '#45050a',
-          5: '#330000',
         },
-        dark: '#333333',
+        // Paleta clara: grises realmente usados (escala gray de Tailwind v2)
+        light: {
+          50: '#F9FAFB',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
+        },
+        // Paleta oscura: grises usados con la variante `dark:`
+        dark: {
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
+          950: '#030712',
+        },
+        // Blanco y negro (fondos y overlays)
+        white: '#ffffff',
+        black: '#000000',
       },
       animation: {
         'gradient-x': 'gradient-x 8s linear infinite',

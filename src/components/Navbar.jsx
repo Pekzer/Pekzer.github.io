@@ -26,7 +26,7 @@ const Navbar = ({ onNavigate }) => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-dark-900/80 backdrop-blur-md border-b border-light-200 dark:border-dark-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -43,7 +43,7 @@ const Navbar = ({ onNavigate }) => {
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-portfolio-1 after:transition-all after:duration-300 hover:after:w-full"
+                  className="text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-portfolio-1 after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {t(`nav.${item.key}`)}
                 </button>
@@ -56,7 +56,7 @@ const Navbar = ({ onNavigate }) => {
             {/* Language Toggle */}
             <button
               onClick={toggleLanguage}
-              className="text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white text-sm font-medium transition-all duration-300 hover:scale-110 px-3 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white text-sm font-medium transition-all duration-300 hover:scale-110 px-3 py-1 rounded-lg hover:bg-light-100 dark:hover:bg-dark-800"
             >
               {language === 'es' ? 'EN' : 'ES'}
             </button>
@@ -64,7 +64,7 @@ const Navbar = ({ onNavigate }) => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="p-2 rounded-md text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 hover:bg-light-100 dark:hover:bg-dark-800"
             >
               {isDark ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ const Navbar = ({ onNavigate }) => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="p-2 rounded-md text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:bg-light-100 dark:hover:bg-dark-800"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -107,12 +107,12 @@ const Navbar = ({ onNavigate }) => {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-dark-900 border-t border-light-200 dark:border-dark-700">
             {navItems.map((item) => (
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-portfolio-1 dark:hover:text-white w-full text-left"
+                className="block px-3 py-2 text-base font-medium text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white w-full text-left"
               >
                 {t(`nav.${item.key}`)}
               </button>
