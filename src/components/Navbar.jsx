@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
 
-const Navbar = ({ onNavigate }) => {
+const Navbar = ({ onNavigate, onOpenGames }) => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,7 +79,10 @@ const Navbar = ({ onNavigate }) => {
 
             {/* Games — desktop only */}
             <button
-              onClick={() => scrollToSection('#games')}
+              onClick={() => {
+                setIsMenuOpen(false);
+                if (onOpenGames) onOpenGames();
+              }}
               className="hidden lg:inline-block px-3 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110"
               style={{
                 fontFamily: "'Press Start 2P', monospace",

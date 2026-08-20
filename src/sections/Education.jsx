@@ -4,7 +4,7 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 import Games from '@/components/Games';
 import Reveal, { RevealGroup } from '@/components/Reveal';
 
-const Education = () => {
+const Education = ({ gamesModalOpen, setGamesModalOpen }) => {
   const { t } = useLanguage();
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
@@ -93,7 +93,7 @@ const Education = () => {
                 </div>
               ))}
               <div id="games" style={{ scrollMarginTop: '4rem' }}>
-                <Games />
+                <Games isModalOpen={gamesModalOpen} setIsModalOpen={setGamesModalOpen} />
               </div>
             </div>
           </Reveal>

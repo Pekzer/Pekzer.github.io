@@ -29,12 +29,11 @@ const GAME_TEMPO = {
   tetris: 160,
 };
 
-const Games = () => {
+const Games = ({ isModalOpen, setIsModalOpen }) => {
   const { t } = useLanguage();
   const { musicOn, sfxOn, toggleMusic, toggleSfx } = useSound();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [active, setActive] = useState('conway');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const modalContentRef = useRef(null);
   const [modalScale, setModalScale] = useState(1);
   const [modalSize, setModalSize] = useState({ width: 0, height: 0 });
