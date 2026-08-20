@@ -77,6 +77,18 @@ const Navbar = ({ onNavigate }) => {
               )}
             </button>
 
+            {/* Games — desktop only */}
+            <button
+              onClick={() => scrollToSection('#games')}
+              className="hidden lg:inline-block px-3 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110"
+              style={{
+                fontFamily: "'Press Start 2P', monospace",
+                color: isDark ? '#7c1427' : '#1e1b4b',
+              }}
+            >
+              {t('nav.games')}
+            </button>
+
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button

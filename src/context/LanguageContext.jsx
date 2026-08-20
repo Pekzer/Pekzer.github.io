@@ -17,7 +17,8 @@ const translations = {
       about: 'Sobre Mí',
       projects: 'Proyectos',
       contact: 'Contacto',
-      education: 'Formación'
+      education: 'Formación',
+      games: 'Juegos'
     },
     home: {
       title: '¡Hola! Soy',
@@ -26,6 +27,15 @@ const translations = {
       cta: 'Ver Proyectos',
       contact: 'Contactar',
       cv: 'Descargar CV'
+    },
+    games: {
+      subtitle: 'Juegos clásicos en miniatura',
+      conway: 'Conway',
+      snake: 'Viborita',
+      pacman: 'Pac-Man',
+      minesweeper: 'Buscaminas',
+      lightsOut: 'Fuera Luces',
+      tetris: 'Tetris'
     },
     about: {
       title: 'Sobre Mí',
@@ -204,7 +214,8 @@ const translations = {
       about: 'About Me',
       projects: 'Projects',
       contact: 'Contact',
-      education: 'Education'
+      education: 'Education',
+      games: 'Games'
     },
     home: {
       title: 'Hi! I\'m',
@@ -213,6 +224,15 @@ const translations = {
       cta: 'View Projects',
       contact: 'Contact',
       cv: 'Download CV'
+    },
+    games: {
+      subtitle: 'Classic miniature games',
+      conway: 'Conway',
+      snake: 'Snake',
+      pacman: 'Pac-Man',
+      minesweeper: 'Minesweeper',
+      lightsOut: 'Lights Out',
+      tetris: 'Tetris'
     },
     about: {
       title: 'About Me',

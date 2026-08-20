@@ -212,7 +212,7 @@ const GameOfLife = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8">
+    <div className="flex flex-col items-center">
       <div
         className="inline-grid gap-[1px]"
         style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}

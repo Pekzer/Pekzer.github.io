@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import GameOfLife from '@/components/GameOfLife';
+import Games from '@/components/Games';
 import Reveal, { RevealGroup } from '@/components/Reveal';
 
 const Education = () => {
@@ -92,7 +92,9 @@ const Education = () => {
                   <p className="text-gray-600 dark:text-gray-400">{edu.description}</p>
                 </div>
               ))}
-              <GameOfLife />
+              <div id="games" style={{ scrollMarginTop: '4rem' }}>
+                <Games />
+              </div>
             </div>
           </Reveal>
 
