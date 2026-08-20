@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { playSfx } from '@/audio/engine';
 
 const SIZE = 15;
 const TICK_MS = 220;
@@ -136,6 +137,7 @@ const PacManGame = () => {
 
   const start = () => {
     if (status === 'over' || status === 'won') reset();
+    playSfx('click');
     setStatus('running');
   };
 
@@ -143,6 +145,7 @@ const PacManGame = () => {
     if (status !== 'running') return;
     const interval = setInterval(() => {
       const pac = pacRef.current;
+      const pacPrev = { r: pac.r, c: pac.c };
 
       // Apply a buffered turn as soon as it becomes possible
       const queued = queuedDirRef.current;
@@ -168,7 +171,9 @@ const PacManGame = () => {
           dotsEatenRef.current += 1;
           scoreRef.current += 10;
           setScore(scoreRef.current);
+          playSfx('dot');
           if (dotsEatenRef.current >= totalDotsRef.current) {
+            playSfx('win');
             setStatus('won');
             setTick((t) => t + 1);
             return;
@@ -180,6 +185,7 @@ const PacManGame = () => {
 
         const cherry = cherryRef.current;
         if (cherry && cherry.r === nr && cherry.c === nc) {
+          playSfx('power');
           scoreRef.current += 100;
           setScore(scoreRef.current);
           cherryRef.current = null;
@@ -196,29 +202,54 @@ const PacManGame = () => {
         powerRef.current -= 1;
       }
 
-      ghostsRef.current = ghostsRef.current.map((g) =>
-        moveGhost(g, pacRef.current)
-      );
-
-      // Collisions: eat ghosts while powered, otherwise game over
+      // Move ghosts, tracking previous positions to detect crossings
+      const pacNow = pacRef.current;
+      const finalGhosts = [];
       let hit = false;
-      ghostsRef.current = ghostsRef.current.map((g) => {
-        if (g.r !== pacRef.current.r || g.c !== pacRef.current.c) return g;
-        if (powerRef.current > 0) {
-          scoreRef.current += 50;
-          setScore(scoreRef.current);
-          const free = freeCells();
-          if (free.length) {
-            const cell = free[Math.floor(Math.random() * free.length)];
-            return { r: cell.r, c: cell.c, dir: { r: 0, c: 1 } };
+
+      ghostsRef.current.forEach((g) => {
+        const prev = { r: g.r, c: g.c };
+        const next = moveGhost(g, pacNow);
+        const sameCell = next.r === pacNow.r && next.c === pacNow.c;
+        const crossing =
+          prev.r === pacNow.r &&
+          prev.c === pacNow.c &&
+          next.r === pacPrev.r &&
+          next.c === pacPrev.c;
+
+        if (sameCell || crossing) {
+          if (powerRef.current > 0) {
+            playSfx('ghost');
+            scoreRef.current += 50;
+            setScore(scoreRef.current);
+            const occupied = [pacNow, ...finalGhosts];
+            const cells = [];
+            for (let r = 0; r < SIZE; r += 1) {
+              for (let c = 0; c < SIZE; c += 1) {
+                if (MAZE[r][c] === '#') continue;
+                if (occupied.some((o) => o.r === r && o.c === c)) continue;
+                cells.push({ r, c });
+              }
+            }
+            if (cells.length) {
+              const cell = cells[Math.floor(Math.random() * cells.length)];
+              finalGhosts.push({ r: cell.r, c: cell.c, dir: { r: 0, c: 1 } });
+            } else {
+              finalGhosts.push(next);
+            }
+          } else {
+            hit = true;
+            finalGhosts.push(next);
           }
-          return g;
+        } else {
+          finalGhosts.push(next);
         }
-        hit = true;
-        return g;
       });
 
+      ghostsRef.current = finalGhosts;
+
       if (hit) {
+        playSfx('gameOver');
         setStatus('over');
       }
 

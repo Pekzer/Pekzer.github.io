@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { playSfx } from '@/audio/engine';
 
 const ROWS = 15;
 const COLS = 15;
@@ -103,6 +104,7 @@ const MinesweeperGame = () => {
       setMinesPlaced(true);
     }
     if (next[r][c].mine) {
+      playSfx('gameOver');
       const lost = next.map((row) =>
         row.map((cell) => (cell.mine ? { ...cell, revealed: true } : { ...cell }))
       );
@@ -110,10 +112,12 @@ const MinesweeperGame = () => {
       setStatus('lost');
       return;
     }
+    playSfx('click');
     const revealed = floodReveal(next, r, c);
     setBoard(revealed);
     const won = revealed.flat().every((cell) => cell.revealed || cell.mine);
     if (won) {
+      playSfx('win');
       const flaggedAll = revealed.map((row) =>
         row.map((cell) => (cell.mine ? { ...cell, flagged: true } : cell))
       );
@@ -125,6 +129,7 @@ const MinesweeperGame = () => {
   const handleFlag = (e, r, c) => {
     e.preventDefault();
     if (status !== 'playing') return;
+    playSfx('flag');
     setBoard((prev) =>
       prev.map((row, ri) =>
         ri === r

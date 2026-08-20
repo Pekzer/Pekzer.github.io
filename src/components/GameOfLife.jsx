@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, memo } from 'react';
+import { playSfx } from '@/audio/engine';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 const ROWS = 15;
@@ -179,6 +180,7 @@ const GameOfLife = () => {
   if (!isDesktop) return null;
 
   const handleCellClick = (r, c) => {
+    playSfx('click');
     setGrid((prev) => {
       const newGrid = prev.map((row) => [...row]);
       newGrid[r][c] = !newGrid[r][c];

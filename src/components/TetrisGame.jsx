@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { playSfx } from '@/audio/engine';
 
 const ROWS = 15;
 const COLS = 10;
@@ -77,6 +78,7 @@ const TetrisGame = () => {
     const piece = { matrix: next.matrix, color: next.color, row: 0, col };
     nextRef.current = randomPiece();
     if (collides(boardRef.current, piece.matrix, piece.row, piece.col)) {
+      playSfx('gameOver');
       pieceRef.current = null;
       setStatus('over');
     } else {
@@ -101,6 +103,9 @@ const TetrisGame = () => {
       scoreRef.current += cleared * 100 * (Math.floor(linesRef.current / 10) + 1);
       setLines(linesRef.current);
       setScore(scoreRef.current);
+      playSfx('clear');
+    } else {
+      playSfx('lock');
     }
     spawnPiece();
     setTick((t) => t + 1);
@@ -111,6 +116,7 @@ const TetrisGame = () => {
     if (!piece) return;
     if (!collides(boardRef.current, piece.matrix, piece.row, piece.col + dc)) {
       pieceRef.current = { ...piece, col: piece.col + dc };
+      playSfx('move');
       setTick((t) => t + 1);
     }
   };
@@ -121,6 +127,7 @@ const TetrisGame = () => {
     const matrix = rotate(piece.matrix);
     if (!collides(boardRef.current, matrix, piece.row, piece.col)) {
       pieceRef.current = { ...piece, matrix };
+      playSfx('rotate');
       setTick((t) => t + 1);
     }
   };
@@ -162,10 +169,12 @@ const TetrisGame = () => {
   const start = () => {
     if (status === 'over') reset();
     if (!pieceRef.current) spawnPiece();
+    playSfx('click');
     setStatus('running');
   };
 
   const togglePause = () => {
+    playSfx('click');
     setStatus((s) => (s === 'running' ? 'paused' : 'running'));
   };
 
@@ -219,6 +228,10 @@ const TetrisGame = () => {
   const board = boardRef.current;
   const piece = pieceRef.current;
   const next = nextRef.current;
+  const previewRows = next.matrix.length;
+  const previewCols = next.matrix[0].length;
+  const previewRowOffset = Math.floor((4 - previewRows) / 2);
+  const previewColOffset = Math.floor((4 - previewCols) / 2);
 
   const display = board.map((row) => [...row]);
   if (piece) {
@@ -263,16 +276,26 @@ const TetrisGame = () => {
           <span className="mt-1">Next:</span>
           <div
             className="inline-grid gap-[1px]"
-            style={{ gridTemplateColumns: `repeat(${next.matrix[0].length}, 1fr)` }}
+            style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}
           >
-            {next.matrix.map((row, r) =>
-              row.map((cell, c) => (
-                <div
-                  key={`${r}-${c}`}
-                  className="w-3 h-3 bg-gray-200 dark:bg-gray-700"
-                  style={cell ? { backgroundColor: next.color } : undefined}
-                />
-              ))
+            {Array.from({ length: 4 }).map((_, r) =>
+              Array.from({ length: 4 }).map((_, c) => {
+                const pr = r - previewRowOffset;
+                const pc = c - previewColOffset;
+                const filled =
+                  pr >= 0 &&
+                  pr < previewRows &&
+                  pc >= 0 &&
+                  pc < previewCols &&
+                  next.matrix[pr][pc];
+                return (
+                  <div
+                    key={`${r}-${c}`}
+                    className="w-3 h-3 bg-gray-200 dark:bg-gray-700"
+                    style={filled ? { backgroundColor: next.color } : undefined}
+                  />
+                );
+              })
             )}
           </div>
         </div>

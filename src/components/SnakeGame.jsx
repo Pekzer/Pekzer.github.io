@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { playSfx } from '@/audio/engine';
 
 const SIZE = 15;
 const TICK_MS = 160;
@@ -67,6 +68,7 @@ const SnakeGame = () => {
 
   const start = () => {
     if (status === 'over') reset();
+    playSfx('click');
     setStatus('running');
   };
 
@@ -88,6 +90,7 @@ const SnakeGame = () => {
         .some((s) => s.r === newHead.r && s.c === newHead.c);
 
       if (hitWall || hitSelf) {
+        playSfx('gameOver');
         setStatus('over');
         return;
       }
@@ -97,6 +100,7 @@ const SnakeGame = () => {
 
       const newSnake = [newHead, ...snake];
       if (ate) {
+        playSfx('eat');
         foodRef.current = randomFood(newSnake);
         setScore((s) => s + 1);
       } else {

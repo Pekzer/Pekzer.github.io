@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { useLanguage } from '@/context/LanguageContext';
+import { useSound } from '@/context/SoundContext';
+import { setMusicTempo } from '@/audio/engine';
 import GameOfLife from '@/components/GameOfLife';
 import SnakeGame from '@/components/SnakeGame';
 import PacManGame from '@/components/PacManGame';
@@ -17,17 +19,33 @@ const GAMES = [
   { id: 'tetris', icon: '🕹️', Component: TetrisGame },
 ];
 
+// Game tick (ms) used to sync the music beat (0 = no continuous tick).
+const GAME_TEMPO = {
+  conway: 0,
+  snake: 160,
+  pacman: 220,
+  minesweeper: 0,
+  lightsOut: 0,
+  tetris: 160,
+};
+
 const Games = () => {
   const { t } = useLanguage();
+  const { musicOn, sfxOn, toggleMusic, toggleSfx } = useSound();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [active, setActive] = useState('conway');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    setMusicTempo(GAME_TEMPO[active] || 0);
+  }, [active]);
 
   if (!isDesktop) return null;
 
   const ActiveComponent = GAMES.find((g) => g.id === active).Component;
 
-  return (
-    <div className="flex items-start justify-center gap-6 mt-8">
+  const renderLayout = (withExpand) => (
+    <div className="flex items-start justify-center gap-6">
       <div className="flex flex-col gap-2 shrink-0">
         {GAMES.map((game) => {
           const isActive = game.id === active;
@@ -55,7 +73,71 @@ const Games = () => {
       <div className="flex-1 flex justify-center">
         <ActiveComponent />
       </div>
+
+      <div className="flex flex-col gap-2 shrink-0">
+        <button
+          onClick={toggleMusic}
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${
+            musicOn
+              ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
+          }`}
+        >
+          <span className="text-sm leading-none">{musicOn ? '🎵' : '🔇'}</span>
+          {t('games.music')}
+        </button>
+        <button
+          onClick={toggleSfx}
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${
+            sfxOn
+              ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
+          }`}
+        >
+          <span className="text-sm leading-none">{sfxOn ? '🔊' : '🔇'}</span>
+          {t('games.sfx')}
+        </button>
+
+        {withExpand && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center justify-center gap-1.5 px-3 py-2 mt-2 rounded-lg text-xs font-medium transition-all duration-200 border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-portfolio-1 dark:hover:border-portfolio-1"
+          >
+            <span className="text-sm leading-none">🔍</span>
+            {t('games.expand')}
+          </button>
+        )}
+      </div>
     </div>
+  );
+
+  return (
+    <>
+      {!isModalOpen && <div className="mt-8">{renderLayout(true)}</div>}
+
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/90 p-6"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="relative bg-gray-100 dark:bg-gray-800 rounded-2xl p-20 shadow-2xl border border-gray-200 dark:border-gray-700"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <div style={{ transform: 'scale(1.5)', transformOrigin: 'center center' }}>
+              {renderLayout(false)}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -36,6 +36,9 @@ const translations = {
       minesweeper: 'Buscaminas',
       lightsOut: 'Fuera Luces',
       tetris: 'Tetris',
+      music: 'Música',
+      sfx: 'Efectos',
+      expand: 'Agrandar',
       desc: {
         conway: 'Clic para dibujar células y ▶ para ejecutar. Una viva sobrevive con 2-3 vecinas; una muerta nace con 3.',
         snake: 'Mueve con flechas o WASD y come la comida sin chocar.',
@@ -241,6 +244,9 @@ const translations = {
       minesweeper: 'Minesweeper',
       lightsOut: 'Lights Out',
       tetris: 'Tetris',
+      music: 'Music',
+      sfx: 'SFX',
+      expand: 'Expand',
       desc: {
         conway: 'Click to draw cells and ▶ to run. A live cell survives with 2-3 neighbours; a dead one is born with 3.',
         snake: 'Move with arrows or WASD and eat food without crashing.',

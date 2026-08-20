@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { SoundProvider } from '@/context/SoundContext';
 import Navbar from '@/components/Navbar';
 import Hero from '@/sections/Hero';
 import About from '@/sections/About';
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        <SoundProvider>
         <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
           <Navbar onNavigate={scrollToSection} />
           <main>
@@ -28,6 +30,7 @@ export default function Home() {
           </main>
           <Footer />
         </div>
+        </SoundProvider>
       </LanguageProvider>
     </ThemeProvider>
   );

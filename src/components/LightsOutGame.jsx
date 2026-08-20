@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { playSfx } from '@/audio/engine';
 
 const SIZE = 15;
 const MODES = [1, 2, 3];
@@ -58,19 +59,26 @@ const LightsOutGame = () => {
 
   const handleClick = (r, c) => {
     if (isSolved) return;
-    setGrid((prev) => toggleAt(prev, r, c, states));
+    const next = toggleAt(grid, r, c, states);
+    setGrid(next);
     setMoves((m) => m + 1);
+    playSfx('click');
+    if (next.every((row) => row.every((v) => v === 0))) {
+      playSfx('win');
+    }
   };
 
   const reset = () => {
     setGrid(randomize(states));
     setMoves(0);
+    playSfx('click');
   };
 
   const changeMode = (m) => {
     setMode(m);
     setGrid(randomize(m + 1));
     setMoves(0);
+    playSfx('click');
   };
 
   return (
