@@ -29,11 +29,12 @@ const GAME_TEMPO = {
   tetris: 160,
 };
 
-const Games = ({ isModalOpen, setIsModalOpen }) => {
+const Games = () => {
   const { t } = useLanguage();
   const { musicOn, sfxOn, toggleMusic, toggleSfx } = useSound();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [active, setActive] = useState('conway');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const modalContentRef = useRef(null);
   const [modalScale, setModalScale] = useState(1);
   const [modalSize, setModalSize] = useState({ width: 0, height: 0 });
@@ -81,11 +82,10 @@ const Games = ({ isModalOpen, setIsModalOpen }) => {
             <div key={game.id} className="relative group">
               <button
                 onClick={() => setActive(game.id)}
-                className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${
-                  isActive
+                className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${isActive
                     ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-portfolio-1 dark:hover:border-portfolio-1'
-                }`}
+                  }`}
               >
                 {t(`games.${game.id}`)}
                 <span className="text-sm leading-none">{game.icon}</span>
@@ -105,22 +105,20 @@ const Games = ({ isModalOpen, setIsModalOpen }) => {
       <div className="flex flex-col gap-2 shrink-0">
         <button
           onClick={toggleMusic}
-          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${
-            musicOn
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${musicOn
               ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
               : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
-          }`}
+            }`}
         >
           <span className="text-sm leading-none">{musicOn ? '🎵' : '🔇'}</span>
           {t('games.music')}
         </button>
         <button
           onClick={toggleSfx}
-          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${
-            sfxOn
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 border ${sfxOn
               ? 'bg-portfolio-1 text-white border-portfolio-1 shadow-md'
               : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700'
-          }`}
+            }`}
         >
           <span className="text-sm leading-none">{sfxOn ? '🔊' : '🔇'}</span>
           {t('games.sfx')}
