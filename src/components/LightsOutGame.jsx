@@ -5,6 +5,7 @@ const SIZE = 15;
 const MODES = [1, 2, 3];
 const DIFFICULTIES = [
   { key: 'easy', label: 'Easy' },
+  { key: 'medium', label: 'Medium' },
   { key: 'hard', label: 'Hard' },
 ];
 
@@ -58,10 +59,31 @@ const randomizeEasy = (states) => {
   return grid;
 };
 
+// Medium: random overlapping moves, but fewer than hard so the patterns stay
+// moderate in density while still mixing different levels.
+const randomizeMedium = (states) => {
+  const total = SIZE * SIZE;
+  const moveCount = Math.floor(total * 0.12);
+  const minLit = Math.floor(total * 0.1);
+  let grid;
+  let lit;
+  do {
+    grid = createEmptyGrid();
+    for (let i = 0; i < moveCount; i += 1) {
+      const r = Math.floor(Math.random() * SIZE);
+      const c = Math.floor(Math.random() * SIZE);
+      grid = toggleAt(grid, r, c, states);
+    }
+    lit = grid.flat().filter((v) => v !== 0).length;
+  } while (lit < minLit);
+  return grid;
+};
+
 // Generate a solvable board by applying random moves from the solved state.
 // Hard: many random moves (which overlap), so patterns are denser/more complex.
 const randomize = (states, difficulty = 'hard') => {
   if (difficulty === 'easy') return randomizeEasy(states);
+  if (difficulty === 'medium') return randomizeMedium(states);
 
   const total = SIZE * SIZE;
   const moveCount = Math.floor(total * 0.25);
