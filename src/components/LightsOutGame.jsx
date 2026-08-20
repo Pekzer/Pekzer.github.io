@@ -3,6 +3,10 @@ import { playSfx } from '@/audio/engine';
 
 const SIZE = 15;
 const MODES = [1, 2, 3];
+const DIFFICULTIES = [
+  { key: 'easy', label: 'Easy' },
+  { key: 'hard', label: 'Hard' },
+];
 
 // Red intensity ramp (dim → bright). The brightest matches the site palette.
 const ON_COLORS = ['#dcb0ba', '#a3485b', '#7c1427'];
@@ -27,9 +31,34 @@ const toggleAt = (grid, r, c, states) => {
   return next;
 };
 
+// Easy: apply a handful of non-overlapping moves, so each lit cell is touched
+// by exactly one move and the puzzle stays simple to read and solve.
+const randomizeEasy = (states) => {
+  const total = SIZE * SIZE;
+  const moveCount = Math.max(6, Math.floor(total * 0.05));
+  let grid = createEmptyGrid();
+  const centers = [];
+  let attempts = 0;
+  while (centers.length < moveCount && attempts < 3000) {
+    attempts += 1;
+    const r = Math.floor(Math.random() * SIZE);
+    const c = Math.floor(Math.random() * SIZE);
+    if (centers.some(([cr, cc]) => Math.abs(r - cr) + Math.abs(c - cc) < 3)) {
+      continue;
+    }
+    centers.push([r, c]);
+  }
+  centers.forEach(([r, c]) => {
+    grid = toggleAt(grid, r, c, states);
+  });
+  return grid;
+};
+
 // Generate a solvable board by applying random moves from the solved state.
-// Move count scales with the board size so patterns are denser/more complex.
-const randomize = (states) => {
+// Hard: many random moves (which overlap), so patterns are denser/more complex.
+const randomize = (states, difficulty = 'hard') => {
+  if (difficulty === 'easy') return randomizeEasy(states);
+
   const total = SIZE * SIZE;
   const moveCount = Math.floor(total * 0.25);
   const minLit = Math.floor(total * 0.15);
@@ -51,7 +80,8 @@ const colorForValue = (value, mode) => ON_COLORS[value - 1 + (3 - mode)];
 
 const LightsOutGame = () => {
   const [mode, setMode] = useState(1);
-  const [grid, setGrid] = useState(() => randomize(2));
+  const [difficulty, setDifficulty] = useState('easy');
+  const [grid, setGrid] = useState(() => randomize(2, 'easy'));
   const [moves, setMoves] = useState(0);
 
   const states = mode + 1;
@@ -69,14 +99,21 @@ const LightsOutGame = () => {
   };
 
   const reset = () => {
-    setGrid(randomize(states));
+    setGrid(randomize(states, difficulty));
     setMoves(0);
     playSfx('click');
   };
 
   const changeMode = (m) => {
     setMode(m);
-    setGrid(randomize(m + 1));
+    setGrid(randomize(m + 1, difficulty));
+    setMoves(0);
+    playSfx('click');
+  };
+
+  const changeDifficulty = (d) => {
+    setDifficulty(d);
+    setGrid(randomize(states, d));
     setMoves(0);
     playSfx('click');
   };
@@ -108,6 +145,22 @@ const LightsOutGame = () => {
         <span className="text-[10px] text-gray-400 dark:text-gray-500 select-none">
           Lights Out · Moves: {moves}
         </span>
+      </div>
+
+      <div className="flex items-center gap-2 mt-1.5">
+        {DIFFICULTIES.map((d) => (
+          <button
+            key={d.key}
+            onClick={() => changeDifficulty(d.key)}
+            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200 ${
+              difficulty === d.key
+                ? 'bg-portfolio-1 text-white'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+            }`}
+          >
+            {d.label}
+          </button>
+        ))}
       </div>
 
       <div className="flex items-center gap-2 mt-1.5">

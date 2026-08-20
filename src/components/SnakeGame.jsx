@@ -155,7 +155,7 @@ const SnakeGame = () => {
                   segColor
                     ? ''
                     : isFood
-                    ? 'bg-blue-800'
+                    ? 'bg-[#1e1b4b]'
                     : 'bg-gray-200 dark:bg-gray-700'
                 }`}
                 style={segColor ? { backgroundColor: segColor } : undefined}

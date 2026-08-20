@@ -311,7 +311,7 @@ const PacManGame = () => {
                 ) : ghostIndex !== -1 ? (
                   <div
                     className={`w-3 h-3 rounded-t-full ${
-                      ghostIndex === 0 ? 'bg-portfolio-1' : 'bg-blue-800'
+                      ghostIndex === 0 ? 'bg-portfolio-1' : 'bg-[#1e1b4b]'
                     }`}
                   />
                 ) : isCherry ? (

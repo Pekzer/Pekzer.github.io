@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { useLanguage } from '@/context/LanguageContext';
 import { useSound } from '@/context/SoundContext';
@@ -35,10 +35,39 @@ const Games = () => {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [active, setActive] = useState('conway');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalContentRef = useRef(null);
+  const [modalScale, setModalScale] = useState(1);
+  const [modalSize, setModalSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     setMusicTempo(GAME_TEMPO[active] || 0);
   }, [active]);
+
+  useLayoutEffect(() => {
+    if (!isModalOpen) return;
+    const el = modalContentRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const width = el.offsetWidth;
+      const height = el.offsetHeight;
+      if (!width || !height) return;
+      const availW = window.innerWidth - 120;
+      const availH = window.innerHeight - 120;
+      const scale = Math.min(1.5, availW / width, availH / height);
+      setModalScale(Math.max(0.3, scale));
+      setModalSize({ width, height });
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [isModalOpen]);
 
   if (!isDesktop) return null;
 
@@ -121,18 +150,32 @@ const Games = () => {
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="relative bg-gray-100 dark:bg-gray-800 rounded-2xl p-20 shadow-2xl border border-gray-200 dark:border-gray-700"
+            className="relative bg-gray-100 dark:bg-gray-800 rounded-2xl p-10 shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
               aria-label="Close"
             >
               ✕
             </button>
-            <div style={{ transform: 'scale(1.5)', transformOrigin: 'center center' }}>
-              {renderLayout(false)}
+            <div
+              style={{
+                width: modalSize.width * modalScale,
+                height: modalSize.height * modalScale,
+              }}
+            >
+              <div
+                ref={modalContentRef}
+                style={{
+                  width: 'max-content',
+                  transform: `scale(${modalScale})`,
+                  transformOrigin: 'top left',
+                }}
+              >
+                {renderLayout(false)}
+              </div>
             </div>
           </div>
         </div>
