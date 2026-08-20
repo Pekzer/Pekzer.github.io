@@ -31,8 +31,9 @@ const toggleAt = (grid, r, c, states) => {
   return next;
 };
 
-// Easy: apply a handful of non-overlapping moves, so each lit cell is touched
-// by exactly one move and the puzzle stays simple to read and solve.
+// Easy: apply a handful of non-overlapping moves. Each cross is toggled a
+// random number of times, so its cells share a single value while different
+// crosses get different levels (variety in mods 2 and 3).
 const randomizeEasy = (states) => {
   const total = SIZE * SIZE;
   const moveCount = Math.max(6, Math.floor(total * 0.05));
@@ -49,7 +50,10 @@ const randomizeEasy = (states) => {
     centers.push([r, c]);
   }
   centers.forEach(([r, c]) => {
-    grid = toggleAt(grid, r, c, states);
+    const toggles = 1 + Math.floor(Math.random() * (states - 1));
+    for (let t = 0; t < toggles; t += 1) {
+      grid = toggleAt(grid, r, c, states);
+    }
   });
   return grid;
 };
