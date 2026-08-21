@@ -1,5 +1,6 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
+//Paleta principal '#7c1427', '#6a0f1d', '#580a14', '#45050a', '#374151', '#1F2937', '#111827', '#030712', '#000000', '#ffffff'
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
