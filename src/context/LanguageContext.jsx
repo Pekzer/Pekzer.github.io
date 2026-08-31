@@ -22,7 +22,7 @@ const translations = {
     },
     home: {
       title: '¡Hola! Soy',
-      subtitle: 'Desarrollador Full Stack - DevOps',
+      subtitle: 'Desarrollador Full Stack',
       description: 'Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
       cta: 'Ver Proyectos',
       contact: 'Contactar',
@@ -230,7 +230,7 @@ const translations = {
     },
     home: {
       title: 'Hi! I\'m',
-      subtitle: 'Full Stack Developer - DevOps',
+      subtitle: 'Full Stack Developer',
       description: 'Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
       cta: 'View Projects',
       contact: 'Contact',
