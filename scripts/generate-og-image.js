@@ -131,7 +131,7 @@ function buildSvg(font) {
 
   <!-- Textos -->
   <path d="${textPath('GONZALO HERRERA', WIDTH / 2, 378, 46)}" fill="${COLORS.white}"/>
-  <path d="${textPath('DESARROLLADOR FULL STACK', WIDTH / 2, 448, 27)}" fill="${COLORS.primaryBright}"/>
+  <path d="${textPath('SOFTWARE DEVELOPER', WIDTH / 2, 448, 27)}" fill="${COLORS.primaryBright}"/>
   <path d="${textPath('PORTFOLIO', WIDTH / 2, 512, 16)}" fill="${COLORS.gray}"/>
 </svg>`;
 }
