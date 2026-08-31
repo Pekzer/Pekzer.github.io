@@ -176,7 +176,7 @@ const Projects = () => {
       tech: ['Laravel', 'PHP', 'PostgreSQL', 'React', 'Tailwind'],
       github: '',
       demo: 'https://www.hirpace.org.ar/',
-      testSite: 'https://teal-grouse-899950.hostingersite.com/',
+      testSite: 'https://orange-lion-891539.hostingersite.com/',
       featured: true,
       hasModal: true,
       modalContent: {
