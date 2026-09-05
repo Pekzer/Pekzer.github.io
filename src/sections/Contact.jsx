@@ -107,7 +107,7 @@ const Contact = () => {
       ),
       label: t('contact.location'),
       value: 'Salta, Argentina 4400',
-      href: '#'
+      href: 'https://maps.app.goo.gl/vGvw4FE5pMjqiXDL9'
     }
   ];
 
