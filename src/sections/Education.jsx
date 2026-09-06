@@ -70,9 +70,6 @@ const Education = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-light-900 dark:text-white mb-4">
             {t('nav.education')}
           </h2>
-          <p className="text-xl text-light-600 dark:text-dark-300">
-            {t('about.educationSubtitle')}
-          </p>
         </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

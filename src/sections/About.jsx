@@ -42,9 +42,6 @@ const About = () => {
             {t('about.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-portfolio-1 to-portfolio-2 mx-auto rounded-full mb-4"></div>
-          <p className="text-xl text-light-600 dark:text-dark-300 font-primary">
-            {t('about.subtitle')}
-          </p>
         </Reveal>
 
         <Reveal className="grid grid-cols-1 gap-8" delay={100}>
