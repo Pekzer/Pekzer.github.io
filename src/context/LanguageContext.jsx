@@ -51,7 +51,6 @@ const translations = {
     about: {
       title: 'Sobre Mí',
       subtitle: 'Conoce mi historia',
-      description: 'Soy un programador apasionado por la informática y la resolución de problemas. Actualmente cursando la Tecnicatura Universitaria en Programación en la Universidad Nacional de Salta.',
       skills: 'Conocimientos',
       techStack: 'Stack Tecnológico',
       experience: 'Educación',
@@ -231,7 +230,7 @@ const translations = {
     home: {
       title: 'Hi! I\'m',
       subtitle: 'Full Stack Developer',
-      description: 'University Programming Technician. Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
+      description: 'Higher Technician in Programming. Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
       cta: 'View Projects',
       contact: 'Contact',
       cv: 'Download CV'
@@ -259,7 +258,6 @@ const translations = {
     about: {
       title: 'About Me',
       subtitle: 'Know my story',
-      description: 'I am a programmer passionate about computer science and problem solving. Currently studying University Programming Technician at Universidad Nacional de Salta.',
       skills: 'Knowledge',
       techStack: 'Tech Stack',
       experience: 'Education',
@@ -293,7 +291,7 @@ const translations = {
       sending: 'Sending...',
       coursesStats: 'Courses',
       yearsStudying: 'Years studying',
-      paragraph1: 'I am a Full Stack developer, graduate of the University Programming Technician degree at Universidad Nacional de Salta.',
+      paragraph1: 'I am a Full Stack developer, graduate at the Universidad Nacional de Salta with a Technical Degree in Programming.',
       paragraph2: 'Throughout my training I have strengthened my capabilities in group project collaboration, client communication, efficient system structuring, data analysis and functional solution development.',
       paragraph3: 'I have completed various specialized courses including Argentina Programa, 1000 Programadores Python, and various FreeCodeCamp certifications. My technology stack includes Java, Python, Laravel, React, PHP and TypeScript, along with PostgreSQL and MySQL databases.',
       paragraph4: 'In my free time, I\'m usually playing video games or reading books.',
@@ -325,7 +323,7 @@ const translations = {
       courseDescription5: 'Scientific computing with Python',
       titles: 'Titles',
       dedication: 'Dedication',
-      title1: 'University Programming Technician',
+      title1: 'University Technical Degree in Programming',
       title2: 'High School with Computer Science Orientation'
     },
     projects: {
