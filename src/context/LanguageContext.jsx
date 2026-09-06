@@ -84,7 +84,7 @@ const translations = {
       sending: 'Enviando...',
       coursesStats: 'Cursos',
       yearsStudying: 'Años estudiando',
-      paragraph1: 'Soy un desarrollador Full Stack, graduado de la carrera Tecnicatura Universitaria en Programación en la Universidad Nacional de Salta.',
+      paragraph1: 'Soy un desarrollador Full Stack, graduado en la Tecnicatura Universitaria en Programación de la Universidad Nacional de Salta.',
       paragraph2: 'A lo largo de mi formación he fortalecido mis capacidades de colaboración en proyectos grupales, comunicación con clientes, estructuración eficiente de sistemas, análisis de datos y al desarrollo de soluciones funcionales.',
       paragraph3: 'He completado diversos cursos especializados incluyendo Argentina Programa, 1000 Programadores Python, y varias certificaciones en FreeCodeCamp. Mi stack tecnológico incluye Java, Python, Laravel, React, PHP y TypeScript, junto con bases de datos PostgreSQL y MySQL.',
       paragraph4: 'En mi tiempo libre, suelo estar jugando videojuegos, o leyendo libros.',
