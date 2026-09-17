@@ -49,7 +49,7 @@ const Hero = ({ onNavigate }) => {
 
           {/* Description */}
           <p className="text-lg text-light-800 dark:text-dark-100 mb-8 max-w-2xl mx-auto">
-            <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 dark:from-red-400 dark:to-red-500 bg-clip-text text-transparent font-semibold">
+            <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 dark:red-from-portfolio-1 bg-clip-text text-transparent font-semibold">
               {t('home.roleHighlight')}
             </span>{' '}
             {t('home.descriptionRest')}
