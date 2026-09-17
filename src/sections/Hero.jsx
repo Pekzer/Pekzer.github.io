@@ -49,10 +49,7 @@ const Hero = ({ onNavigate }) => {
 
           {/* Description */}
           <p className="text-lg text-light-800 dark:text-dark-100 mb-8 max-w-2xl mx-auto">
-            <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 dark:red-from-portfolio-1 bg-clip-text text-transparent font-semibold">
-              {t('home.roleHighlight')}
-            </span>{' '}
-            {t('home.descriptionRest')}
+            {t('home.description')}
           </p>
 
           {/* Tech Stack */}
