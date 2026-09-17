@@ -21,9 +21,9 @@ const translations = {
       games: 'Juegos'
     },
     home: {
-      title: '¡Hola! Soy',
       subtitle: 'Desarrollador Full Stack',
-      description: 'Tecnico Universitario en Programacion. Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
+      roleHighlight: 'Tecnico Universitario en Programacion.',
+      descriptionRest: 'Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
       cta: 'Ver Proyectos',
       contact: 'Contactar',
       cv: 'Descargar CV'
@@ -228,9 +228,9 @@ const translations = {
       games: 'Games'
     },
     home: {
-      title: 'Hi! I\'m',
       subtitle: 'Full Stack Developer',
-      description: 'Higher Technician in Programming. Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
+      roleHighlight: 'Higher Technician in Programming.',
+      descriptionRest: 'Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
       cta: 'View Projects',
       contact: 'Contact',
       cv: 'Download CV'

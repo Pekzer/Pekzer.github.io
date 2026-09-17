@@ -37,8 +37,6 @@ const Hero = ({ onNavigate }) => {
 
           {/* Title */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
-            <span className="text-light-900 dark:text-white">{t('home.title')}</span>
-            <br />
             <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 bg-clip-text text-transparent hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300">
               Gonzalo Herrera
             </span>
@@ -51,7 +49,10 @@ const Hero = ({ onNavigate }) => {
 
           {/* Description */}
           <p className="text-lg text-light-600 dark:text-dark-400 mb-8 max-w-2xl mx-auto">
-            {t('home.description')}
+            <span className="bg-gradient-to-r from-portfolio-1 to-portfolio-2 bg-clip-text text-transparent font-semibold">
+              {t('home.roleHighlight')}
+            </span>{' '}
+            {t('home.descriptionRest')}
           </p>
 
           {/* Tech Stack */}
