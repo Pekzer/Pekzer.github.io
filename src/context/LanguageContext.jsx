@@ -133,6 +133,7 @@ const translations = {
       techTitle: 'Tecnologías Utilizadas',
       screenshotsTitle: 'Capturas de Pantalla',
       close: 'Cerrar',
+      downloadReport: 'Informe del proyecto',
       hirpace: {
         title: 'Aplicación WEB HIRPACE',
         description: 'Página web para una ONG médica, con sistema de contenedores editables, registro de historias clínicas, gestión de turnos y manejo de pagos.',
@@ -339,6 +340,7 @@ const translations = {
       techTitle: 'Technologies Used',
       screenshotsTitle: 'Screenshots',
       close: 'Close',
+      downloadReport: 'Project Report',
       hirpace: {
         title: 'HIRPACE WEB Application',
         description: 'Website for a medical ONG, with editable container system, clinical history registration, appointment management and payment handling.',

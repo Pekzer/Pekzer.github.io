@@ -53,6 +53,21 @@ const ProjectModal = ({ project, isOpen, onClose, onOpenGallery }) => {
                 </li>
               ))}
             </ul>
+
+            {project.reportPdf && (
+              <div className="mt-4">
+                <a
+                  href={encodeURI(project.reportPdf)}
+                  download={project.reportDownloadName || 'Informe_Aplicacion_Web_HIRPACE.pdf'}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-portfolio-1 to-portfolio-2 text-white rounded-lg hover:from-portfolio-2 hover:to-portfolio-3 transition-all duration-300 font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  {t('projects.downloadReport')}
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Tech Stack */}
@@ -179,6 +194,8 @@ const Projects = () => {
       testSite: 'https://orange-lion-891539.hostingersite.com/',
       featured: true,
       hasModal: true,
+      reportPdf: '/Informe Aplicacion Web para HIRPACE, Herrera Gonzalo.pdf',
+      reportDownloadName: 'Informe_Aplicacion_Web_HIRPACE.pdf',
       modalContent: {
         description: t('projects.hirpace.modalDescription'),
         features: t('projects.hirpace.features'),
