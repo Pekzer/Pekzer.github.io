@@ -53,6 +53,12 @@ const Education = () => {
       institution: 'FreeCodeCamp',
       year: '2025',
       description: t('education.courseDescription5')
+    },
+    {
+      title: 'Data Analysis with Python',
+      institution: 'FreeCodeCamp',
+      year: '2026',
+      description: t('education.courseDescription6')
     }
   ];
 
