@@ -22,7 +22,7 @@ const translations = {
     },
     home: {
       subtitle: 'Desarrollador Full Stack',
-      description: 'Tecnico Universitario en Programacion. Apasionado por la informática y la resolución de problemas. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
+      description: 'Tecnico Universitario en Programacion. Entusiasta de la informática, enfocado en la optimización de sistemas y busqueda de soluciones eficientes. Especializado en desarrollo web y mobile con React, Laravel y bases de datos.',
       cta: 'Ver Proyectos',
       contact: 'Contactar',
       cv: 'Descargar CV'
@@ -229,7 +229,7 @@ const translations = {
     },
     home: {
       subtitle: 'Full Stack Developer',
-      description: 'Higher Technician in Programming. Passionate about computer science and problem solving. Specialized in web and mobile development with React, Laravel and databases.',
+      description: 'Higher Technician in Programming. Computer science enthusiast, with focus on systems optimization and search for efficient solutions. Specialized in web and mobile development with React, Laravel and databases.',
       cta: 'View Projects',
       contact: 'Contact',
       cv: 'Download CV'
