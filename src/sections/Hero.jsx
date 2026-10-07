@@ -26,12 +26,14 @@ const Hero = ({ onNavigate }) => {
         <Reveal className="text-center" delay={0}>
           {/* Profile Image */}
           <div className="mb-8">
-            <div className="w-52 h-52 mx-auto rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 p-1 hover-lift hover-glow">
-              <img
-                src="/yo fondo negro.png"
-                alt="Gonzalo Herrera"
-                className="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-110"
-              />
+            <div className="w-52 h-52 mx-auto rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 p-1 hover-glow">
+              <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-black transition-colors duration-500">
+                <img
+                  src="/yo-sin-fondo.png"
+                  alt="Gonzalo Herrera"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
             </div>
           </div>
 
