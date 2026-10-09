@@ -112,9 +112,9 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-light-50 dark:bg-dark-800 relative overflow-hidden">
+    <section id="contact" className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
       {/* Fondo decorativo */}
-      <div className="absolute inset-0 bg-pattern-grid opacity-60"></div>
+      <div className="absolute inset-0 bg-pattern-dots opacity-60"></div>
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
       <div className={`absolute top-10 right-10 rounded-full mix-blend-multiply filter bg-portfolio-1 pointer-events-none ${isDesktop ? 'w-[600px] h-[600px] blur-3xl opacity-25 pulse-intense' : 'w-32 h-32 blur-xl opacity-8'}`}></div>
       <div className={`absolute rounded-full mix-blend-multiply filter bg-portfolio-2 pointer-events-none ${isDesktop ? 'bottom-10 left-10 w-[550px] h-[550px] blur-3xl opacity-30 pulse-intense' : '-bottom-10 -left-10 w-36 h-36 blur-xl opacity-6'}`} style={isDesktop ? { animationDelay: '1s' } : {}}></div>

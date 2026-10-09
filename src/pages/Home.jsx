@@ -7,6 +7,7 @@ import Hero from '@/sections/Hero';
 import About from '@/sections/About';
 import Projects from '@/sections/Projects';
 import Contact from '@/sections/Contact';
+import Experience from '@/sections/Experience';
 import Education from '@/sections/Education';
 import Footer from '@/components/Footer';
 
@@ -24,6 +25,7 @@ export default function Home() {
             <main>
               <Hero onNavigate={scrollToSection} />
               <About />
+              <Experience />
               <Projects />
               <Contact />
               <Education />

@@ -78,7 +78,7 @@ const Footer = () => {
           <div className="text-center">
             <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
-              {['home', 'about', 'projects', 'contact', 'education'].map((section) => (
+              {['home', 'about', 'projects', 'contact', 'experience', 'education'].map((section) => (
                 <li key={section}>
                   <button
                     onClick={() => {

@@ -17,6 +17,7 @@ const translations = {
       about: 'Sobre Mí',
       projects: 'Proyectos',
       contact: 'Contacto',
+      experience: 'Experiencia',
       education: 'Formación',
       games: 'Juegos'
     },
@@ -118,6 +119,14 @@ const translations = {
       dedication: 'Dedicación',
       title1: 'Tecnicatura Universitaria en Programación',
       title2: 'Bachiller con orientación en Informática'
+    },
+    experience: {
+      role: 'Freelancer',
+      company: 'Independiente',
+      period: 'Mayo 2023 - presente',
+      description: 'Desarrollo de software a medida para clientes, soporte de servicios IT, diagnóstico de sistemas y mantenimiento de hardware.',
+      link: '',
+      projectsLink: 'Ver proyectos'
     },
     projects: {
       title: 'Proyectos',
@@ -225,6 +234,7 @@ const translations = {
       about: 'About Me',
       projects: 'Projects',
       contact: 'Contact',
+      experience: 'Experience',
       education: 'Education',
       games: 'Games'
     },
@@ -326,6 +336,14 @@ const translations = {
       dedication: 'Dedication',
       title1: 'University Technical Degree in Programming',
       title2: 'High School with Computer Science Orientation'
+    },
+    experience: {
+      role: 'Freelancer',
+      company: 'Independent',
+      period: 'May 2023 - present',
+      description: 'Custom software development for clients, IT services support, system diagnostics, and hardware maintenance.',
+      link: '',
+      projectsLink: 'View projects'
     },
     projects: {
       title: 'Projects',
