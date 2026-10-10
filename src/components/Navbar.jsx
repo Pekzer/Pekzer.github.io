@@ -93,10 +93,10 @@ const Navbar = ({ onNavigate }) => {
               )}
             </button>
 
-            {/* Games — available on desktop and mobile */}
+            {/* Games — desktop shows it inline, mobile shows it in the menu */}
             <button
               onClick={openGames}
-              className="inline-block px-2 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110 sm:px-3"
+              className="hidden px-3 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110 lg:inline-block"
               style={{
                 fontFamily: "'Press Start 2P', monospace",
                 color: isDark ? '#7c1427' : '#1e1b4b',
@@ -128,7 +128,7 @@ const Navbar = ({ onNavigate }) => {
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="block px-3 py-2 text-base font-medium text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white w-full text-left"
+                className="block w-full px-3 py-2 text-left text-base font-medium text-light-700 hover:text-portfolio-1 dark:text-dark-300 dark:hover:text-white"
               >
                 {t(`nav.${item.key}`)}
               </button>
