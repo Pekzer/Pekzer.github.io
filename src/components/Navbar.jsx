@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
+import useMediaQuery from '@/hooks/useMediaQuery';
 
 const Navbar = ({ onNavigate }) => {
   const { isDark, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
@@ -24,6 +26,19 @@ const Navbar = ({ onNavigate }) => {
       return;
     }
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // On mobile the games section is a dedicated fullscreen view opened by hash.
+  const openGames = () => {
+    setIsMenuOpen(false);
+    if (isDesktop) {
+      scrollToSection('#games');
+      return;
+    }
+    if (window.location.hash !== '#games') {
+      window.history.pushState(null, '', '#games');
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    }
   };
 
   return (
@@ -78,10 +93,10 @@ const Navbar = ({ onNavigate }) => {
               )}
             </button>
 
-            {/* Games — desktop only */}
+            {/* Games — available on desktop and mobile */}
             <button
-              onClick={() => scrollToSection('#games')}
-              className="hidden lg:inline-block px-3 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110"
+              onClick={openGames}
+              className="inline-block px-2 py-2 text-[10px] font-medium transition-all duration-300 hover:scale-110 sm:px-3"
               style={{
                 fontFamily: "'Press Start 2P', monospace",
                 color: isDark ? '#7c1427' : '#1e1b4b',
@@ -118,6 +133,12 @@ const Navbar = ({ onNavigate }) => {
                 {t(`nav.${item.key}`)}
               </button>
             ))}
+            <button
+              onClick={openGames}
+              className="block w-full px-3 py-2 text-left text-base font-medium text-light-700 hover:text-portfolio-1 dark:text-dark-300 dark:hover:text-white"
+            >
+              {t('nav.games')}
+            </button>
           </div>
         </div>
       )}
