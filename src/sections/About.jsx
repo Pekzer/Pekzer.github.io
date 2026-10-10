@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import Reveal, { RevealGroup } from '@/components/Reveal';
+import CatChase from '@/components/CatChase';
 
 const About = () => {
   const { t } = useLanguage();
@@ -29,6 +30,7 @@ const About = () => {
   ];
 
   return (
+    <>
     <section id="about" className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
       <div className="absolute inset-0 bg-pattern-grid opacity-40"></div>
       {/* Círculos decorativos — ligeros en móvil, completos en desktop */}
@@ -80,38 +82,34 @@ const About = () => {
                 <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
                 {t('about.skillsCategories.languages')}
               </h3>
-              <div className="flex-1 flex flex-col space-y-3">
-                <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">EN</div>
-                  <div className="min-w-0">
-                    <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.english')}</p>
-                    <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.englishLevel')}</p>
+              <div className="flex-1 flex flex-col">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-1 to-portfolio-2 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">EN</div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.english')}</p>
+                      <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.englishLevel')}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">ES</div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.spanish')}</p>
+                      <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.spanishLevel')}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-3 to-portfolio-4 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">BR</div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.portuguese')}</p>
+                      <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.portugueseStatus')}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-2 to-portfolio-3 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">ES</div>
-                  <div className="min-w-0">
-                    <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.spanish')}</p>
-                    <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.spanishLevel')}</p>
-                  </div>
+
+                <div className="hidden lg:flex flex-1">
+                  <CatChase onMeow={handleMeowClick} />
                 </div>
-                <div className="flex items-center gap-4 rounded-2xl bg-light-50 dark:bg-dark-800 p-4 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-portfolio-3 to-portfolio-4 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 group-hover:from-white group-hover:to-white group-hover:text-portfolio-1 transition-all duration-200">BR</div>
-                  <div className="min-w-0">
-                    <p className="font-semibold text-light-900 dark:text-white group-hover:text-white transition-colors duration-200">{t('about.languagesList.portuguese')}</p>
-                    <p className="text-sm text-light-500 dark:text-dark-400 group-hover:text-white/80 transition-colors duration-200">{t('about.languagesList.portugueseStatus')}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={handleMeowClick}
-                  className="hidden lg:block absolute bottom-3 right-3 text-left cursor-pointer hover:scale-110 transition-transform duration-300"
-                  title="Meow!"
-                >
-                  <pre className="text-[10px] leading-tight text-light-900 dark:text-dark-100 font-mono select-none">
-{`   |\\__/,|   (\`\\
-  _.|o o  |_   ) )
--(((---(((--------`}</pre>
-                </button>
               </div>
             </div>
           </div>
@@ -165,6 +163,7 @@ const About = () => {
         document.body
       )}
     </section>
+    </>
   );
 };
 
