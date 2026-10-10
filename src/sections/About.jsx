@@ -66,7 +66,10 @@ const About = () => {
                 {t('about.knowledgeAreasList').map((area, index) => (
                   <div key={index} className="flex items-start gap-3 rounded-xl bg-light-50 dark:bg-dark-800 px-3 py-2.5 hover:bg-portfolio-1 dark:hover:bg-portfolio-1 md:hover:shadow-lg md:hover:-translate-y-0.5 transition-colors duration-200 group">
                     <span className="mt-2 h-2 w-2 rounded-full bg-gradient-to-r from-portfolio-1 to-portfolio-2 flex-shrink-0 group-hover:from-white group-hover:to-white md:group-hover:scale-125 transition-all duration-200"></span>
-                    <span className="text-base text-light-700 dark:text-dark-300 leading-relaxed font-primary group-hover:text-white transition-colors duration-200">{area}</span>
+                    <span className="text-base text-light-700 dark:text-dark-300 leading-relaxed font-primary group-hover:text-white transition-colors duration-200">
+                      <strong className="block">{area.title}</strong>
+                      <span className="block mt-1 text-sm">{area.description}</span>
+                    </span>
                   </div>
                 ))}
               </div>
