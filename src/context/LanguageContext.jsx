@@ -39,6 +39,15 @@ const translations = {
       music: 'Música',
       sfx: 'Efectos',
       expand: 'Agrandar',
+      pause: 'Pausa',
+      resume: 'Reanudar',
+      paused: 'Pausado',
+      restart: 'Reiniciar',
+      close: 'Cerrar',
+      hardDrop: 'Caída rápida',
+      flagMode: 'Modo bandera',
+      flagOn: 'Bandera',
+      flagOff: 'Revelar',
       desc: {
         conway: 'Clic para dibujar células y ▶ para ejecutar. Una viva sobrevive con 2-3 vecinas; una muerta nace con 3.',
         snake: 'Mueve con flechas o WASD y come la comida sin chocar.',
@@ -196,6 +205,19 @@ const translations = {
           'Pago de pendientes que se convierten en gastos',
           'Eliminación de transacciones erróneas'
         ]
+      },
+      portfolioGames: {
+        title: 'Juegos Portafolio',
+        description: 'Colección de juegos clásicos interactivos integrada en el portafolio, desarrollada para ofrecer una experiencia entretenida y demostrar distintas técnicas de desarrollo frontend.',
+        modalDescription: 'Sección interactiva del portafolio que reúne juegos clásicos como Conway, Snake, Pac-Man, Buscaminas, Lights Out y Tetris. Cada juego cuenta con controles propios, diseño responsive y una experiencia optimizada para navegador.',
+        features: [
+          'Seis juegos clásicos en una sola experiencia',
+          'Controles adaptados para teclado y ratón',
+          'Diseño responsive para distintos tamaños de pantalla',
+          'Estados de juego, puntuación y reinicio',
+          'Interfaz integrada con el diseño del portafolio',
+          'Implementación frontend sin dependencias externas de juego'
+        ]
       }
     },
     contact: {
@@ -252,6 +274,15 @@ const translations = {
       music: 'Music',
       sfx: 'SFX',
       expand: 'Expand',
+      pause: 'Pause',
+      resume: 'Resume',
+      paused: 'Paused',
+      restart: 'Restart',
+      close: 'Close',
+      hardDrop: 'Hard drop',
+      flagMode: 'Flag mode',
+      flagOn: 'Flag',
+      flagOff: 'Reveal',
       desc: {
         conway: 'Click to draw cells and ▶ to run. A live cell survives with 2-3 neighbours; a dead one is born with 3.',
         snake: 'Move with arrows or WASD and eat food without crashing.',
@@ -408,6 +439,19 @@ const translations = {
           'Transaction history per account',
           'Pending payments that become expenses',
           'Delete erroneous transactions'
+        ]
+      },
+      portfolioGames: {
+        title: 'Portfolio Games',
+        description: 'A collection of interactive classic games integrated into the portfolio, built to provide an entertaining experience and demonstrate different frontend development techniques.',
+        modalDescription: 'An interactive portfolio section featuring classic games such as Conway, Snake, Pac-Man, Minesweeper, Lights Out and Tetris. Each game includes its own controls, responsive design and a browser-optimized experience.',
+        features: [
+          'Six classic games in one experience',
+          'Keyboard and mouse controls',
+          'Responsive design for different screen sizes',
+          'Game states, scoring and restart controls',
+          'Interface integrated with the portfolio design',
+          'Frontend implementation without external game dependencies'
         ]
       }
     },

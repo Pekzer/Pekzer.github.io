@@ -58,7 +58,7 @@ const clearLines = (board) => {
   return { board: [...newRows, ...remaining], cleared };
 };
 
-const TetrisGame = () => {
+const TetrisGame = ({ paused = false, onTogglePause, inputRef, touch = false }) => {
   const [status, setStatus] = useState('idle'); // idle | running | paused | over
   const [score, setScore] = useState(0);
   const [lines, setLines] = useState(0);
@@ -173,13 +173,44 @@ const TetrisGame = () => {
     setStatus('running');
   };
 
+  const pauseActive = paused || status === 'paused';
+
   const togglePause = () => {
+    if (onTogglePause) {
+      onTogglePause();
+      return;
+    }
     playSfx('click');
     setStatus((s) => (s === 'running' ? 'paused' : 'running'));
   };
 
+  const statusRef = useRef(status);
+  statusRef.current = status;
+
+  // Touch pad input: directions also start the game from idle/game over.
   useEffect(() => {
-    if (status !== 'running') return;
+    if (!inputRef) return undefined;
+    inputRef.current = ({ dir, action }) => {
+      if (statusRef.current !== 'running') {
+        if (action && action !== 'rotate') return;
+        if (statusRef.current === 'over') reset();
+        if (!pieceRef.current) spawnPiece();
+        setStatus('running');
+      }
+      if (dir === 'left') move(-1);
+      else if (dir === 'right') move(1);
+      else if (dir === 'down') softDrop();
+      else if (dir === 'up' || action === 'rotate') rotatePiece();
+      else if (action === 'hardDrop') hardDrop();
+    };
+    return () => {
+      inputRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputRef]);
+
+  useEffect(() => {
+    if (status !== 'running' || paused) return;
     const speed = Math.max(110, 480 - level * 45);
     const interval = setInterval(() => {
       const piece = pieceRef.current;
@@ -193,15 +224,11 @@ const TetrisGame = () => {
     }, speed);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, level]);
+  }, [status, level, paused]);
 
   useEffect(() => {
-    if (status !== 'running' && status !== 'paused') return;
+    if ((status !== 'running' && status !== 'paused') || paused) return;
     const handler = (e) => {
-      if (e.key === 'p' || e.key === 'P') {
-        setStatus((s) => (s === 'running' ? 'paused' : 'running'));
-        return;
-      }
       if (status !== 'running') return;
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -223,7 +250,7 @@ const TetrisGame = () => {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, [status, paused]);
 
   const board = boardRef.current;
   const piece = pieceRef.current;
@@ -301,24 +328,26 @@ const TetrisGame = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mt-2 text-[10px] text-light-400 dark:text-dark-500 select-none">
-        ← → move · ↑ rotate · ↓ drop · Space hard drop · P pause
-      </div>
+      {!touch && (
+        <div className="flex items-center gap-2 mt-2 text-[10px] text-light-400 dark:text-dark-500 select-none">
+          ← → move · ↑ rotate · ↓ drop · Space hard drop · P pause
+        </div>
+      )}
 
       <div className="flex items-center gap-2 mt-1.5">
         <button
           onClick={() => {
-            if (status === 'running' || status === 'paused') togglePause();
+            if (status === 'running' || status === 'paused' || paused) togglePause();
             else start();
           }}
           className="px-3 py-1 text-xs font-medium rounded-full bg-portfolio-1 text-white hover:bg-portfolio-2 transition-colors duration-200"
         >
           {status === 'idle'
             ? 'Start'
-            : status === 'running'
-            ? 'Pause'
-            : status === 'paused'
+            : pauseActive
             ? 'Resume'
+            : status === 'running' || status === 'paused'
+            ? 'Pause'
             : 'Restart'}
         </button>
       </div>

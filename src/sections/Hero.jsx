@@ -56,7 +56,7 @@ const Hero = ({ onNavigate }) => {
 
           {/* Tech Stack */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL', 'Firebase'].map((tech) => (
+            {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL', 'Firebase', 'Springboot', 'Node.js'].map((tech) => (
               <span
                 key={tech}
                 className="px-4 py-2 bg-light-100 dark:bg-dark-800 text-light-700 dark:text-dark-300 rounded-full text-sm font-medium border border-light-200 dark:border-dark-700 hover-scale hover:bg-white dark:hover:bg-dark-700 hover:border-portfolio-1 dark:hover:border-portfolio-1 cursor-default transition-all duration-300 hover:shadow-md"

@@ -23,12 +23,6 @@ const About = () => {
     setIsMeowOpen(false);
   }, []);
 
-  const skills = [
-    { name: t('about.skillsCategories.backend'), tech: ['Java', 'Python', 'Laravel', 'PHP', 'PostgreSQL', 'MySQL'] },
-    { name: t('about.skillsCategories.frontend'), tech: ['React', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'CSS', 'HTML', 'Vite'] },
-    { name: t('about.skillsCategories.tools'), tech: ['Git','Expo','Node.js', 'Docker', 'Firebase'] }
-  ];
-
   return (
     <>
     <section id="about" className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
@@ -115,28 +109,6 @@ const About = () => {
           </div>
         </Reveal>
 
-        <Reveal className="mt-8" delay={200}>
-          <h3 className="text-2xl font-bold text-light-900 dark:text-white mb-6 text-center flex items-center justify-center gap-3 font-primary">
-            <span className="h-8 w-1.5 rounded-full bg-gradient-to-b from-portfolio-1 to-portfolio-2"></span>
-            {t('about.techStack')}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {skills.map((skillGroup, index) => (
-              <div key={index} className="bg-white/95 dark:bg-dark-900/95 rounded-2xl p-6 shadow-md md:shadow-xl border border-light-200/70 dark:border-dark-700/70 hover:border-portfolio-1 dark:hover:border-portfolio-1 md:hover:-translate-y-1.5 md:hover:shadow-2xl transition-colors duration-200 group">
-                <h4 className="text-lg font-semibold text-light-900 dark:text-white mb-4 text-center font-primary">
-                  {skillGroup.name}
-                </h4>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {skillGroup.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-3 py-1.5 rounded-full bg-portfolio-1 text-white text-sm font-medium shadow-sm hover:bg-portfolio-3 hover:shadow-lg hover:scale-105 md:hover:-translate-y-0.5 dark:hover:bg-dark-100 dark:hover:text-portfolio-1 transition-all duration-200 cursor-default">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
       </RevealGroup>
       {isMeowOpen && createPortal(
         <div

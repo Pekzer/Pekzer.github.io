@@ -277,7 +277,7 @@ const generateSolvableBoard = (safeR, safeC, mines) => {
   return board;
 };
 
-const MinesweeperGame = () => {
+const MinesweeperGame = ({ flagMode = false }) => {
   const [board, setBoard] = useState(createEmptyBoard);
   const [status, setStatus] = useState('playing'); // playing | won | lost
   const [minesPlaced, setMinesPlaced] = useState(false);
@@ -332,7 +332,7 @@ const MinesweeperGame = () => {
   };
 
   const handleFlag = (e, r, c) => {
-    e.preventDefault();
+    e?.preventDefault();
     if (status !== 'playing') return;
     playSfx('flag');
     setBoard((prev) =>
@@ -368,7 +368,7 @@ const MinesweeperGame = () => {
             return (
               <button
                 key={`${r}-${c}`}
-                onClick={() => handleReveal(r, c)}
+                onClick={() => (flagMode ? handleFlag(null, r, c) : handleReveal(r, c))}
                 onContextMenu={(e) => handleFlag(e, r, c)}
                 className={`w-[16px] h-[16px] flex items-center justify-center text-[10px] leading-none font-bold ${bg} ${
                   cell.revealed && cell.adjacent > 0

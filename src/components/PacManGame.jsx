@@ -58,7 +58,7 @@ const moveGhost = (g, pac) => {
   return { r: g.r + pick.r, c: g.c + pick.c, dir: pick };
 };
 
-const PacManGame = () => {
+const PacManGame = ({ paused = false, inputRef }) => {
   const [status, setStatus] = useState('idle'); // idle | running | over | won
   const [score, setScore] = useState(0);
   const [tick, setTick] = useState(0);
@@ -141,8 +141,30 @@ const PacManGame = () => {
     setStatus('running');
   };
 
+  const statusRef = useRef(status);
+  statusRef.current = status;
+
+  // Touch pad input: directions also start the game from idle/game over.
   useEffect(() => {
-    if (status !== 'running') return;
+    if (!inputRef) return undefined;
+    inputRef.current = ({ dir }) => {
+      const map = { up: { r: -1, c: 0 }, down: { r: 1, c: 0 }, left: { r: 0, c: -1 }, right: { r: 0, c: 1 } };
+      const next = dir ? map[dir] : null;
+      if (!next) return;
+      if (statusRef.current !== 'running') {
+        if (statusRef.current === 'over' || statusRef.current === 'won') reset();
+        setStatus('running');
+      }
+      changeDirection(next);
+    };
+    return () => {
+      inputRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputRef, changeDirection]);
+
+  useEffect(() => {
+    if (status !== 'running' || paused) return;
     const interval = setInterval(() => {
       const pac = pacRef.current;
       const pacPrev = { r: pac.r, c: pac.c };
@@ -256,10 +278,10 @@ const PacManGame = () => {
       setTick((t) => t + 1);
     }, TICK_MS);
     return () => clearInterval(interval);
-  }, [status]);
+  }, [status, paused]);
 
   useEffect(() => {
-    if (status !== 'running') return;
+    if (status !== 'running' || paused) return;
     const handler = (e) => {
       let d = null;
       if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') d = { r: -1, c: 0 };
@@ -273,7 +295,7 @@ const PacManGame = () => {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [status, changeDirection]);
+  }, [status, changeDirection, paused]);
 
   const pac = pacRef.current;
   const ghosts = ghostsRef.current;

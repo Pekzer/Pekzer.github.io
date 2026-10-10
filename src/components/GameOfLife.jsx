@@ -154,8 +154,9 @@ const Cell = memo(({ alive, onClick }) => (
 
 Cell.displayName = 'Cell';
 
-const GameOfLife = () => {
+const GameOfLife = ({ paused = false, allowMobile = false }) => {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
+  const canRun = isDesktop || allowMobile;
   const [grid, setGrid] = useState(createHeartGrid);
   const [isRunning, setIsRunning] = useState(false);
   const runningRef = useRef(isRunning);
@@ -166,18 +167,18 @@ const GameOfLife = () => {
   }, []);
 
   useEffect(() => {
-    // Only run simulation on desktop
-    if (!isRunning || !isDesktop) return;
+    // Only run the simulation on desktop or when embedded on mobile
+    if (!isRunning || !canRun || paused) return;
     const interval = setInterval(() => {
       if (runningRef.current) {
         step();
       }
     }, 350);
     return () => clearInterval(interval);
-  }, [isRunning, step, isDesktop]);
+  }, [isRunning, step, canRun, paused]);
 
-  // Don't render anything on mobile — save CPU/battery
-  if (!isDesktop) return null;
+  // Skip rendering outside desktop unless embedded — save CPU/battery
+  if (!canRun) return null;
 
   const handleCellClick = (r, c) => {
     playSfx('click');

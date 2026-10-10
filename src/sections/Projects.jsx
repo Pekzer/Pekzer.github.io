@@ -274,6 +274,28 @@ const Projects = () => {
           '/LloCASHas6.jpg'
         ]
       }
+    },
+    {
+      title: t('projects.portfolioGames.title'),
+      description: t('projects.portfolioGames.description'),
+      image: '/games1.png',
+      tech: ['React', 'JavaScript', 'Tailwind CSS', 'HTML5 Canvas'],
+      github: 'https://github.com/Pekzer/Pekzer.github.io/tree/main/src/components',
+      demo: '#games',
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.portfolioGames.modalDescription'),
+        features: t('projects.portfolioGames.features'),
+        images: [
+          '/games1.png',
+          '/games2.png',
+          '/games3.png',
+          '/games4.png',
+          '/games5.png',
+          '/games6.png'
+        ]
+      }
     }
   ];
 
@@ -363,8 +385,16 @@ const Projects = () => {
           {project.demo ? (
             <a
               href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={project.demo.startsWith('#') ? undefined : '_blank'}
+              rel={project.demo.startsWith('#') ? undefined : 'noopener noreferrer'}
+              onClick={(event) => {
+                if (project.demo.startsWith('#')) {
+                  event.preventDefault();
+                  window.history.pushState(null, '', project.demo);
+                  window.dispatchEvent(new HashChangeEvent('hashchange'));
+                  document.querySelector(project.demo)?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               className="flex-1 flex items-center justify-center px-4 py-3 bg-white dark:bg-dark-900 text-portfolio-1 rounded-lg hover:bg-portfolio-1 hover:text-white transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect border-2 border-portfolio-1"
             >
               {t('projects.viewWeb')}

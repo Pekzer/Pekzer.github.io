@@ -38,7 +38,7 @@ const randomFood = (snake) => {
   return cell;
 };
 
-const SnakeGame = () => {
+const SnakeGame = ({ paused = false, inputRef }) => {
   const snakeRef = useRef(createInitialSnake());
   const foodRef = useRef(randomFood(snakeRef.current));
   const dirRef = useRef({ r: 0, c: 1 });
@@ -72,8 +72,31 @@ const SnakeGame = () => {
     setStatus('running');
   };
 
+  const statusRef = useRef(status);
+  statusRef.current = status;
+
+  // Touch pad input: directions also start the game from idle/game over.
   useEffect(() => {
-    if (status !== 'running') return;
+    if (!inputRef) return undefined;
+    inputRef.current = ({ dir }) => {
+      const map = { up: { r: -1, c: 0 }, down: { r: 1, c: 0 }, left: { r: 0, c: -1 }, right: { r: 0, c: 1 } };
+      const next = dir ? map[dir] : null;
+      if (!next) return;
+      if (statusRef.current !== 'running') {
+        if (statusRef.current === 'over') reset();
+        playSfx('click');
+        setStatus('running');
+      }
+      changeDirection(next);
+    };
+    return () => {
+      inputRef.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputRef, changeDirection]);
+
+  useEffect(() => {
+    if (status !== 'running' || paused) return;
     const interval = setInterval(() => {
       if (dirQueueRef.current.length) {
         dirRef.current = dirQueueRef.current.shift();
@@ -110,10 +133,10 @@ const SnakeGame = () => {
       setTick((t) => t + 1);
     }, TICK_MS);
     return () => clearInterval(interval);
-  }, [status]);
+  }, [status, paused]);
 
   useEffect(() => {
-    if (status !== 'running') return;
+    if (status !== 'running' || paused) return;
     const handler = (e) => {
       let d = null;
       if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') d = { r: -1, c: 0 };
@@ -127,7 +150,7 @@ const SnakeGame = () => {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [status, changeDirection]);
+  }, [status, changeDirection, paused]);
 
   const snake = snakeRef.current;
   const food = foodRef.current;
