@@ -51,7 +51,7 @@ const About = () => {
             <div className="space-y-5 text-lg text-light-700 dark:text-dark-300 leading-relaxed font-primary">
               <p className="text-xl font-medium text-light-800 dark:text-dark-100 group-hover:text-portfolio-1 dark:group-hover:text-portfolio-1 transition-colors duration-200">{t('about.paragraph1')}</p>
               <p>{t('about.paragraph2')}</p>
-              <p>{t('about.paragraph3')}</p>
+              {/* <p>{t('about.paragraph3')}</p> */}
               <p>{t('about.paragraph4')}</p>
             </div>
           </div>

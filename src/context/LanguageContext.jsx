@@ -83,7 +83,7 @@ const translations = {
       paragraph1: 'Soy desarrollador Full Stack, graduado de la Tecnicatura Universitaria en Programación en la Universidad Nacional de Salta.',
       paragraph2: 'A lo largo de mi formación he fortalecido mis capacidades de colaboración en proyectos grupales, comunicación con clientes, estructuración eficiente de sistemas, análisis de datos y al desarrollo de soluciones funcionales.',
       paragraph3: 'He completado diversos cursos especializados incluyendo Argentina Programa, 1000 Programadores Python, y varias certificaciones en FreeCodeCamp. Mi stack tecnológico incluye Java, Python, Laravel, React, PHP y TypeScript, junto con bases de datos PostgreSQL y MySQL.',
-      paragraph4: 'En mi tiempo libre, suelo estar jugando videojuegos, o leyendo libros.',
+      paragraph4: 'En mi tiempo libre, suelo estar jugando videojuegos, leyendo libros o aprendiendo sobre nuevas tecnologías.',
       skillsCategories: {
         backend: 'Backend',
         frontend: 'Frontend',
@@ -296,7 +296,7 @@ const translations = {
       paragraph1: 'I am a Full Stack developer, graduate at the Universidad Nacional de Salta with a Technical Degree in Programming.',
       paragraph2: 'Throughout my training I have strengthened my capabilities in group project collaboration, client communication, efficient system structuring, data analysis and functional solution development.',
       paragraph3: 'I have completed various specialized courses including Argentina Programa, 1000 Programadores Python, and various FreeCodeCamp certifications. My technology stack includes Java, Python, Laravel, React, PHP and TypeScript, along with PostgreSQL and MySQL databases.',
-      paragraph4: 'In my free time, I\'m usually playing video games or reading books.',
+      paragraph4: 'In my free time, I\'m usually playing video games, reading books or learning about new technologies.',
       skillsCategories: {
         backend: 'Backend',
         frontend: 'Frontend',
