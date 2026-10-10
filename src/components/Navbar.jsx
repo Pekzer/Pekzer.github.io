@@ -135,7 +135,11 @@ const Navbar = ({ onNavigate }) => {
             ))}
             <button
               onClick={openGames}
-              className="block w-full px-3 py-2 text-left text-base font-medium text-light-700 hover:text-portfolio-1 dark:text-dark-300 dark:hover:text-white"
+              className="block w-full px-3 py-2 text-left text-[11px] font-medium transition-all duration-300 hover:scale-105"
+              style={{
+                fontFamily: "'Press Start 2P', monospace",
+                color: isDark ? '#7c1427' : '#1e1b4b',
+              }}
             >
               {t('nav.games')}
             </button>
