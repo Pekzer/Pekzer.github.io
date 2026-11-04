@@ -54,8 +54,8 @@ const Hero = ({ onNavigate }) => {
             {t('home.description')}
           </p>
 
-          {/* Tech Stack */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {/* Tech Stack — oculto en móvil */}
+          <div className="hidden md:flex flex-wrap justify-center gap-3 mb-10">
             {['Java', 'Python', 'Laravel', 'React', 'PHP', 'TypeScript', 'PostgreSQL', 'MySQL', 'Firebase', 'Springboot', 'Node.js'].map((tech) => (
               <span
                 key={tech}
