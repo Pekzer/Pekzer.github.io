@@ -74,7 +74,7 @@ const translations = {
         { title: 'Arquitectura y diseño de aplicaciones', description: 'Separación de responsabilidades, modularidad, organización del código, autenticación, autorización y gestión de roles y permisos.' },
         { title: 'Análisis de datos, estadística y probabilidad', description: 'Análisis exploratorio de datos, estadística descriptiva, cálculo de probabilidades e interpretación de resultados.' },
         { title: 'Desarrollo e integración de APIs', description: 'Comunicación entre sistemas, contratos de datos e integración de servicios.' },
-        { title: 'Testing y aseguramiento de calidad', description: 'Pruebas funcionales, detección de errores y validación de requisitos.' },
+        { title: 'Testing y validación de calidad', description: 'Pruebas funcionales, detección de errores y validación de requisitos.' },
         { title: 'Estructuras de datos y algoritmos', description: 'Resolución de problemas, complejidad algorítmica y eficiencia.' },
         { title: 'Sistemas operativos y arquitectura de computadoras', description: 'Fundamentos de ejecución de programas, procesos y recursos del sistema.' }
       ],
