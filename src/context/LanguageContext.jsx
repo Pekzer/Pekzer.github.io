@@ -141,6 +141,8 @@ const translations = {
       viewCode: 'Código',
       featuredProjects: 'Proyecto Destacado',
       otherProjects: 'Otros Proyectos',
+      showMore: 'Ver más proyectos',
+      showLess: 'Ver menos proyectos',
       moreWork: '¿Quieres ver más de mi trabajo?',
       viewGithub: 'Ver en GitHub',
       viewTestSite: 'Sitio de Prueba',
@@ -160,6 +162,21 @@ const translations = {
           'Sistema de pagos integrado',
           'Panel de administración para médicos',
           'Interfaz responsive y moderna'
+        ]
+      },
+      czExtractos: {
+        title: 'Catálogo CZ Extractos',
+        description: 'Página web para catálogo de perfumes desarrollada con Laravel, React y MySQL, con carga de productos, gestión de categorías, stock y precio, y filtros de búsqueda.',
+        modalDescription: 'Catálogo online de perfumes con panel de administración. Permite cargar perfumes con imagen, modificar categorías, actualizar stock y precio, y ofrece filtros de búsqueda por nombre, marca, categoría y disponibilidad de entrega inmediata.',
+        features: [
+          'Carga de perfumes con nombre, marca, categorías e imagen',
+          'Edición de categorías desde el panel de administración',
+          'Gestión de stock y precio de cada perfume',
+          'Filtros por nombre, marca y categoría',
+          'Filtro de entrega inmediata',
+          'Detección automática de stock disponible',
+          'Diseño responsive con temática oscura',
+          'Backend en Laravel con base de datos MySQL'
         ]
       },
       stockHome: {
@@ -376,6 +393,8 @@ const translations = {
       viewCode: 'Code',
       featuredProjects: 'Featured Project',
       otherProjects: 'Other Projects',
+      showMore: 'Show more projects',
+      showLess: 'Show fewer projects',
       moreWork: 'Want to see more of my work?',
       viewGithub: 'View on GitHub',
       viewTestSite: 'Test Site',
@@ -395,6 +414,21 @@ const translations = {
           'Integrated payment system',
           'Administration panel for doctors',
           'Responsive and modern interface'
+        ]
+      },
+      czExtractos: {
+        title: 'CZ Extractos Catalog',
+        description: 'Perfume catalog website built with Laravel, React and MySQL, featuring product upload, category, stock and price management, and search filters.',
+        modalDescription: 'Online perfume catalog with an admin panel. It allows uploading perfumes with images, editing categories, updating stock and price, and provides search filters by name, brand, category and immediate delivery availability.',
+        features: [
+          'Upload perfumes with name, brand, categories and image',
+          'Category editing from the admin panel',
+          'Stock and price management for each perfume',
+          'Filters by name, brand and category',
+          'Immediate delivery filter',
+          'Automatic available stock detection',
+          'Responsive design with a dark theme',
+          'Laravel backend with MySQL database'
         ]
       },
       stockHome: {

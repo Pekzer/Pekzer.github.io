@@ -131,6 +131,7 @@ const Projects = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -213,43 +214,21 @@ const Projects = () => {
       }
     },
     {
-      title: t('projects.stockHome.title'),
-      description: t('projects.stockHome.description'),
-      image: '/homestock1.jpg',
-      tech: ['React Native', 'Expo', 'TypeScript'],
-      github: 'https://github.com/Pekzer/HomeStock',
-      demo: 'https://pekzer.github.io/HomeStock/',
+      title: t('projects.czExtractos.title'),
+      description: t('projects.czExtractos.description'),
+      image: '/cz1.png',
+      tech: ['Laravel', 'PHP', 'React', 'MySQL', 'Tailwind CSS'],
+      github: '',
+      demo: 'https://mintcream-pigeon-118028.hostingersite.com/',
       featured: false,
       hasModal: true,
       modalContent: {
-        description: t('projects.stockHome.modalDescription'),
-        features: t('projects.stockHome.features'),
+        description: t('projects.czExtractos.modalDescription'),
+        features: t('projects.czExtractos.features'),
         images: [
-          '/homestock1.jpg',
-          '/homestock2.jpg',
-          '/homestock3.jpg',
-          '/homestock5.jpg',
-          '/homestock6.jpg',
-          '/iniciostock4.jpg'
-        ]
-      }
-    },
-    {
-      title: t('projects.dentalWeb.title'),
-      description: t('projects.dentalWeb.description'),
-      image: '/odontologia1.jpg',
-      tech: ['Astro', 'TailwindCSS'],
-      github: 'https://github.com/Pekzer/Herrera-Ramiro',
-      demo: 'https://pekzer.github.io/Herrera-Ramiro/',
-      featured: false,
-      hasModal: true,
-      modalContent: {
-        description: t('projects.dentalWeb.modalDescription'),
-        features: t('projects.dentalWeb.features'),
-        images: [
-          '/odontologia1.jpg',
-          '/odontologia2.jpg',
-          '/odontologia3.jpg'
+          '/cz1.png',
+          '/cz2.png',
+          '/cz3.png'
         ]
       }
     },
@@ -294,6 +273,47 @@ const Projects = () => {
           '/games4.png',
           '/games5.png',
           '/games6.png'
+        ]
+      }
+    },
+    {
+      title: t('projects.stockHome.title'),
+      description: t('projects.stockHome.description'),
+      image: '/homestock1.jpg',
+      tech: ['React Native', 'Expo', 'TypeScript'],
+      github: 'https://github.com/Pekzer/HomeStock',
+      demo: 'https://pekzer.github.io/HomeStock/',
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.stockHome.modalDescription'),
+        features: t('projects.stockHome.features'),
+        images: [
+          '/homestock1.jpg',
+          '/homestock2.jpg',
+          '/homestock3.jpg',
+          '/homestock5.jpg',
+          '/homestock6.jpg',
+          '/iniciostock4.jpg'
+        ]
+      }
+    },
+    {
+      title: t('projects.dentalWeb.title'),
+      description: t('projects.dentalWeb.description'),
+      image: '/odontologia1.jpg',
+      tech: ['Astro', 'TailwindCSS'],
+      github: 'https://github.com/Pekzer/Herrera-Ramiro',
+      demo: 'https://pekzer.github.io/Herrera-Ramiro/',
+      featured: false,
+      hasModal: true,
+      modalContent: {
+        description: t('projects.dentalWeb.modalDescription'),
+        features: t('projects.dentalWeb.features'),
+        images: [
+          '/odontologia1.jpg',
+          '/odontologia2.jpg',
+          '/odontologia3.jpg'
         ]
       }
     }
@@ -432,7 +452,9 @@ const Projects = () => {
   );
 
   const featuredProjects = projects.filter(p => p.featured);
-  const otherProjects = projects.filter(p => !p.featured);
+  const allOtherProjects = projects.filter(p => !p.featured);
+  const visibleOtherProjects = showAllProjects ? allOtherProjects : allOtherProjects.slice(0, 3);
+  const hasHiddenProjects = allOtherProjects.length > visibleOtherProjects.length;
 
   return (
     <section id="projects" className="py-20 bg-light-50 dark:bg-dark-800 relative overflow-hidden">
@@ -478,7 +500,7 @@ const Projects = () => {
             </h3>
           </Reveal>
           <div className="space-y-8">
-            {otherProjects.map((project, index) => (
+            {visibleOtherProjects.map((project, index) => (
               <Reveal
                 key={index}
                 className="w-full"
@@ -489,6 +511,25 @@ const Projects = () => {
               </Reveal>
             ))}
           </div>
+
+          {(hasHiddenProjects || showAllProjects) && (
+            <div className="flex justify-center mt-10">
+              <button
+                onClick={() => setShowAllProjects((prev) => !prev)}
+                className="flex items-center gap-2 px-6 py-3 border-2 border-portfolio-1 text-portfolio-1 dark:text-white dark:border-white rounded-lg hover:bg-portfolio-1 hover:text-white dark:hover:bg-white dark:hover:text-dark-900 transition-all duration-300 text-base font-medium shadow-lg hover:shadow-2xl transform hover:scale-105 shine-effect"
+              >
+                {showAllProjects ? t('projects.showLess') : t('projects.showMore')}
+                <svg
+                  className={`w-5 h-5 transition-transform duration-300 ${showAllProjects ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Project Modal */}
