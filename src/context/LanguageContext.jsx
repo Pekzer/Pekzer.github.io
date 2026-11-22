@@ -106,7 +106,7 @@ const translations = {
         spanish: 'Español Nativo',
         spanishLevel: 'Nativo',
         portuguese: 'Portugués (BR)',
-        portugueseStatus: 'Trabajando en ello'
+        portugueseStatus: 'Basico'
       }
     },
     education: {
@@ -358,7 +358,7 @@ const translations = {
         spanish: 'Native Spanish',
         spanishLevel: 'Native',
         portuguese: 'Portuguese (BR)',
-        portugueseStatus: 'Working on it'
+        portugueseStatus: 'Essential'
       }
     },
     education: {
