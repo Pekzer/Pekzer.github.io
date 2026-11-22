@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import LanguageToggle from '@/components/LanguageToggle';
 
 const Navbar = ({ onNavigate }) => {
   const { isDark, toggleTheme } = useTheme();
-  const { language, toggleLanguage, t } = useLanguage();
+  const { t } = useLanguage();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -54,7 +55,7 @@ const Navbar = ({ onNavigate }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-4 flex items-baseline space-x-4 lg:ml-10 lg:space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.key}
@@ -68,14 +69,9 @@ const Navbar = ({ onNavigate }) => {
           </div>
 
           {/* Theme and Language Controls */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Language Toggle */}
-            <button
-              onClick={toggleLanguage}
-              className="text-light-700 dark:text-dark-300 hover:text-portfolio-1 dark:hover:text-white text-sm font-medium transition-all duration-300 hover:scale-110 px-3 py-1 rounded-lg hover:bg-light-100 dark:hover:bg-dark-800"
-            >
-              {language === 'es' ? 'EN' : 'ES'}
-            </button>
+            <LanguageToggle />
 
             {/* Theme Toggle */}
             <button
